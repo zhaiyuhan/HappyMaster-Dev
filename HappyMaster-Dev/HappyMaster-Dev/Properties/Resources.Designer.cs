@@ -22,7 +22,7 @@ namespace HappyMaster_Dev.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace HappyMaster_Dev.Properties {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HappyMaster_Dev.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace HappyMaster_Dev.Properties {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _4656_106 {
+        public static System.Drawing.Bitmap _switch {
             get {
-                object obj = ResourceManager.GetObject("4656-106", resourceCulture);
+                object obj = ResourceManager.GetObject("switch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _8 {
+        public static System.Drawing.Bitmap AboutViewBG {
             get {
-                object obj = ResourceManager.GetObject("8", resourceCulture);
+                object obj = ResourceManager.GetObject("AboutViewBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,7 +83,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap Alert {
+        public static System.Drawing.Bitmap Alert {
             get {
                 object obj = ResourceManager.GetObject("Alert", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonCloseENTER {
+        public static System.Drawing.Bitmap buttonCloseENTER {
             get {
                 object obj = ResourceManager.GetObject("buttonCloseENTER", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonCloseNORMAL {
+        public static System.Drawing.Bitmap buttonCloseNORMAL {
             get {
                 object obj = ResourceManager.GetObject("buttonCloseNORMAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonClosePRESS {
+        public static System.Drawing.Bitmap buttonClosePRESS {
             get {
                 object obj = ResourceManager.GetObject("buttonClosePRESS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonMax {
+        public static System.Drawing.Bitmap buttonMax {
             get {
                 object obj = ResourceManager.GetObject("buttonMax", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonMinENTER {
+        public static System.Drawing.Bitmap buttonMinENTER {
             get {
                 object obj = ResourceManager.GetObject("buttonMinENTER", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonMinNOMAL {
+        public static System.Drawing.Bitmap buttonMinNOMAL {
             get {
                 object obj = ResourceManager.GetObject("buttonMinNOMAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap buttonMinPRESS {
+        public static System.Drawing.Bitmap buttonMinPRESS {
             get {
                 object obj = ResourceManager.GetObject("buttonMinPRESS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,77 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap glassBg {
+        public static System.Drawing.Bitmap checkBox {
+            get {
+                object obj = ResourceManager.GetObject("checkBox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap checkBoxChecked {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxChecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap checkBoxCheckedHover {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxCheckedHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap checkBoxHover {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap compass {
+            get {
+                object obj = ResourceManager.GetObject("compass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap down {
+            get {
+                object obj = ResourceManager.GetObject("down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap downWhite {
+            get {
+                object obj = ResourceManager.GetObject("downWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap glassBg {
             get {
                 object obj = ResourceManager.GetObject("glassBg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +243,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap glassBG2 {
+        public static System.Drawing.Bitmap glassBG2 {
             get {
                 object obj = ResourceManager.GetObject("glassBG2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +253,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap glassBgBlack {
+        public static System.Drawing.Bitmap glassBgBlack {
             get {
                 object obj = ResourceManager.GetObject("glassBgBlack", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +263,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap glassBgGry {
+        public static System.Drawing.Bitmap glassBgGry {
             get {
                 object obj = ResourceManager.GetObject("glassBgGry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +273,47 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap MenuBG {
+        public static System.Drawing.Bitmap help {
+            get {
+                object obj = ResourceManager.GetObject("help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap LeftWhite {
+            get {
+                object obj = ResourceManager.GetObject("LeftWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MainViewBG {
+            get {
+                object obj = ResourceManager.GetObject("MainViewBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuBG {
             get {
                 object obj = ResourceManager.GetObject("MenuBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +323,17 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap MineButtonENTER {
+        public static System.Drawing.Bitmap MenuNormal {
+            get {
+                object obj = ResourceManager.GetObject("MenuNormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MineButtonENTER {
             get {
                 object obj = ResourceManager.GetObject("MineButtonENTER", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +343,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap MineButtonNOMRMAL {
+        public static System.Drawing.Bitmap MineButtonNOMRMAL {
             get {
                 object obj = ResourceManager.GetObject("MineButtonNOMRMAL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +353,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap MineButtonPress {
+        public static System.Drawing.Bitmap MineButtonPress {
             get {
                 object obj = ResourceManager.GetObject("MineButtonPress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +363,17 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap pause {
+        public static System.Drawing.Bitmap MoreOn {
+            get {
+                object obj = ResourceManager.GetObject("MoreOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap pause {
             get {
                 object obj = ResourceManager.GetObject("pause", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +383,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap pausePress {
+        public static System.Drawing.Bitmap pausePress {
             get {
                 object obj = ResourceManager.GetObject("pausePress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +393,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap playerbg {
+        public static System.Drawing.Bitmap playerbg {
             get {
                 object obj = ResourceManager.GetObject("playerbg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +403,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlayNormal {
+        public static System.Drawing.Bitmap PlayNormal {
             get {
                 object obj = ResourceManager.GetObject("PlayNormal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +413,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap PlayPress {
+        public static System.Drawing.Bitmap PlayPress {
             get {
                 object obj = ResourceManager.GetObject("PlayPress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +423,47 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap settings {
+        public static System.Drawing.Bitmap right_arrow {
+            get {
+                object obj = ResourceManager.GetObject("right-arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap RightWhite {
+            get {
+                object obj = ResourceManager.GetObject("RightWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap ScrollBarNOMARL {
+            get {
+                object obj = ResourceManager.GetObject("ScrollBarNOMARL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap SecondMenuBG {
+            get {
+                object obj = ResourceManager.GetObject("SecondMenuBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap settings {
             get {
                 object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +473,7 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap settings1 {
+        public static System.Drawing.Bitmap settings1 {
             get {
                 object obj = ResourceManager.GetObject("settings1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,9 +483,29 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap settingsNormal {
+        public static System.Drawing.Bitmap settingsNormal {
             get {
                 object obj = ResourceManager.GetObject("settingsNormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap slider {
+            get {
+                object obj = ResourceManager.GetObject("slider", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap uncheckedHover {
+            get {
+                object obj = ResourceManager.GetObject("uncheckedHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

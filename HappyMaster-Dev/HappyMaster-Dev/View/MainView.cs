@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using Un4seen.Bass;
 using Un4seen.Bass.Misc;
 using Un4seen.Bass.AddOn.Tags;
+using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
+using GdipEffect;
+using System.Diagnostics;
 
 namespace HappyMaster_Dev.View
 {
@@ -154,7 +158,7 @@ namespace HappyMaster_Dev.View
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; //MusicTitle.BringToFront();
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2; //ArtistName.BringToFront();
             playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();
-            AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2; AlbumViewer.BringToFront();
+            panelAlbumView.Left = (this.ClientRectangle.Width - panelAlbumView.Width) / 2; //AlbumViewer.BringToFront();
 
         }
         private void MainView_Load(object sender, EventArgs e)
@@ -202,6 +206,7 @@ namespace HappyMaster_Dev.View
             {
                 case true:
                     panelSetting.Visible = false;
+                    panelMore.Visible = false;
                     break;
                 case false:
                     panelSetting.Visible = true;
@@ -240,50 +245,71 @@ namespace HappyMaster_Dev.View
 
         private void playControl_MouseEnter(object sender, EventArgs e)
         {
-
+            switch(isPlay)
+            {
+                case true:
+                    playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pausePress;
+                    break;
+                case false:
+                    playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayPress;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void playControl_MouseLeave(object sender, EventArgs e)
         {
-
+            switch (isPlay)
+            {
+                case true:
+                    playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
+                    break;
+                case false:
+                    playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
+                    break;
+                default:
+                    break;
+            }
         }
        private void Play()
         {
             if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
-            {//first play
+            {
+                //first play
                 Bass.BASS_ChannelStop(stream);
                 Bass.BASS_StreamFree(stream);
                 stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
                 //creat stream
                 Bass.BASS_ChannelPlay(stream, true);
-                //Position.Enabled = true;
-                //Player.BackgroundImage = global::HappyMaster.Properties.Resources.media_pause;
+                Position.Enabled = true;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
                 AlbumViewer.BackgroundImage = albumArt;
                 this.Text = "正在播放";
+                isPlay = true;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
             {
                 //playing
                 Bass.BASS_ChannelPause(stream);
-                //Player.BackgroundImage = global::HappyMaster.Properties.Resources.media_play;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
                 this.Text = "播放暂停";
+                isPlay = false;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PAUSED)
             {
                 //pause
                 Bass.BASS_ChannelPlay(stream, false);
-                //Player.BackgroundImage = global::HappyMaster.Properties.Resources.media_pause;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
                 this.Text = "正在播放";
+                isPlay = true;
             }
             else if (stream == 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
                 Bass.BASS_StreamFree(stream);
-                //Player.BackgroundImage = global::HappyMaster.Properties.Resources.media_play;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
                 this.Text = "Happy Master";
+                isPlay = false;
             }
         }
 
@@ -294,6 +320,7 @@ namespace HappyMaster_Dev.View
                 View.MessageBoxView messagebox = new MessageBoxView();
                 messagebox.ShowDialog();
             }
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 50);
             Play();
         }
 
@@ -343,6 +370,411 @@ namespace HappyMaster_Dev.View
         {
             LoadFile();
             panelSetting.Visible = false;
+            panelAlbumView.Visible = true;
+            panelMore.Visible = false;
+            workImage = AlbumViewer.BackgroundImage;
         }
+
+        private void Position_Tick(object sender, EventArgs e)
+        {
+            len = Bass.BASS_ChannelGetLength(stream); 
+            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, len); 
+            long pos = Bass.BASS_ChannelGetPosition(stream); 
+            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
+            double remainingtime = totaltime - elapsedtime;
+            labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            labelLeftTime.Text = String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
+            Pos.Maximum = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetLength(stream));
+            double pSecsD = Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetPosition(stream));
+            Pos.Value = (int)pSecsD;
+            if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
+            {
+                DrawSpectrum();
+            }
+            else if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
+            {
+                pictureBoxSpectrum.Image = null;
+                playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
+                Pos.Value = 0;
+                labelTime.Text = "00:00";
+                labelLeftTime.Text = "00:00";
+                this.Text = "Happy Master";
+            }
+        }
+
+        private void Pos_Scroll(object sender, ScrollEventArgs e)
+        {
+            Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
+        }
+        public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM);
+        private void VolumeMaster_Click(object sender, EventArgs e)
+        {
+            volume = (int)VolumeMaster.DM_Value;
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 50);
+        }
+
+        private void btnShowLiveImage_Click(object sender, EventArgs e)
+        {
+            while(pictureBoxSpectrum.Visible==false)
+            {
+                pictureBoxSpectrum.Visible = true;
+                pictureBoxSpectrum.BringToFront();
+                btnHidePicturebBox.BringToFront();
+                RightView.Visible = true;
+                LeftView.Visible = true;
+                panelSetting.Visible = false;
+                btnHidePicturebBox.Visible = true;
+            }
+            {
+                panelSetting.Visible = false;
+            }
+        }
+
+        private Visuals _vis = new Visuals(); // visuals class instance
+        private int specIdx = 15;
+        private int voicePrintIdx = 0;
+        private void DrawSpectrum()
+        {
+            switch (specIdx)
+            {
+                // normal spectrum (width = resolution)
+                case 0:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrum(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Lime, Color.Red, Color.Transparent, false, false, false);
+                    break;
+                // normal spectrum (full resolution)
+                case 1:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrum(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.SteelBlue, Color.Pink, Color.Transparent, false, true, true);
+                    break;
+                // line spectrum (width = resolution)
+                case 2:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumLine(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Lime, Color.Red, Color.Transparent, 2, 2, false, false, false);
+                    break;
+                // line spectrum (full resolution)
+                case 3:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumLine(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.SteelBlue, Color.Pink, Color.Transparent, 16, 4, false, true, true);
+                    break;
+                // ellipse spectrum (width = resolution)
+                case 4:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumEllipse(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Lime, Color.Red, Color.Transparent, 1, 2, false, false, false);
+                    break;
+                // ellipse spectrum (full resolution)
+                case 5:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumEllipse(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.SteelBlue, Color.Pink, Color.Transparent, 2, 4, false, true, true);
+                    break;
+                // dot spectrum (width = resolution)
+                case 6:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumDot(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Lime, Color.Red, Color.Transparent, 1, 0, false, false, false);
+                    break;
+                // dot spectrum (full resolution)
+                case 7:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumDot(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.SteelBlue, Color.Pink, Color.Transparent, 2, 1, false, false, true);
+                    break;
+                // peak spectrum (width = resolution)
+                case 8:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumLinePeak(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.SeaGreen, Color.LightGreen, Color.Orange, Color.Transparent, 2, 1, 2, 10, false, false, false);
+                    break;
+                // peak spectrum (full resolution)
+                case 9:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumLinePeak(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.GreenYellow, Color.RoyalBlue, Color.DarkOrange, Color.Transparent, 23, 5, 3, 5, false, true, true);
+                    break;
+                // wave spectrum (width = resolution)
+                case 10:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumWave(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Yellow, Color.Orange, Color.Transparent, 1, false, false, false);
+                    break;
+                // dancing beans spectrum (width = resolution)
+                case 11:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumBean(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Chocolate, Color.DarkGoldenrod, Color.Transparent, 4, false, false, true);
+                    break;
+                // dancing text spectrum (width = resolution)
+                case 12:
+                    this.pictureBoxSpectrum.Image = _vis.CreateSpectrumText(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.White, Color.Tomato, Color.Transparent, "BASS .NET IS GREAT PIECE! UN4SEEN ROCKS...", false, false, true);
+                    break;
+                // frequency detection
+                case 13:
+                    float amp = _vis.DetectFrequency(stream, 10, 500, true);
+                    if (amp > 0.3)
+                        this.pictureBoxSpectrum.BackColor = Color.Transparent;
+                    else
+                        this.pictureBoxSpectrum.BackColor = Color.Transparent;
+                    break;
+                // 3D voice print
+                case 14:
+                    // we need to draw directly directly on the picture box...
+                    // normally you would encapsulate this in your own custom control
+                    Graphics g = Graphics.FromHwnd(this.pictureBoxSpectrum.Handle);
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    _vis.CreateSpectrum3DVoicePrint(stream, g, new Rectangle(0, 0, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height), Color.Black, Color.White, voicePrintIdx, false, false);
+                    g.Dispose();
+                    // next call will be at the next pos
+                    voicePrintIdx++;
+                    if (voicePrintIdx > this.pictureBoxSpectrum.Width - 1)
+                        voicePrintIdx = 0;
+                    break;
+                // WaveForm
+                case 15:
+                    this.pictureBoxSpectrum.Image = _vis.CreateWaveForm(stream, this.pictureBoxSpectrum.Width, this.pictureBoxSpectrum.Height, Color.Green, Color.Red, Color.Gray, Color.Transparent, 1, true, false, true);
+                    break;
+            }
+        }
+
+        private void btnHidePicturebBox_Click(object sender, EventArgs e)
+        {
+            pictureBoxSpectrum.Visible = false;
+            RightView.Visible = false;
+            LeftView.Visible = false;
+            btnHidePicturebBox.Visible = false;
+        }
+
+        private void Left_Click(object sender, EventArgs e)
+        {
+            specIdx--;
+            if (specIdx > 15)
+                specIdx = 0;
+            if (specIdx < 0)
+                specIdx = 15;
+            this.pictureBoxSpectrum.Image = null;
+            _vis.ClearPeaks();
+        }
+
+        private void Right_Click(object sender, EventArgs e)
+        {
+            specIdx++;
+            if (specIdx > 15)
+                specIdx = 0;
+            if (specIdx < 0)
+                specIdx = 15;
+            this.pictureBoxSpectrum.Image = null;
+            _vis.ClearPeaks();
+        }
+
+        private void pictureBoxSpectrum_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBoxSpectrum_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                specIdx++;
+            else
+                specIdx--;
+            if (specIdx > 15)
+                specIdx = 0;
+            if (specIdx < 0)
+                specIdx = 15;
+            this.pictureBoxSpectrum.Image = null;
+            _vis.ClearPeaks();
+        }
+
+        private void btnMore_MouseEnter(object sender, EventArgs e)
+        {
+            btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MoreOn;
+        }
+
+        private void btnMore_MouseLeave(object sender, EventArgs e)
+        {
+            btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuNormal;
+           
+        }
+
+        private void btnMore_Click(object sender, EventArgs e)
+        {
+            if (panelMore.Visible == false)
+            {
+                panelMore.Visible = true;
+            panelMore.BringToFront();
+            }
+            else
+            {
+                panelMore.Visible = false;
+            }
+            
+        }
+        bool ifGlassEffect = false;
+        [DllImport("Kernel32.dll", EntryPoint = "RtlMoveMemory", SetLastError = true)]
+        private static extern void CopyMemory(IntPtr Dest, IntPtr src, int Length);
+        private Bitmap Bmp;
+        private IntPtr ImageCopyPointer, ImagePointer;
+        private int DataLength;
+        private void UpdateImage()
+        {
+            if (Bmp != null)
+            {
+                CopyMemory(ImagePointer, ImageCopyPointer, DataLength);
+                Rectangle Rect = new Rectangle(0, 0, Bmp.Width, Bmp.Height);
+                Stopwatch Sw = new Stopwatch();
+                Sw.Start();
+                if (ifGlassEffect==true)
+                    Bmp.GaussianBlur(ref Rect, BarRadius.Value, ChkExpandEdge.Checked);
+                Sw.Stop();
+                panelAlbumView.BackgroundImage = Bmp;          
+            }
+        }
+
+        private void BarRadius_MouseUp(object sender, MouseEventArgs e)
+        {
+            UpdateImage();
+        }
+        public Image workImage = null;
+        private void ChkExpandEdge_Click(object sender, EventArgs e)
+        {
+            UpdateImage();
+        }
+
+        private void BarRadius_Scroll(object sender, EventArgs e)
+        {
+            UpdateImage();
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            labelDoneTimer.Enabled = true;
+            View.InfoMessageBoxView iv = new InfoMessageBoxView();
+            iv.ShowDialog();
+        }
+
+        private void labelDoneTimer_Tick(object sender, EventArgs e)
+        {
+        }
+
+        private void btnChangeBG_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                this.BackgroundImage = Image.FromFile(ofd.FileName);
+                panelMore.Visible = false;
+                panelSetting.Visible = false;
+            }
+        }
+
+        private void showHelpPanel_Click(object sender, EventArgs e)
+        {
+            panelHelp.Visible = true;
+            panelHelp.BringToFront();
+            panelSetting.Visible = false;
+            panelMore.Visible = false;
+            btnSetting.Enabled = false;
+        }
+
+        private void btnCloseHelpView_Click(object sender, EventArgs e)
+        {
+            panelHelp.Visible = false;
+            btnSetting.Enabled = true;
+
+        }
+
+        private void btnShowDSP_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("DSPViewer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
+        private void btnEnrecoder_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("EncoderViewer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
+        private void btnShowDSP_MouseEnter(object sender, EventArgs e)
+        {
+            btnShowDSP.Height = 55;
+            btnShowDSP.Width = 55;
+        }
+
+        private void btnShowDSP_MouseLeave(object sender, EventArgs e)
+        {
+            btnShowDSP.Height = 50;
+            btnShowDSP.Width = 50;
+        }
+
+        private void btnEnrecoder_MouseEnter(object sender, EventArgs e)
+        {
+            btnEnrecoder.Height = 55;
+            btnEnrecoder.Width = 55;
+        }
+
+        private void btnEnrecoder_MouseLeave(object sender, EventArgs e)
+        {
+            btnEnrecoder.Height = 50;
+            btnEnrecoder.Width = 50;
+        }
+
+        private void btnHelpView_MouseEnter(object sender, EventArgs e)
+        {
+            btnHelpView.Width = 55;
+            btnHelpView.Height = 55;
+        }
+
+        private void btnHelpView_MouseLeave(object sender, EventArgs e)
+        {
+            btnHelpView.Height = 50;
+            btnHelpView.Width = 50;
+        }
+
+        private void btnCloseHelpView_MouseEnter(object sender, EventArgs e)
+        {
+            btnCloseHelpView.Height = 55;
+            btnHelpView.Width = 55;
+        }
+
+        private void btnCloseHelpView_MouseLeave(object sender, EventArgs e)
+        {
+            btnCloseHelpView.Height = 50;
+            btnHelpView.Width = 50;
+        }
+
+        private void btnGlassAblumView_Click(object sender, EventArgs e)
+        {
+            if(ifGlassEffect == false)
+            {
+               
+                ifGlassEffect = true;
+                btnDone.Enabled = true;
+                labelbtnGlassAblumView.Text = "(｡･ω･)开启成功，请继续设置";
+                btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBoxChecked;
+                btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxCheckedHover;
+                BarRadius.Enabled = true;
+                BarRadius.Value = 10;              
+                    panelAlbumView.BackgroundImage = AlbumViewer.BackgroundImage;
+                    Bmp = (Bitmap)panelAlbumView.BackgroundImage;
+                   if(Bmp==null)
+                {
+                    DMSkin.MetroMessageBox.Show(this, "没有专辑图片(,,• ₃ •,,) ");
+                    ifGlassEffect = false;
+                    labelbtnGlassAblumView.Text = "(・ˍ・*)是否高斯模糊专辑图片";
+                    btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBox;
+                    btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxHover;
+                    BarRadius.Enabled = false;
+                    btnDone.Enabled = false;
+                }
+                else
+                {        
+                    BitmapData BmpData = new BitmapData();
+                    Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadWrite, Bmp.PixelFormat, BmpData);
+                    ImagePointer = BmpData.Scan0;
+                    DataLength = BmpData.Stride * BmpData.Height;
+                    ImageCopyPointer = Marshal.AllocHGlobal(DataLength);
+                    CopyMemory(ImageCopyPointer, ImagePointer, DataLength);
+                    Bmp.UnlockBits(BmpData);
+                    panelAlbumView.BackgroundImage = Bmp;
+                    UpdateImage();
+                    AlbumViewer.BackgroundImage = workImage;
+
+                 }
+            }
+            else
+            {
+                btnDone.Enabled = false;
+                ifGlassEffect = false;
+                labelbtnGlassAblumView.Text = "(・ˍ・*)是否高斯模糊专辑图片";
+                btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBox;
+                btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxHover;
+                BarRadius.Enabled = false;
+                BarRadius.Value = 0;
+                UpdateImage();
+                panelAlbumView.BackgroundImage = null;
+            }
+           
+        }
+        
     }
 }

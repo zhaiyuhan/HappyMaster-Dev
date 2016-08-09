@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources._8;
+            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.AboutViewBG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 357);
             this.Controls.Add(this.btnClose);
