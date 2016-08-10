@@ -93,6 +93,46 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap btnDown {
+            get {
+                object obj = ResourceManager.GetObject("btnDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap btnDownPress {
+            get {
+                object obj = ResourceManager.GetObject("btnDownPress", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap btnUp {
+            get {
+                object obj = ResourceManager.GetObject("btnUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap btnUpPress {
+            get {
+                object obj = ResourceManager.GetObject("btnUpPress", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap buttonCloseENTER {
             get {
                 object obj = ResourceManager.GetObject("buttonCloseENTER", resourceCulture);
@@ -183,6 +223,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap checkBoxChecked1 {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxChecked1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap checkBoxCheckedHover {
             get {
                 object obj = ResourceManager.GetObject("checkBoxCheckedHover", resourceCulture);
@@ -203,9 +253,49 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap checkBoxIndeterminate {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxIndeterminate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap checkBoxIndeterminateHover {
+            get {
+                object obj = ResourceManager.GetObject("checkBoxIndeterminateHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap checkedRadius {
+            get {
+                object obj = ResourceManager.GetObject("checkedRadius", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap compass {
             get {
                 object obj = ResourceManager.GetObject("compass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap DoneButton {
+            get {
+                object obj = ResourceManager.GetObject("DoneButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +373,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap HelPViewBg {
+            get {
+                object obj = ResourceManager.GetObject("HelPViewBg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap LeftWhite {
             get {
                 object obj = ResourceManager.GetObject("LeftWhite", resourceCulture);
@@ -313,9 +413,69 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap MenuAboutAppBlue {
+            get {
+                object obj = ResourceManager.GetObject("MenuAboutAppBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuAboutAppWhite {
+            get {
+                object obj = ResourceManager.GetObject("MenuAboutAppWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap MenuBG {
             get {
                 object obj = ResourceManager.GetObject("MenuBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuLivePic {
+            get {
+                object obj = ResourceManager.GetObject("MenuLivePic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuLivePicWhite {
+            get {
+                object obj = ResourceManager.GetObject("MenuLivePicWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuLoadFileBlue {
+            get {
+                object obj = ResourceManager.GetObject("MenuLoadFileBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuLoadFileWhite {
+            get {
+                object obj = ResourceManager.GetObject("MenuLoadFileWhite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -366,6 +526,26 @@ namespace HappyMaster_Dev.Properties {
         public static System.Drawing.Bitmap MoreOn {
             get {
                 object obj = ResourceManager.GetObject("MoreOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap OpLevel {
+            get {
+                object obj = ResourceManager.GetObject("OpLevel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap Opstatic {
+            get {
+                object obj = ResourceManager.GetObject("Opstatic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,6 +623,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap SaveChange {
+            get {
+                object obj = ResourceManager.GetObject("SaveChange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap ScrollBarNOMARL {
             get {
                 object obj = ResourceManager.GetObject("ScrollBarNOMARL", resourceCulture);
@@ -506,6 +696,16 @@ namespace HappyMaster_Dev.Properties {
         public static System.Drawing.Bitmap uncheckedHover {
             get {
                 object obj = ResourceManager.GetObject("uncheckedHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap uncheckedRadius {
+            get {
+                object obj = ResourceManager.GetObject("uncheckedRadius", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -28,18 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnClose = new DMSkin.Controls.DMButtonCloseLight();
+            this.btnClose = new DMSkin.MetroDMButton();
             this.SuspendLayout();
             // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.Location = new System.Drawing.Point(8, 1);
-            this.btnClose.MaximumSize = new System.Drawing.Size(30, 27);
-            this.btnClose.MinimumSize = new System.Drawing.Size(30, 27);
+            this.btnClose.DownImage = global::HappyMaster_Dev.Properties.Resources.buttonClosePRESS;
+            this.btnClose.Image = null;
+            this.btnClose.IsShowBorder = false;
+            this.btnClose.Location = new System.Drawing.Point(7, 8);
+            this.btnClose.MoveImage = global::HappyMaster_Dev.Properties.Resources.buttonCloseENTER;
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(30, 27);
-            this.btnClose.TabIndex = 0;
+            this.btnClose.NormalImage = global::HappyMaster_Dev.Properties.Resources.buttonCloseNORMAL;
+            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "";
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // AboutView
@@ -51,12 +56,17 @@
             this.ClientSize = new System.Drawing.Size(580, 357);
             this.Controls.Add(this.btnClose);
             this.DM_howBorder = false;
-            this.DM_Radius = 1;
+            this.DM_Radius = 8;
             this.DM_ShowDrawIcon = false;
+            this.DM_SkinOpacity = 0.8D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AboutView";
-            this.RoundStyle = DMSkin.SkinClass.RoundStyle.None;
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AboutView_FormClosing);
             this.Load += new System.EventHandler(this.AboutView_Load);
             this.ResumeLayout(false);
 
@@ -64,6 +74,6 @@
 
         #endregion
 
-        private DMSkin.Controls.DMButtonCloseLight btnClose;
+        private DMSkin.MetroDMButton btnClose;
     }
 }

@@ -25,5 +25,10 @@ namespace HappyMaster_Dev.View
         {
             this.Close();
         }
+
+        private void AboutView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainView.ifAboutViewOpen = false;
+        }
     }
 }

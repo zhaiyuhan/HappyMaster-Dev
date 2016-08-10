@@ -171,12 +171,12 @@ namespace HappyMaster_Dev.View
             }
             MusicTitle.Text = "";
             ArtistName.Text = "";
-
         }
 
         private void MainView_Resize(object sender, EventArgs e)
         {
             InitUI();
+           
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -226,11 +226,20 @@ namespace HappyMaster_Dev.View
         {
             btnAbout.ForeColor = Color.White;
         }
-
+        public static bool ifAboutViewOpen = false;
         private void btnAbout_Click_1(object sender, EventArgs e)
         {
-            View.AboutView about = new AboutView();
-            about.Show();
+            if (ifAboutViewOpen == false)
+            {
+                View.AboutView about = new AboutView();
+                about.Show();
+                panelSetting.Visible = false;
+                panelMore.Visible = false;
+                ifAboutViewOpen = true;
+            }
+            else
+            {
+            }
         }
 
         private void btnLoadFile_MouseEnter(object sender, EventArgs e)
@@ -424,6 +433,8 @@ namespace HappyMaster_Dev.View
                 LeftView.Visible = true;
                 panelSetting.Visible = false;
                 btnHidePicturebBox.Visible = true;
+                //showHelpPanel.Visible = false;
+                panelMore.Visible = false;
             }
             {
                 panelSetting.Visible = false;
@@ -569,6 +580,8 @@ namespace HappyMaster_Dev.View
         private void btnMore_MouseEnter(object sender, EventArgs e)
         {
             btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MoreOn;
+            panelMore.Visible = true;
+            panelMore.BringToFront();
         }
 
         private void btnMore_MouseLeave(object sender, EventArgs e)
@@ -636,27 +649,31 @@ namespace HappyMaster_Dev.View
         private void labelDoneTimer_Tick(object sender, EventArgs e)
         {
         }
-
+        /*自定义窗体内容*/
+        public static Image exBackground = null;
+        public static double exop = 1.0;
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
+            /*
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 this.BackgroundImage = Image.FromFile(ofd.FileName);
                 panelMore.Visible = false;
                 panelSetting.Visible = false;
-            }
+            }*/
+            View.SettingView sv = new SettingView();
+            sv.ShowDialog();         
         }
-
-        private void showHelpPanel_Click(object sender, EventArgs e)
+    
+        private void btnDIY_Click(object sender, EventArgs e)
         {
-            panelHelp.Visible = true;
-            panelHelp.BringToFront();
-            panelSetting.Visible = false;
-            panelMore.Visible = false;
-            btnSetting.Enabled = false;
+            this.BackgroundImage = exBackground;
+            MainView_Paint(null,null);
+            
+            this.Hide();
+            this.Show();
         }
-
         private void btnCloseHelpView_Click(object sender, EventArgs e)
         {
             panelHelp.Visible = false;
@@ -721,6 +738,42 @@ namespace HappyMaster_Dev.View
             btnCloseHelpView.Height = 50;
             btnHelpView.Width = 50;
         }
+
+        private void MainView_Click(object sender, EventArgs e)
+        {
+            panelMore.Visible = false;
+            panelSetting.Visible = false;
+        }
+
+        private void btnHelpShow_Click(object sender, EventArgs e)
+        {
+            panelHelp.Visible = true;
+            panelHelp.BringToFront();
+            panelSetting.Visible = false;
+            panelMore.Visible = false;
+            btnSetting.Enabled = false;
+        }
+
+        private void btnHelpShow_MouseEnter(object sender, EventArgs e)
+        {
+            btnHelpShow.ForeColor = Color.White;
+        }
+
+        private void btnHelpShow_MouseLeave(object sender, EventArgs e)
+        {
+            btnHelpShow.ForeColor = Color.Black;
+        }
+
+        private void MainView_Paint(object sender, PaintEventArgs e)
+        {
+            this.DM_SkinOpacity = exop;           
+        }
+
+        private void btnHelpView_Click(object sender, EventArgs e)
+        {
+            
+        }
+
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
