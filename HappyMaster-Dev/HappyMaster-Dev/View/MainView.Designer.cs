@@ -56,6 +56,7 @@
             this.RightView = new CCWin.SkinControl.SkinPictureBox();
             this.btnHidePicturebBox = new DMSkin.MetroDMButton();
             this.panelMore = new System.Windows.Forms.Panel();
+            this.btnDIY = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnHelpShow = new DMSkin.MetroDMButton();
             this.btnDone = new DMSkin.Metro.Controls.MetroButton();
             this.btnChangeBG = new MaterialSkin.Controls.MaterialFlatButton();
@@ -75,7 +76,6 @@
             this.btnHelpView = new CCWin.SkinControl.SkinPictureBox();
             this.btnEnrecoder = new CCWin.SkinControl.SkinPictureBox();
             this.btnShowDSP = new CCWin.SkinControl.SkinPictureBox();
-            this.btnDIY = new MaterialSkin.Controls.MaterialFlatButton();
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeftView)).BeginInit();
@@ -481,6 +481,24 @@
             this.panelMore.TabIndex = 17;
             this.panelMore.Visible = false;
             // 
+            // btnDIY
+            // 
+            this.btnDIY.AutoSize = true;
+            this.btnDIY.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnDIY.BackColor = System.Drawing.Color.White;
+            this.btnDIY.Depth = 0;
+            this.btnDIY.ForeColor = System.Drawing.Color.Black;
+            this.btnDIY.Location = new System.Drawing.Point(85, 146);
+            this.btnDIY.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnDIY.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnDIY.Name = "btnDIY";
+            this.btnDIY.Primary = false;
+            this.btnDIY.Size = new System.Drawing.Size(61, 36);
+            this.btnDIY.TabIndex = 9;
+            this.btnDIY.Text = "应用设置";
+            this.btnDIY.UseVisualStyleBackColor = false;
+            this.btnDIY.Click += new System.EventHandler(this.btnDIY_Click);
+            // 
             // btnHelpShow
             // 
             this.btnHelpShow.BackColor = System.Drawing.Color.Transparent;
@@ -505,7 +523,7 @@
             // 
             this.btnDone.DM_UseSelectable = true;
             this.btnDone.Enabled = false;
-            this.btnDone.Location = new System.Drawing.Point(142, 96);
+            this.btnDone.Location = new System.Drawing.Point(142, 97);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(75, 23);
             this.btnDone.TabIndex = 7;
@@ -519,7 +537,7 @@
             this.btnChangeBG.BackColor = System.Drawing.Color.White;
             this.btnChangeBG.Depth = 0;
             this.btnChangeBG.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeBG.Location = new System.Drawing.Point(15, 103);
+            this.btnChangeBG.Location = new System.Drawing.Point(16, 146);
             this.btnChangeBG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnChangeBG.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChangeBG.Name = "btnChangeBG";
@@ -634,7 +652,7 @@
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(951, 69);
+            this.panelHelp.Size = new System.Drawing.Size(951, 128);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -738,24 +756,6 @@
             this.btnShowDSP.MouseEnter += new System.EventHandler(this.btnShowDSP_MouseEnter);
             this.btnShowDSP.MouseLeave += new System.EventHandler(this.btnShowDSP_MouseLeave);
             // 
-            // btnDIY
-            // 
-            this.btnDIY.AutoSize = true;
-            this.btnDIY.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnDIY.BackColor = System.Drawing.Color.White;
-            this.btnDIY.Depth = 0;
-            this.btnDIY.ForeColor = System.Drawing.Color.Black;
-            this.btnDIY.Location = new System.Drawing.Point(16, 146);
-            this.btnDIY.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnDIY.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnDIY.Name = "btnDIY";
-            this.btnDIY.Primary = false;
-            this.btnDIY.Size = new System.Drawing.Size(61, 36);
-            this.btnDIY.TabIndex = 9;
-            this.btnDIY.Text = "应用设置";
-            this.btnDIY.UseVisualStyleBackColor = false;
-            this.btnDIY.Click += new System.EventHandler(this.btnDIY_Click);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -780,6 +780,7 @@
             this.DM_EffectBack = System.Drawing.Color.Transparent;
             this.DM_howBorder = false;
             this.DM_Radius = 1;
+            this.DM_ShadowWidth = 6;
             this.DM_ShowDrawIcon = false;
             this.DM_TitleColor = System.Drawing.Color.Transparent;
             this.ForeColor = System.Drawing.Color.Transparent;

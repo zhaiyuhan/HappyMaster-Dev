@@ -652,18 +652,14 @@ namespace HappyMaster_Dev.View
         /*自定义窗体内容*/
         public static Image exBackground = null;
         public static double exop = 1.0;
+        public static bool ifRadius;
+        public static bool ifTran = false;
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
-            /*
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                this.BackgroundImage = Image.FromFile(ofd.FileName);
-                panelMore.Visible = false;
-                panelSetting.Visible = false;
-            }*/
             View.SettingView sv = new SettingView();
-            sv.ShowDialog();         
+            exBackground = this.BackgroundImage;
+            sv.ShowDialog();
+            
         }
     
         private void btnDIY_Click(object sender, EventArgs e)
@@ -766,12 +762,21 @@ namespace HappyMaster_Dev.View
 
         private void MainView_Paint(object sender, PaintEventArgs e)
         {
-            this.DM_SkinOpacity = exop;           
+            this.DM_SkinOpacity = exop;         
+            if(ifRadius==true)
+            {
+                this.DM_Radius = 6;
+            }  
+            if(ifRadius==false)
+            {
+                pictureBoxSpectrum.BackgroundImage = null;
+            }
         }
 
         private void btnHelpView_Click(object sender, EventArgs e)
         {
-            
+            View.HelpView hv = new HelpView();
+            hv.ShowDialog();
         }
 
 

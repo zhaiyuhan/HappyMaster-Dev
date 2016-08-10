@@ -15,21 +15,91 @@ namespace HappyMaster_Dev.View
         {
             InitializeComponent();
         }
-        public int thislevel;
-        public void exopToLevel()
+        public static int thislevel = 6;
+        public void OpToLevel(double op)
         {
-            if (MainView.exop == 1.0) { thislevel = 5; }
-            else if (MainView.exop == 0.9) { thislevel = 4; }
-            else if (MainView.exop == 0.8) { thislevel = 3; }
-            else if (MainView.exop == 0.7) { thislevel = 2; }
-            else if (MainView.exop == 0.6) { thislevel = 1; }
-            else if (MainView.exop == 0.5) { thislevel = 0; }
+            if (op == 1.0) { thislevel = 6; }
+            else if (op == 0.9) { thislevel = 5; }
+            else if (op == 0.8) { thislevel = 4; }
+            else if (op == 0.7) { thislevel = 3; }
+            else if (op == 0.6) { thislevel = 2; }
+            else if (op == 0.5) { thislevel = 1; }
+            else if (op == 0.5) { thislevel = 0; }
         }
-        
+        public void MineEvent(int level)
+        {
+            switch (level)
+            {
+                case 6:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级6";
+                    break;
+                case 5:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级5";
+                    break;
+                case 4:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级4";
+                    break;
+                case 3:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级3";
+                    break;
+                case 2:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级2";
+                    break;
+                case 1:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.OpLevel;
+                    OpTextBox.Text = "透明度等级1";
+                    break;
+                case 0:
+                    L6.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L5.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L4.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L3.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    L1.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Opstatic;
+                    OpTextBox.Text = "透明度等级0";
+                    break;
+            }
+        }
         private void Setting_Load(object sender, EventArgs e)
         {
-            exopToLevel();
-            OpTextBox.Text = "透明度等级" + thislevel;
+            OpToLevel(MainView.exop);
+            MineEvent(thislevel);
+            
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -75,34 +145,62 @@ namespace HappyMaster_Dev.View
         
         private void btnUp_Click(object sender, EventArgs e)
         {
-            if(MainView.exop==1.0)
+            if (MainView.exop < 1.0 || MainView.exop >= 0.5)
             {
-
-            }else if(MainView.exop==0.9)
-            {
-                MainView.exop = 0.2;
+                MainView.exop += 0.1; thislevel++;
             }
-            else if (MainView.exop == 0.8)
-            {
-                MainView.exop = 0.3;
-            }
-            else if (MainView.exop == 0.7)
-            {
-                MainView.exop = 0.4;
-            }
-            else if (MainView.exop == 0.6)
-            {
-                MainView.exop = 0.5;
-            }
-            else if (MainView.exop == 0.5)
-            {
-                MainView.exop = 0.6;
-            }
+            
+           
+            MineEvent(thislevel); 
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
+            if (MainView.exop > 0.5 || MainView.exop <= 1.0)
+            {
+                MainView.exop -= 0.1;
+            thislevel--;
+            }
+                
+            MineEvent(thislevel);
+        }
+
+
+        private void SettingView_Shown(object sender, EventArgs e)
+        {
             
+            OpToLevel(MainView.exop);
+            MineEvent(thislevel);
+            ViewBg.BackgroundImage = MainView.exBackground;
+            this.Refresh();
+        }
+
+        private void SettingView_Load(object sender, EventArgs e)
+        {
+            OpToLevel(MainView.exop);
+            MineEvent(thislevel);
+            ViewBg.BackgroundImage = MainView.exBackground;
+        }
+
+        private void ifRadius_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ifRadius.Checked==true)
+            {
+                MainView.ifRadius = true;
+            }
+        }
+
+        private void ViewBg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ifTran_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ifRadius.Checked == true)
+            {
+                MainView.ifTran = true;
+            }
         }
     }
 }

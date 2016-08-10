@@ -42,6 +42,8 @@
             this.L5 = new CCWin.SkinControl.SkinPictureBox();
             this.OpTextBox = new CCWin.SkinControl.SkinTextBox();
             this.L6 = new CCWin.SkinControl.SkinPictureBox();
+            this.ifRadius = new DMSkin.Metro.Controls.MetroCheckBox();
+            this.ifTran = new DMSkin.Metro.Controls.MetroCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.L1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveChanges)).BeginInit();
@@ -124,6 +126,7 @@
             this.ViewBg.Size = new System.Drawing.Size(287, 146);
             this.ViewBg.TabIndex = 10;
             this.ViewBg.TabStop = false;
+            this.ViewBg.Click += new System.EventHandler(this.ViewBg_Click);
             // 
             // btnChangeBg
             // 
@@ -211,7 +214,7 @@
             this.OpTextBox.IsPasswordChat = '\0';
             this.OpTextBox.IsSystemPasswordChar = false;
             this.OpTextBox.Lines = new string[] {
-        "透明度等级5"};
+        "透明度等级6"};
             this.OpTextBox.Location = new System.Drawing.Point(17, 59);
             this.OpTextBox.Margin = new System.Windows.Forms.Padding(0);
             this.OpTextBox.MaxLength = 32767;
@@ -235,11 +238,11 @@
             this.OpTextBox.SkinTxt.Name = "BaseText";
             this.OpTextBox.SkinTxt.Size = new System.Drawing.Size(122, 18);
             this.OpTextBox.SkinTxt.TabIndex = 0;
-            this.OpTextBox.SkinTxt.Text = "透明度等级5";
+            this.OpTextBox.SkinTxt.Text = "透明度等级6";
             this.OpTextBox.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.OpTextBox.SkinTxt.WaterText = "";
             this.OpTextBox.TabIndex = 20;
-            this.OpTextBox.Text = "透明度等级5";
+            this.OpTextBox.Text = "透明度等级6";
             this.OpTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.OpTextBox.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.OpTextBox.WaterText = "";
@@ -256,12 +259,36 @@
             this.L6.TabIndex = 21;
             this.L6.TabStop = false;
             // 
+            // ifRadius
+            // 
+            this.ifRadius.AutoSize = true;
+            this.ifRadius.DM_UseSelectable = true;
+            this.ifRadius.Location = new System.Drawing.Point(17, 143);
+            this.ifRadius.Name = "ifRadius";
+            this.ifRadius.Size = new System.Drawing.Size(132, 17);
+            this.ifRadius.TabIndex = 22;
+            this.ifRadius.Text = "是否开启主窗口圆角";
+            this.ifRadius.CheckedChanged += new System.EventHandler(this.ifRadius_CheckedChanged);
+            // 
+            // ifTran
+            // 
+            this.ifTran.AutoSize = true;
+            this.ifTran.DM_UseSelectable = true;
+            this.ifTran.Location = new System.Drawing.Point(17, 166);
+            this.ifTran.Name = "ifTran";
+            this.ifTran.Size = new System.Drawing.Size(120, 17);
+            this.ifTran.TabIndex = 23;
+            this.ifTran.Text = "波形图片是否透明";
+            this.ifTran.CheckedChanged += new System.EventHandler(this.ifTran_CheckedChanged);
+            // 
             // SettingView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(419, 424);
+            this.Controls.Add(this.ifTran);
+            this.Controls.Add(this.ifRadius);
             this.Controls.Add(this.L6);
             this.Controls.Add(this.OpTextBox);
             this.Controls.Add(this.L5);
@@ -281,6 +308,8 @@
             this.Name = "SettingView";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.SettingView_Load);
+            this.Shown += new System.EventHandler(this.SettingView_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.L1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ViewBg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveChanges)).EndInit();
@@ -290,6 +319,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.L5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.L6)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -308,5 +338,7 @@
         private CCWin.SkinControl.SkinPictureBox L5;
         private CCWin.SkinControl.SkinTextBox OpTextBox;
         private CCWin.SkinControl.SkinPictureBox L6;
+        private DMSkin.Metro.Controls.MetroCheckBox ifRadius;
+        private DMSkin.Metro.Controls.MetroCheckBox ifTran;
     }
 }

@@ -91,6 +91,12 @@
     <Compile Include="View\AboutView.Designer.cs">
       <DependentUpon>AboutView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\HelpView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HelpView.Designer.cs">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Setting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     <EmbeddedResource Include="View\AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpView.resx">
+      <DependentUpon>HelpView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +162,15 @@
     <Content Include="Extra\Bass.Net.dll" />
     <Content Include="Extra\CSkin.dll" />
     <Content Include="Extra\DMSkin.dll" />
+    <None Include="Resources\heiheihei.gif" />
+    <None Include="Resources\HelpViewer.jpg" />
+    <None Include="Resources\Logo.png" />
+    <None Include="Resources\HelpViwBG2.png" />
+    <None Include="Resources\HelpViwBG1.png" />
+    <None Include="Resources\HelpViwBGL1.png" />
+    <None Include="Resources\HelpViwBGLarge.png" />
+    <None Include="Resources\HelpViwBGL.png" />
+    <None Include="Resources\HelpViwBG.png" />
     <None Include="Resources\OpLevel.png" />
     <None Include="Resources\Opstatic.png" />
     <None Include="Resources\btnUp.png" />
