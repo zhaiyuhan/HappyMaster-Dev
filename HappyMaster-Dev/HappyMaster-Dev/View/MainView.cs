@@ -158,7 +158,7 @@ namespace HappyMaster_Dev.View
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; //MusicTitle.BringToFront();
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2; //ArtistName.BringToFront();
             playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();
-            panelAlbumView.Left = (this.ClientRectangle.Width - panelAlbumView.Width) / 2; //AlbumViewer.BringToFront();
+            AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2; //AlbumViewer.BringToFront();
 
         }
         private void MainView_Load(object sender, EventArgs e)
@@ -350,7 +350,7 @@ namespace HappyMaster_Dev.View
             Bass.BASS_Stop();
             Bass.BASS_Free();
         }
-        long len = 0; double totaltime; Image albumArt;
+        long len = 0; double totaltime; public static Image albumArt;
         public void LoadFile()
         {
             if(LoadMediaFile.ShowDialog()==DialogResult.OK)
@@ -380,7 +380,7 @@ namespace HappyMaster_Dev.View
         {
             LoadFile();
             panelSetting.Visible = false;
-            panelAlbumView.Visible = true;
+            AlbumViewer.Visible = true;
             panelMore.Visible = false;
             workImage = AlbumViewer.BackgroundImage;
         }
@@ -620,8 +620,7 @@ namespace HappyMaster_Dev.View
                 Sw.Start();
                 if (ifGlassEffect==true)
                     Bmp.GaussianBlur(ref Rect, BarRadius.Value, ChkExpandEdge.Checked);
-                Sw.Stop();
-                panelAlbumView.BackgroundImage = Bmp;          
+                Sw.Stop();             
             }
         }
 
@@ -789,6 +788,11 @@ namespace HappyMaster_Dev.View
 
         }
 
+        private void labelbtnGlassAblumView_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
             if(ifGlassEffect == false)
@@ -801,8 +805,8 @@ namespace HappyMaster_Dev.View
                 btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxCheckedHover;
                 BarRadius.Enabled = true;
                 BarRadius.Value = 10;              
-                    panelAlbumView.BackgroundImage = AlbumViewer.BackgroundImage;
-                    Bmp = (Bitmap)panelAlbumView.BackgroundImage;
+                    
+                    Bmp = (Bitmap)AlbumViewer.BackgroundImage;
                    if(Bmp==null)
                 {
                     DMSkin.MetroMessageBox.Show(this, "没有专辑图片(,,• ₃ •,,) ");
@@ -822,10 +826,8 @@ namespace HappyMaster_Dev.View
                     ImageCopyPointer = Marshal.AllocHGlobal(DataLength);
                     CopyMemory(ImageCopyPointer, ImagePointer, DataLength);
                     Bmp.UnlockBits(BmpData);
-                    panelAlbumView.BackgroundImage = Bmp;
+                    AlbumViewer.BackgroundImage = Bmp;
                     UpdateImage();
-                    AlbumViewer.BackgroundImage = workImage;
-
                  }
             }
             else
@@ -837,8 +839,7 @@ namespace HappyMaster_Dev.View
                 btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxHover;
                 BarRadius.Enabled = false;
                 BarRadius.Value = 0;
-                UpdateImage();
-                panelAlbumView.BackgroundImage = null;
+                UpdateImage();              
             }
            
         }

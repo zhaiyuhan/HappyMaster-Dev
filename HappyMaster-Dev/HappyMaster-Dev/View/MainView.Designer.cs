@@ -65,7 +65,6 @@
             this.BarRadius = new CCWin.SkinControl.SkinTrackBar();
             this.labelbtnGlassAblumView = new CCWin.SkinControl.SkinLabel();
             this.btnGlassAblumView = new DMSkin.MetroDMButton();
-            this.panelAlbumView = new System.Windows.Forms.Panel();
             this.labelDoneTimer = new System.Windows.Forms.Timer(this.components);
             this.panelHelp = new CCWin.SkinControl.SkinPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -86,7 +85,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.RightView)).BeginInit();
             this.panelMore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarRadius)).BeginInit();
-            this.panelAlbumView.SuspendLayout();
             this.panelHelp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseHelpView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHelpView)).BeginInit();
@@ -372,7 +370,7 @@
             // 
             this.AlbumViewer.BackColor = System.Drawing.Color.Transparent;
             this.AlbumViewer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AlbumViewer.Location = new System.Drawing.Point(13, 13);
+            this.AlbumViewer.Location = new System.Drawing.Point(343, 38);
             this.AlbumViewer.Name = "AlbumViewer";
             this.AlbumViewer.Size = new System.Drawing.Size(200, 200);
             this.AlbumViewer.TabIndex = 10;
@@ -601,6 +599,7 @@
             this.labelbtnGlassAblumView.Size = new System.Drawing.Size(169, 17);
             this.labelbtnGlassAblumView.TabIndex = 1;
             this.labelbtnGlassAblumView.Text = "(・ˍ・*)是否高斯模糊专辑图片";
+            this.labelbtnGlassAblumView.Click += new System.EventHandler(this.labelbtnGlassAblumView_Click);
             // 
             // btnGlassAblumView
             // 
@@ -617,17 +616,6 @@
             this.btnGlassAblumView.Text = "";
             this.btnGlassAblumView.UseVisualStyleBackColor = false;
             this.btnGlassAblumView.Click += new System.EventHandler(this.btnGlassAblumView_Click);
-            // 
-            // panelAlbumView
-            // 
-            this.panelAlbumView.BackColor = System.Drawing.Color.Transparent;
-            this.panelAlbumView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelAlbumView.Controls.Add(this.AlbumViewer);
-            this.panelAlbumView.Location = new System.Drawing.Point(401, 15);
-            this.panelAlbumView.Name = "panelAlbumView";
-            this.panelAlbumView.Size = new System.Drawing.Size(228, 229);
-            this.panelAlbumView.TabIndex = 19;
-            this.panelAlbumView.Visible = false;
             // 
             // labelDoneTimer
             // 
@@ -653,7 +641,7 @@
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(951, 128);
+            this.panelHelp.Size = new System.Drawing.Size(951, 126);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -764,8 +752,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(931, 541);
+            this.Controls.Add(this.AlbumViewer);
             this.Controls.Add(this.panelHelp);
-            this.Controls.Add(this.panelAlbumView);
             this.Controls.Add(this.panelMore);
             this.Controls.Add(this.LeftView);
             this.Controls.Add(this.btnHidePicturebBox);
@@ -804,7 +792,6 @@
             this.panelMore.ResumeLayout(false);
             this.panelMore.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BarRadius)).EndInit();
-            this.panelAlbumView.ResumeLayout(false);
             this.panelHelp.ResumeLayout(false);
             this.panelHelp.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseHelpView)).EndInit();
@@ -848,7 +835,6 @@
         private CCWin.SkinControl.SkinTrackBar BarRadius;
         private System.Windows.Forms.Label label1;
         private DMSkin.Controls.DMCheckBox ChkExpandEdge;
-        private System.Windows.Forms.Panel panelAlbumView;
         public CCWin.SkinControl.SkinPictureBox AlbumViewer;
         private MaterialSkin.Controls.MaterialFlatButton btnChangeBG;
         private DMSkin.Metro.Controls.MetroButton btnDone;

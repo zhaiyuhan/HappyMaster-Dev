@@ -45,7 +45,13 @@
             this.LabelCreatTime = new CCWin.SkinControl.SkinLabel();
             this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.LabelFileSize = new CCWin.SkinControl.SkinLabel();
+            this.skinLabel8 = new CCWin.SkinControl.SkinLabel();
+            this.TextBoxFileName = new CCWin.SkinControl.SkinWaterTextBox();
+            this.btnCopyFile = new MaterialSkin.Controls.MaterialFlatButton();
+            this.CopyFile = new System.Windows.Forms.SaveFileDialog();
+            this.TopPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDone
@@ -71,7 +77,8 @@
             // PictureBox
             // 
             this.PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox.Location = new System.Drawing.Point(8, 32);
+            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBox.Location = new System.Drawing.Point(13, 17);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Size = new System.Drawing.Size(100, 100);
             this.PictureBox.TabIndex = 10;
@@ -348,11 +355,66 @@
             this.LabelFileSize.TabIndex = 26;
             this.LabelFileSize.Text = "Label";
             // 
+            // skinLabel8
+            // 
+            this.skinLabel8.AutoSize = true;
+            this.skinLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel8.BorderColor = System.Drawing.Color.White;
+            this.skinLabel8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel8.Location = new System.Drawing.Point(11, 467);
+            this.skinLabel8.Name = "skinLabel8";
+            this.skinLabel8.Size = new System.Drawing.Size(32, 17);
+            this.skinLabel8.TabIndex = 27;
+            this.skinLabel8.Text = "位置";
+            this.skinLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TextBoxFileName
+            // 
+            this.TextBoxFileName.Location = new System.Drawing.Point(111, 467);
+            this.TextBoxFileName.Name = "TextBoxFileName";
+            this.TextBoxFileName.Size = new System.Drawing.Size(330, 21);
+            this.TextBoxFileName.TabIndex = 28;
+            this.TextBoxFileName.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.TextBoxFileName.WaterText = "";
+            // 
+            // btnCopyFile
+            // 
+            this.btnCopyFile.AutoSize = true;
+            this.btnCopyFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCopyFile.Depth = 0;
+            this.btnCopyFile.Location = new System.Drawing.Point(368, 422);
+            this.btnCopyFile.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnCopyFile.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCopyFile.Name = "btnCopyFile";
+            this.btnCopyFile.Primary = false;
+            this.btnCopyFile.Size = new System.Drawing.Size(73, 36);
+            this.btnCopyFile.TabIndex = 29;
+            this.btnCopyFile.Text = "拷贝文件到";
+            this.btnCopyFile.UseVisualStyleBackColor = true;
+            this.btnCopyFile.Click += new System.EventHandler(this.btnCopyFile_Click);
+            // 
+            // CopyFile
+            // 
+            this.CopyFile.Title = "拷贝文件";
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.TopPanel.Controls.Add(this.PictureBox);
+            this.TopPanel.Location = new System.Drawing.Point(-6, -11);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(480, 125);
+            this.TopPanel.TabIndex = 30;
+            // 
             // Infomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 562);
+            this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.btnCopyFile);
+            this.Controls.Add(this.TextBoxFileName);
+            this.Controls.Add(this.skinLabel8);
             this.Controls.Add(this.LabelFileSize);
             this.Controls.Add(this.skinLabel7);
             this.Controls.Add(this.LabelCreatTime);
@@ -367,7 +429,6 @@
             this.Controls.Add(this.TextBoxAlbum);
             this.Controls.Add(this.TextBoxArtist);
             this.Controls.Add(this.TextBoxTitle);
-            this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.btnDone);
             this.DM_CanMove = false;
             this.DM_ShadowWidth = 6;
@@ -381,6 +442,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.Infomation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
+            this.TopPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +466,10 @@
         private CCWin.SkinControl.SkinLabel LabelCreatTime;
         private CCWin.SkinControl.SkinLabel skinLabel7;
         private CCWin.SkinControl.SkinLabel LabelFileSize;
+        private CCWin.SkinControl.SkinLabel skinLabel8;
+        private CCWin.SkinControl.SkinWaterTextBox TextBoxFileName;
+        private MaterialSkin.Controls.MaterialFlatButton btnCopyFile;
+        private System.Windows.Forms.SaveFileDialog CopyFile;
+        private System.Windows.Forms.Panel TopPanel;
     }
 }
