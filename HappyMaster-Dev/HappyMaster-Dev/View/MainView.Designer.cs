@@ -377,6 +377,7 @@
             this.AlbumViewer.Size = new System.Drawing.Size(200, 200);
             this.AlbumViewer.TabIndex = 10;
             this.AlbumViewer.TabStop = false;
+            this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click);
             // 
             // MusicTitle
             // 

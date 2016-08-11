@@ -356,6 +356,7 @@ namespace HappyMaster_Dev.View
             if(LoadMediaFile.ShowDialog()==DialogResult.OK)
             {
                 if (File.Exists(LoadMediaFile.FileName)) { filename = LoadMediaFile.FileName; } else { filename = String.Empty; }
+                exfilename = LoadMediaFile.FileName;
                 Bass.BASS_StreamFree(stream);
                 stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
                 len = Bass.BASS_ChannelGetLength(stream); 
@@ -778,7 +779,15 @@ namespace HappyMaster_Dev.View
             View.HelpView hv = new HelpView();
             hv.ShowDialog();
         }
+        public static string exfilename=string.Empty;
+        private void AlbumViewer_Click(object sender, EventArgs e)
+        {
+            panelSetting.Visible = false;
+            panelMore.Visible = false;
+            View.Infomation iv = new Infomation();
+            iv.ShowDialog();
 
+        }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {

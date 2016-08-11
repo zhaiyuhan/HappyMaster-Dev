@@ -97,6 +97,12 @@
     <Compile Include="View\HelpView.Designer.cs">
       <DependentUpon>HelpView.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Infomation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Infomation.Designer.cs">
+      <DependentUpon>Infomation.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Setting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\HelpView.resx">
       <DependentUpon>HelpView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Infomation.resx">
+      <DependentUpon>Infomation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
