@@ -793,6 +793,11 @@ namespace HappyMaster_Dev.View
 
         }
 
+        private void btnCDPlayer_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("CDPlayer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
             if(ifGlassEffect == false)

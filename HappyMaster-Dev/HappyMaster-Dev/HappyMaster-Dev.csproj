@@ -171,6 +171,8 @@
     <Content Include="Extra\Bass.Net.dll" />
     <Content Include="Extra\CSkin.dll" />
     <Content Include="Extra\DMSkin.dll" />
+    <None Include="Resources\MenuCDPlayerWhite.png" />
+    <None Include="Resources\MenuCDPlayer.png" />
     <None Include="Resources\heiheihei.gif" />
     <None Include="Resources\HelpViewer.jpg" />
     <None Include="Resources\Logo.png" />

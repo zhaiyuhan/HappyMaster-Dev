@@ -503,6 +503,26 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap MenuCDPlayer {
+            get {
+                object obj = ResourceManager.GetObject("MenuCDPlayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap MenuCDPlayerWhite {
+            get {
+                object obj = ResourceManager.GetObject("MenuCDPlayerWhite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap MenuLivePic {
             get {
                 object obj = ResourceManager.GetObject("MenuLivePic", resourceCulture);

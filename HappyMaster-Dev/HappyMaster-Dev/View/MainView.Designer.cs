@@ -35,6 +35,7 @@
             this.btnMax = new DMSkin.MetroDMButton();
             this.btnLoadFile = new DMSkin.MetroDMButton();
             this.panelSetting = new CCWin.SkinControl.SkinPanel();
+            this.btnCDPlayer = new DMSkin.MetroDMButton();
             this.skinLine1 = new CCWin.SkinControl.SkinLine();
             this.btnMore = new CCWin.SkinControl.SkinPictureBox();
             this.btnAbout = new DMSkin.MetroDMButton();
@@ -165,6 +166,7 @@
             this.panelSetting.BackColor = System.Drawing.Color.Transparent;
             this.panelSetting.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuBG;
             this.panelSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSetting.Controls.Add(this.btnCDPlayer);
             this.panelSetting.Controls.Add(this.skinLine1);
             this.panelSetting.Controls.Add(this.btnMore);
             this.panelSetting.Controls.Add(this.btnAbout);
@@ -180,6 +182,23 @@
             this.panelSetting.Size = new System.Drawing.Size(252, 205);
             this.panelSetting.TabIndex = 8;
             this.panelSetting.Visible = false;
+            // 
+            // btnCDPlayer
+            // 
+            this.btnCDPlayer.BackColor = System.Drawing.Color.Transparent;
+            this.btnCDPlayer.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayerWhite;
+            this.btnCDPlayer.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCDPlayer.Image = null;
+            this.btnCDPlayer.IsShowBorder = false;
+            this.btnCDPlayer.Location = new System.Drawing.Point(8, 70);
+            this.btnCDPlayer.MoveImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayerWhite;
+            this.btnCDPlayer.Name = "btnCDPlayer";
+            this.btnCDPlayer.NormalImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayer;
+            this.btnCDPlayer.Size = new System.Drawing.Size(235, 27);
+            this.btnCDPlayer.TabIndex = 10;
+            this.btnCDPlayer.Text = "";
+            this.btnCDPlayer.UseVisualStyleBackColor = false;
+            this.btnCDPlayer.Click += new System.EventHandler(this.btnCDPlayer_Click);
             // 
             // skinLine1
             // 
@@ -199,7 +218,7 @@
             this.btnMore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMore.Location = new System.Drawing.Point(9, 105);
             this.btnMore.Name = "btnMore";
-            this.btnMore.Size = new System.Drawing.Size(233, 23);
+            this.btnMore.Size = new System.Drawing.Size(234, 23);
             this.btnMore.TabIndex = 8;
             this.btnMore.TabStop = false;
             this.btnMore.Click += new System.EventHandler(this.btnMore_Click);
@@ -228,7 +247,7 @@
             // btnShowLiveImage
             // 
             this.btnShowLiveImage.BackColor = System.Drawing.Color.Transparent;
-            this.btnShowLiveImage.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuLoadFileBlue;
+            this.btnShowLiveImage.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuLivePic;
             this.btnShowLiveImage.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnShowLiveImage.Image = null;
             this.btnShowLiveImage.IsShowBorder = false;
@@ -641,7 +660,7 @@
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(951, 126);
+            this.panelHelp.Size = new System.Drawing.Size(951, 123);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -850,5 +869,6 @@
         private System.Windows.Forms.Label label2;
         private DMSkin.MetroDMButton btnHelpShow;
         private MaterialSkin.Controls.MaterialFlatButton btnDIY;
+        private DMSkin.MetroDMButton btnCDPlayer;
     }
 }
