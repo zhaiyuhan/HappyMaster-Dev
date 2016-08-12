@@ -11,6 +11,7 @@
     <AssemblyName>CDPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,8 +54,9 @@
     <Reference Include="Bass.Net">
       <HintPath>Extra\Bass.Net.dll</HintPath>
     </Reference>
-    <Reference Include="CSkin">
-      <HintPath>Extra\CSkin.dll</HintPath>
+    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\AFI\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="DMSkin">
       <HintPath>Extra\DMSkin.dll</HintPath>
@@ -92,6 +94,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MineButtonNOMRMAL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ScrollBarNOMARL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slider.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

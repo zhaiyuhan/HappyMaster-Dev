@@ -416,11 +416,11 @@ namespace HappyMaster_Dev.View
         {
             Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
         }
-        public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM);
+        public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
         private void VolumeMaster_Click(object sender, EventArgs e)
         {
             volume = (int)VolumeMaster.DM_Value;
-            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 50);
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
         }
 
         private void btnShowLiveImage_Click(object sender, EventArgs e)

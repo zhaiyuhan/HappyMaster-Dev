@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Un4seen.Bass;
 using Un4seen.Bass.AddOn.Cd;
+using Un4seen.Bass.AddOn.Tags;
 namespace CDPlayer
 {
     public partial class MainView : DMSkin.Main
@@ -24,7 +24,8 @@ namespace CDPlayer
                 DMSkin.MetroMessageBox.Show(this, Bass.BASS_ErrorGetCode().ToString());
             }
             PanelControlPanel.Width = 0;
-
+            PanelControlPanel.BringToFront();
+            //Slider.Left = (this.ClientRectangle.Width - Slider.Width) / 2; 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -116,9 +117,11 @@ namespace CDPlayer
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "cda文件(*.cda)|*.cda";
             if(ofd.ShowDialog()==DialogResult.OK)
             {
                 filename = ofd.FileName;
+                
             }
         }
         bool ifFirst = true;
@@ -129,6 +132,9 @@ namespace CDPlayer
                 stream = BassCd.BASS_CD_StreamCreateFile(filename,BASSFlag.BASS_SAMPLE_FLOAT);
                 Bass.BASS_ChannelPlay(stream, true);
                 ifFirst = false;
+                BASS_CD_INFO info = new BASS_CD_INFO();
+                BassCd.BASS_CD_GetInfo(stream,info);
+                Pos.Enabled = true;
             }
             else if (ifFirst == false)
             {
@@ -145,6 +151,8 @@ namespace CDPlayer
         private void btnStop_Click(object sender, EventArgs e)
         {
             Bass.BASS_ChannelStop(stream);
+            ifFirst = true;
+
         }
 
         private void btnLoadFile_MouseEnter(object sender, EventArgs e)
@@ -185,6 +193,44 @@ namespace CDPlayer
         private void btnStop_MouseLeave(object sender, EventArgs e)
         {
             btnStop.ForeColor = Color.Black;
+        }
+        int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
+        private void Volume_Scroll(object sender, ScrollEventArgs e)
+        {
+            volume = Volume.Value;
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
+        }
+
+        private void Pos_Tick(object sender, EventArgs e)
+        {
+            Slider.Maximum = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetLength(stream));
+            Slider.Value = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetPosition(stream));//BassCd.BASS_CD_Analog_GetPosition(stream);
+            long len = Bass.BASS_ChannelGetLength(stream);
+            double totaltime = Bass.BASS_ChannelBytes2Seconds(stream, len);
+            long pos = Bass.BASS_ChannelGetPosition(stream);
+            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
+            double remainingtime = totaltime - elapsedtime;
+            labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            labelLeftTime.Text = String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
+        }
+
+        private void Slider_Scroll(object sender, EventArgs e)
+        {
+            Bass.BASS_ChannelSetPosition(stream, (double)Slider.Value);
+
+        }
+
+        private void MainView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Bass.BASS_ChannelStop(stream);
+            Bass.BASS_StreamFree(stream);
+            Bass.BASS_Stop();
+            Bass.BASS_Free();
+        }
+
+        private void btnOpenNaduio_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("AudioFileInspector.exe", System.IO.Directory.GetCurrentDirectory());
         }
 
         
