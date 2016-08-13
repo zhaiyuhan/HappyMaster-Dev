@@ -27,7 +27,7 @@ namespace HappyMaster_Dev.View
         private void labelOK_Click(object sender, EventArgs e)
         {
             info.Text = "重新加载文件试试(ू• ̮ •ू❁)";
-            Show.Enabled = true;
+            ShowView.Enabled = true;
         }
 
         private void labelCancel_Click(object sender, EventArgs e)

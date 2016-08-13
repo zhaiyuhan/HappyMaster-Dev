@@ -39,17 +39,17 @@
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel4 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
-            this.LabelBit = new CCWin.SkinControl.SkinLabel();
-            this.LabelRate = new CCWin.SkinControl.SkinLabel();
             this.skinLabel6 = new CCWin.SkinControl.SkinLabel();
-            this.LabelCreatTime = new CCWin.SkinControl.SkinLabel();
             this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
-            this.LabelFileSize = new CCWin.SkinControl.SkinLabel();
             this.skinLabel8 = new CCWin.SkinControl.SkinLabel();
             this.TextBoxFileName = new CCWin.SkinControl.SkinWaterTextBox();
             this.btnCopyFile = new MaterialSkin.Controls.MaterialFlatButton();
             this.CopyFile = new System.Windows.Forms.SaveFileDialog();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.LabelBit = new System.Windows.Forms.Label();
+            this.LabelRate = new System.Windows.Forms.Label();
+            this.LabelCreatTime = new System.Windows.Forms.Label();
+            this.LabelFileSize = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -93,8 +93,7 @@
             this.TextBoxTitle.IconMouseState = CCWin.SkinClass.ControlState.Normal;
             this.TextBoxTitle.IsPasswordChat = '\0';
             this.TextBoxTitle.IsSystemPasswordChar = false;
-            this.TextBoxTitle.Lines = new string[] {
-        "TextBoxTitle"};
+            this.TextBoxTitle.Lines = new string[0];
             this.TextBoxTitle.Location = new System.Drawing.Point(111, 162);
             this.TextBoxTitle.Margin = new System.Windows.Forms.Padding(0);
             this.TextBoxTitle.MaxLength = 32767;
@@ -119,11 +118,9 @@
             this.TextBoxTitle.SkinTxt.ReadOnly = true;
             this.TextBoxTitle.SkinTxt.Size = new System.Drawing.Size(320, 18);
             this.TextBoxTitle.SkinTxt.TabIndex = 0;
-            this.TextBoxTitle.SkinTxt.Text = "TextBoxTitle";
             this.TextBoxTitle.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxTitle.SkinTxt.WaterText = "";
             this.TextBoxTitle.TabIndex = 11;
-            this.TextBoxTitle.Text = "TextBoxTitle";
             this.TextBoxTitle.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TextBoxTitle.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxTitle.WaterText = "";
@@ -138,8 +135,7 @@
             this.TextBoxArtist.IconMouseState = CCWin.SkinClass.ControlState.Normal;
             this.TextBoxArtist.IsPasswordChat = '\0';
             this.TextBoxArtist.IsSystemPasswordChar = false;
-            this.TextBoxArtist.Lines = new string[] {
-        "skinTextBox2"};
+            this.TextBoxArtist.Lines = new string[0];
             this.TextBoxArtist.Location = new System.Drawing.Point(111, 199);
             this.TextBoxArtist.Margin = new System.Windows.Forms.Padding(0);
             this.TextBoxArtist.MaxLength = 32767;
@@ -164,11 +160,9 @@
             this.TextBoxArtist.SkinTxt.ReadOnly = true;
             this.TextBoxArtist.SkinTxt.Size = new System.Drawing.Size(320, 18);
             this.TextBoxArtist.SkinTxt.TabIndex = 0;
-            this.TextBoxArtist.SkinTxt.Text = "skinTextBox2";
             this.TextBoxArtist.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxArtist.SkinTxt.WaterText = "";
             this.TextBoxArtist.TabIndex = 12;
-            this.TextBoxArtist.Text = "skinTextBox2";
             this.TextBoxArtist.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TextBoxArtist.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxArtist.WaterText = "";
@@ -183,8 +177,7 @@
             this.TextBoxAlbum.IconMouseState = CCWin.SkinClass.ControlState.Normal;
             this.TextBoxAlbum.IsPasswordChat = '\0';
             this.TextBoxAlbum.IsSystemPasswordChar = false;
-            this.TextBoxAlbum.Lines = new string[] {
-        "skinTextBox3"};
+            this.TextBoxAlbum.Lines = new string[0];
             this.TextBoxAlbum.Location = new System.Drawing.Point(111, 237);
             this.TextBoxAlbum.Margin = new System.Windows.Forms.Padding(0);
             this.TextBoxAlbum.MaxLength = 32767;
@@ -209,11 +202,9 @@
             this.TextBoxAlbum.SkinTxt.ReadOnly = true;
             this.TextBoxAlbum.SkinTxt.Size = new System.Drawing.Size(320, 18);
             this.TextBoxAlbum.SkinTxt.TabIndex = 0;
-            this.TextBoxAlbum.SkinTxt.Text = "skinTextBox3";
             this.TextBoxAlbum.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxAlbum.SkinTxt.WaterText = "";
             this.TextBoxAlbum.TabIndex = 13;
-            this.TextBoxAlbum.Text = "skinTextBox3";
             this.TextBoxAlbum.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TextBoxAlbum.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.TextBoxAlbum.WaterText = "";
@@ -281,30 +272,6 @@
             this.skinLabel5.Text = "比特率";
             this.skinLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LabelBit
-            // 
-            this.LabelBit.AutoSize = true;
-            this.LabelBit.BackColor = System.Drawing.Color.Transparent;
-            this.LabelBit.BorderColor = System.Drawing.Color.Transparent;
-            this.LabelBit.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LabelBit.Location = new System.Drawing.Point(111, 356);
-            this.LabelBit.Name = "LabelBit";
-            this.LabelBit.Size = new System.Drawing.Size(69, 17);
-            this.LabelBit.TabIndex = 21;
-            this.LabelBit.Text = "skinLabel6";
-            // 
-            // LabelRate
-            // 
-            this.LabelRate.AutoSize = true;
-            this.LabelRate.BackColor = System.Drawing.Color.Transparent;
-            this.LabelRate.BorderColor = System.Drawing.Color.Transparent;
-            this.LabelRate.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LabelRate.Location = new System.Drawing.Point(111, 385);
-            this.LabelRate.Name = "LabelRate";
-            this.LabelRate.Size = new System.Drawing.Size(69, 17);
-            this.LabelRate.TabIndex = 22;
-            this.LabelRate.Text = "skinLabel7";
-            // 
             // skinLabel6
             // 
             this.skinLabel6.AutoSize = true;
@@ -318,18 +285,6 @@
             this.skinLabel6.Text = "添加时间";
             this.skinLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LabelCreatTime
-            // 
-            this.LabelCreatTime.AutoSize = true;
-            this.LabelCreatTime.BackColor = System.Drawing.Color.Transparent;
-            this.LabelCreatTime.BorderColor = System.Drawing.Color.Transparent;
-            this.LabelCreatTime.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LabelCreatTime.Location = new System.Drawing.Point(111, 413);
-            this.LabelCreatTime.Name = "LabelCreatTime";
-            this.LabelCreatTime.Size = new System.Drawing.Size(69, 17);
-            this.LabelCreatTime.TabIndex = 24;
-            this.LabelCreatTime.Text = "skinLabel7";
-            // 
             // skinLabel7
             // 
             this.skinLabel7.AutoSize = true;
@@ -342,18 +297,6 @@
             this.skinLabel7.TabIndex = 25;
             this.skinLabel7.Text = "文件大小";
             this.skinLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LabelFileSize
-            // 
-            this.LabelFileSize.AutoSize = true;
-            this.LabelFileSize.BackColor = System.Drawing.Color.Transparent;
-            this.LabelFileSize.BorderColor = System.Drawing.Color.Transparent;
-            this.LabelFileSize.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LabelFileSize.Location = new System.Drawing.Point(111, 440);
-            this.LabelFileSize.Name = "LabelFileSize";
-            this.LabelFileSize.Size = new System.Drawing.Size(39, 17);
-            this.LabelFileSize.TabIndex = 26;
-            this.LabelFileSize.Text = "Label";
             // 
             // skinLabel8
             // 
@@ -406,21 +349,53 @@
             this.TopPanel.Size = new System.Drawing.Size(480, 125);
             this.TopPanel.TabIndex = 30;
             // 
+            // LabelBit
+            // 
+            this.LabelBit.AutoSize = true;
+            this.LabelBit.Location = new System.Drawing.Point(109, 359);
+            this.LabelBit.Name = "LabelBit";
+            this.LabelBit.Size = new System.Drawing.Size(0, 12);
+            this.LabelBit.TabIndex = 31;
+            // 
+            // LabelRate
+            // 
+            this.LabelRate.AutoSize = true;
+            this.LabelRate.Location = new System.Drawing.Point(109, 388);
+            this.LabelRate.Name = "LabelRate";
+            this.LabelRate.Size = new System.Drawing.Size(0, 12);
+            this.LabelRate.TabIndex = 32;
+            // 
+            // LabelCreatTime
+            // 
+            this.LabelCreatTime.AutoSize = true;
+            this.LabelCreatTime.Location = new System.Drawing.Point(111, 413);
+            this.LabelCreatTime.Name = "LabelCreatTime";
+            this.LabelCreatTime.Size = new System.Drawing.Size(0, 12);
+            this.LabelCreatTime.TabIndex = 33;
+            // 
+            // LabelFileSize
+            // 
+            this.LabelFileSize.AutoSize = true;
+            this.LabelFileSize.Location = new System.Drawing.Point(111, 440);
+            this.LabelFileSize.Name = "LabelFileSize";
+            this.LabelFileSize.Size = new System.Drawing.Size(0, 12);
+            this.LabelFileSize.TabIndex = 34;
+            // 
             // Infomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 562);
+            this.Controls.Add(this.LabelFileSize);
+            this.Controls.Add(this.LabelCreatTime);
+            this.Controls.Add(this.LabelRate);
+            this.Controls.Add(this.LabelBit);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.btnCopyFile);
             this.Controls.Add(this.TextBoxFileName);
             this.Controls.Add(this.skinLabel8);
-            this.Controls.Add(this.LabelFileSize);
             this.Controls.Add(this.skinLabel7);
-            this.Controls.Add(this.LabelCreatTime);
             this.Controls.Add(this.skinLabel6);
-            this.Controls.Add(this.LabelRate);
-            this.Controls.Add(this.LabelBit);
             this.Controls.Add(this.skinLabel5);
             this.Controls.Add(this.skinLabel4);
             this.Controls.Add(this.skinLabel3);
@@ -460,16 +435,16 @@
         private CCWin.SkinControl.SkinLabel skinLabel3;
         private CCWin.SkinControl.SkinLabel skinLabel4;
         private CCWin.SkinControl.SkinLabel skinLabel5;
-        private CCWin.SkinControl.SkinLabel LabelBit;
-        private CCWin.SkinControl.SkinLabel LabelRate;
         private CCWin.SkinControl.SkinLabel skinLabel6;
-        private CCWin.SkinControl.SkinLabel LabelCreatTime;
         private CCWin.SkinControl.SkinLabel skinLabel7;
-        private CCWin.SkinControl.SkinLabel LabelFileSize;
         private CCWin.SkinControl.SkinLabel skinLabel8;
         private CCWin.SkinControl.SkinWaterTextBox TextBoxFileName;
         private MaterialSkin.Controls.MaterialFlatButton btnCopyFile;
         private System.Windows.Forms.SaveFileDialog CopyFile;
         private System.Windows.Forms.Panel TopPanel;
+        private System.Windows.Forms.Label LabelBit;
+        private System.Windows.Forms.Label LabelRate;
+        private System.Windows.Forms.Label LabelCreatTime;
+        private System.Windows.Forms.Label LabelFileSize;
     }
 }

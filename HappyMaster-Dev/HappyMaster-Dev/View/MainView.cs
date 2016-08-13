@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Un4seen.Bass;
 using Un4seen.Bass.Misc;
@@ -48,7 +44,7 @@ namespace HappyMaster_Dev.View
         }
         private void GetPicture()
         {
-            //先尝试从ID3V2中查找图片
+            //Try to start looking tehe image from the ID3V2
             if (!GetPictureFromID3V2())
             {
 
@@ -89,7 +85,8 @@ namespace HappyMaster_Dev.View
             catch (System.Exception)
             {
                 try
-                {//尝试从前面开始查找
+                {
+                    //Try to start looking from the front
                     for (int i = start; i < bystes.Length; i++)
                     {
                         if (bystes[i] == 0xFF && bystes[i + 1] == 0xd9)
@@ -131,7 +128,7 @@ namespace HappyMaster_Dev.View
                         {
                             break;
                         }
-                        //读取图片
+                        //read image
                         if (((str == "APIC") || (str == "PIC")) && (obj2 is byte[]))
                         {
                             if (bytesToImage(obj2 as byte[]))
@@ -155,19 +152,21 @@ namespace HappyMaster_Dev.View
         public int stream = 0;
         public void InitUI()
         {
-            MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; //MusicTitle.BringToFront();
-            ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2; //ArtistName.BringToFront();
+            MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
+            ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
+            AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
             playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();
-            AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2; //AlbumViewer.BringToFront();
-
+            //except playControl is always on top,and all of them are always in the middle
         }
         private void MainView_Load(object sender, EventArgs e)
         {
-            InitUI();
-            if (!Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_CPSPEAKERS, this.Handle))
+            InitUI();//Run...
+           //Initialization interface,BASS.NET
+            if (!Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_CPSPEAKERS, this.Handle))//Set  parameter
             {
                 DMSkin.MetroMessageBox.Show(this, Bass.BASS_ErrorGetCode().ToString());
                 BassNet.Registration("zhaiyuhanx@hotmail.com", "2X3931422312422");
+                //registered BASS.NET,if not,will a display panel prompts you,It is not free to be paid
             }
             MusicTitle.Text = "";
             ArtistName.Text = "";
@@ -176,9 +175,9 @@ namespace HappyMaster_Dev.View
         private void MainView_Resize(object sender, EventArgs e)
         {
             InitUI();
-           
+            //if Triggering Resize event,sure all of them are always in the middle
         }
-
+        //btnControl ,like title bar
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -199,7 +198,7 @@ namespace HappyMaster_Dev.View
             {
                 WindowState = FormWindowState.Normal;
             }
-        }
+        }//title bar ,finished
         private void btnSetting_Click(object sender, EventArgs e)
         {
             switch (panelSetting.Visible)
@@ -215,8 +214,8 @@ namespace HappyMaster_Dev.View
                 default:
                     break;
             }
-        }
-
+        }//Show Setting Panel ,make sure it is on top
+         //after beta3.1 the event is useless
         private void btnAbout_MouseLeave(object sender, EventArgs e)
         {
             btnAbout.ForeColor = Color.Black;
@@ -225,9 +224,10 @@ namespace HappyMaster_Dev.View
         private void btnAbout_MouseEnter(object sender, EventArgs e)
         {
             btnAbout.ForeColor = Color.White;
-        }
-        public static bool ifAboutViewOpen = false;
-        private void btnAbout_Click_1(object sender, EventArgs e)
+        }//
+
+        public static bool ifAboutViewOpen = false;//View.AboutView is not a dialog, so just can open one view
+        private void btnAbout_Click(object sender, EventArgs e)
         {
             if (ifAboutViewOpen == false)
             {
@@ -239,19 +239,10 @@ namespace HappyMaster_Dev.View
             }
             else
             {
+                //ifAboutViewOpen = false;in View.AboutView FormClosingeEvent, so ifAboutViewOpen is static
             }
         }
-
-        private void btnLoadFile_MouseEnter(object sender, EventArgs e)
-        {
-            btnLoadFile.ForeColor = Color.White;
-        }
-
-        private void btnLoadFile_MouseLeave(object sender, EventArgs e)
-        {
-            btnLoadFile.ForeColor = Color.Black;
-        }
-
+        //PlayControl if true,pause icon, if false, play icon
         private void playControl_MouseEnter(object sender, EventArgs e)
         {
             switch(isPlay)
@@ -281,6 +272,7 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
+        //Play function 
        private void Play()
         {
             if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
@@ -289,7 +281,7 @@ namespace HappyMaster_Dev.View
                 Bass.BASS_ChannelStop(stream);
                 Bass.BASS_StreamFree(stream);
                 stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
-                //creat stream
+                //create stream
                 Bass.BASS_ChannelPlay(stream, true);
                 Position.Enabled = true;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
@@ -315,6 +307,7 @@ namespace HappyMaster_Dev.View
             }
             else if (stream == 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
+                //finished 
                 Bass.BASS_StreamFree(stream);
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
                 this.Text = "Happy Master";
@@ -328,44 +321,33 @@ namespace HappyMaster_Dev.View
             {
                 View.MessageBoxView messagebox = new MessageBoxView();
                 messagebox.ShowDialog();
-            }
-            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 50);
+            }//if no stream create,show View.MessageBoxView messagebox
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 100);
+            //set volume
             Play();
         }
-
-        private void btnShowLiveImage_MouseEnter(object sender, EventArgs e)
-        {
-            btnShowLiveImage.ForeColor = Color.White;
-        }
-
-        private void btnShowLiveImage_MouseLeave(object sender, EventArgs e)
-        {
-            btnShowLiveImage.ForeColor = Color.Black;
-        }
-
+        //free res
         private void MainView_FormClosing(object sender, FormClosingEventArgs e)
         {
             Bass.BASS_ChannelStop(stream);
             Bass.BASS_StreamFree(stream);
             Bass.BASS_Stop();
             Bass.BASS_Free();
-        }
-        long len = 0; double totaltime; public static Image albumArt;
+        }//
+        long length = 0; double totaltime; public static Image albumArt;
+        //function LoadFile
         public void LoadFile()
         {
             if(LoadMediaFile.ShowDialog()==DialogResult.OK)
             {
-                if (File.Exists(LoadMediaFile.FileName)) { filename = LoadMediaFile.FileName; } else { filename = String.Empty; }
-                exfilename = LoadMediaFile.FileName;
-                Bass.BASS_StreamFree(stream);
-                stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
-                len = Bass.BASS_ChannelGetLength(stream); 
-                totaltime = Bass.BASS_ChannelBytes2Seconds(stream, len); 
-                labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));
-                BASS_CHANNELINFO info = new BASS_CHANNELINFO();
-                Bass.BASS_ChannelGetInfo(stream, info);
+                if (File.Exists(LoadMediaFile.FileName)) { filename = LoadMediaFile.FileName; } else { filename = String.Empty; }//get filename 
+                exfilename = LoadMediaFile.FileName;//set filename
+                Bass.BASS_StreamFree(stream);//free last stream
+                stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
+                length = Bass.BASS_ChannelGetLength(stream); //get the stream length
+                totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
+                labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
                 TAG_INFO tagInfo = new TAG_INFO(filename);
-                TagPicture picture = new TagPicture(filename);
                 if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
                 {
                     GetPicture();
@@ -373,33 +355,38 @@ namespace HappyMaster_Dev.View
                     MusicTitle.Text = tagInfo.title;
                     ArtistName.Text = tagInfo.artist + " - " + tagInfo.album;
                     InitUI();
-                }
+                }//get tag information
             }
         }
         public void btnLoadFile_Click(object sender, EventArgs e)
         {
-            LoadFile();
+            LoadFile();//LoadFile Function
+                       //Hide Surplus Panel
             panelSetting.Visible = false;
             AlbumViewer.Visible = true;
             panelMore.Visible = false;
+            //set workImage
             workImage = AlbumViewer.BackgroundImage;
         }
 
         private void Position_Tick(object sender, EventArgs e)
         {
-            len = Bass.BASS_ChannelGetLength(stream); 
-            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, len); 
+            length = Bass.BASS_ChannelGetLength(stream); 
+            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); 
             long pos = Bass.BASS_ChannelGetPosition(stream); 
-            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
-            double remainingtime = totaltime - elapsedtime;
+            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
+            double remainingtime = totaltime - elapsedtime;//left time
             labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
             labelLeftTime.Text = String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
+            //set pos max value ,avoid overflow
             Pos.Maximum = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetLength(stream));
+            //set pos, and double into int
             double pSecsD = Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetPosition(stream));
             Pos.Value = (int)pSecsD;
             if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
             {
                 DrawSpectrum();
+                //Live Picture Panel
             }
             else if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
@@ -409,39 +396,42 @@ namespace HappyMaster_Dev.View
                 labelTime.Text = "00:00";
                 labelLeftTime.Text = "00:00";
                 this.Text = "Happy Master";
+                //Finished play
             }
         }
 
         private void Pos_Scroll(object sender, ScrollEventArgs e)
         {
+            //set pos
             Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
         }
+        //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
         private void VolumeMaster_Click(object sender, EventArgs e)
         {
             volume = (int)VolumeMaster.DM_Value;
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
-        }
+        }//
 
         private void btnShowLiveImage_Click(object sender, EventArgs e)
         {
             while(pictureBoxSpectrum.Visible==false)
             {
                 pictureBoxSpectrum.Visible = true;
+                //make sure pictureBoxSpecturm and btnHidePictureBox on the top
                 pictureBoxSpectrum.BringToFront();
                 btnHidePicturebBox.BringToFront();
                 RightView.Visible = true;
                 LeftView.Visible = true;
                 panelSetting.Visible = false;
                 btnHidePicturebBox.Visible = true;
-                //showHelpPanel.Visible = false;
                 panelMore.Visible = false;
             }
             {
                 panelSetting.Visible = false;
             }
         }
-
+        //from Demo:
         private Visuals _vis = new Visuals(); // visuals class instance
         private int specIdx = 15;
         private int voicePrintIdx = 0;
@@ -528,7 +518,7 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
-
+        //Hide the Live Picture Box
         private void btnHidePicturebBox_Click(object sender, EventArgs e)
         {
             pictureBoxSpectrum.Visible = false;
@@ -558,12 +548,12 @@ namespace HappyMaster_Dev.View
             this.pictureBoxSpectrum.Image = null;
             _vis.ClearPeaks();
         }
-
+        //
         private void pictureBoxSpectrum_MouseClick(object sender, MouseEventArgs e)
         {
-
+            //do...
         }
-
+        //
         private void pictureBoxSpectrum_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -649,7 +639,7 @@ namespace HappyMaster_Dev.View
         private void labelDoneTimer_Tick(object sender, EventArgs e)
         {
         }
-        /*自定义窗体内容*/
+        /*Ex Value to diy main form*/
         public static Image exBackground = null;
         public static double exop = 1.0;
         public static bool ifRadius;
@@ -686,7 +676,7 @@ namespace HappyMaster_Dev.View
         {
             System.Diagnostics.Process.Start("EncoderViewer.exe", System.IO.Directory.GetCurrentDirectory());
         }
-
+        //HelpPanel
         private void btnShowDSP_MouseEnter(object sender, EventArgs e)
         {
             btnShowDSP.Height = 55;
@@ -733,12 +723,12 @@ namespace HappyMaster_Dev.View
         {
             btnCloseHelpView.Height = 50;
             btnHelpView.Width = 50;
-        }
+        }//
 
         private void MainView_Click(object sender, EventArgs e)
         {
             panelMore.Visible = false;
-            panelSetting.Visible = false;
+            panelSetting.Visible = false;//Hide PanelMore PanelSetting
         }
 
         private void btnHelpShow_Click(object sender, EventArgs e)

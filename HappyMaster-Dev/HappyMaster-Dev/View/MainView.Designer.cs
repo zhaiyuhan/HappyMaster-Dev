@@ -157,8 +157,6 @@
             this.btnLoadFile.Text = "";
             this.btnLoadFile.UseVisualStyleBackColor = false;
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
-            this.btnLoadFile.MouseEnter += new System.EventHandler(this.btnLoadFile_MouseEnter);
-            this.btnLoadFile.MouseLeave += new System.EventHandler(this.btnLoadFile_MouseLeave);
             // 
             // panelSetting
             // 
@@ -240,9 +238,7 @@
             this.btnAbout.TabIndex = 7;
             this.btnAbout.Text = "";
             this.btnAbout.UseVisualStyleBackColor = false;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click_1);
-            this.btnAbout.MouseEnter += new System.EventHandler(this.btnAbout_MouseEnter);
-            this.btnAbout.MouseLeave += new System.EventHandler(this.btnAbout_MouseLeave);
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // btnShowLiveImage
             // 
@@ -260,8 +256,6 @@
             this.btnShowLiveImage.Text = "";
             this.btnShowLiveImage.UseVisualStyleBackColor = false;
             this.btnShowLiveImage.Click += new System.EventHandler(this.btnShowLiveImage_Click);
-            this.btnShowLiveImage.MouseEnter += new System.EventHandler(this.btnShowLiveImage_MouseEnter);
-            this.btnShowLiveImage.MouseLeave += new System.EventHandler(this.btnShowLiveImage_MouseLeave);
             // 
             // LeftView
             // 
@@ -656,11 +650,11 @@
             this.panelHelp.Controls.Add(this.btnShowDSP);
             this.panelHelp.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelHelp.DownBack = null;
-            this.panelHelp.Location = new System.Drawing.Point(-9, 247);
+            this.panelHelp.Location = new System.Drawing.Point(-9, 253);
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(951, 123);
+            this.panelHelp.Size = new System.Drawing.Size(951, 128);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 

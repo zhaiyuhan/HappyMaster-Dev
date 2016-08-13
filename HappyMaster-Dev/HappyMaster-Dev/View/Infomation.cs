@@ -165,7 +165,9 @@ namespace HappyMaster_Dev.View
                 Sw.Stop();
                 TopPanel.BackgroundImage = Bmp;
             }
-        }
+        }/*
+        BASS_CHANNELINFO info = new BASS_CHANNELINFO();
+        Bass.BASS_ChannelGetInfo(stream, info);*/
         private void Infomation_Load(object sender, EventArgs e)
         {
             _Filename = MainView.exfilename;

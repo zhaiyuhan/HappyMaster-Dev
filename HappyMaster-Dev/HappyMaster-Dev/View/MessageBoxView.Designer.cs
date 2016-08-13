@@ -34,7 +34,7 @@
             this.Title = new CCWin.SkinControl.SkinLabel();
             this.info = new CCWin.SkinControl.SkinLabel();
             this.LoadMediaFile = new System.Windows.Forms.OpenFileDialog();
-            this.Show = new System.Windows.Forms.Timer(this.components);
+            this.ShowView = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // labelOK
@@ -95,10 +95,10 @@
             // 
             this.LoadMediaFile.Title = "HappyMaster-打开音频文件";
             // 
-            // Show
+            // ShowView
             // 
-            this.Show.Interval = 2000;
-            this.Show.Tick += new System.EventHandler(this.Show_Tick);
+            this.ShowView.Interval = 2000;
+            this.ShowView.Tick += new System.EventHandler(this.Show_Tick);
             // 
             // MessageBoxView
             // 
@@ -130,6 +130,6 @@
         private CCWin.SkinControl.SkinLabel Title;
         private CCWin.SkinControl.SkinLabel info;
         public System.Windows.Forms.OpenFileDialog LoadMediaFile;
-        private System.Windows.Forms.Timer Show;
+        private System.Windows.Forms.Timer ShowView;
     }
 }
