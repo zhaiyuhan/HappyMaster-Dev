@@ -324,6 +324,7 @@ namespace HappyMaster_Dev.View
             }//if no stream create,show View.MessageBoxView messagebox
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 100);
             //set volume
+            AlbumViewer.Visible = true;
             Play();
         }
         //free res
@@ -641,7 +642,7 @@ namespace HappyMaster_Dev.View
         }
         /*Ex Value to diy main form*/
         public static Image exBackground = null;
-        public static double exop = 1.0;
+        public static double exop = 0.9;
         public static bool ifRadius;
         public static bool ifTran = false;
         private void btnChangeBG_Click(object sender, EventArgs e)

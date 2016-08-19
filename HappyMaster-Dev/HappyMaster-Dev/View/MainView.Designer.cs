@@ -273,7 +273,7 @@
             // bottomPanel
             // 
             this.bottomPanel.BackColor = System.Drawing.Color.Transparent;
-            this.bottomPanel.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.glassBgGry;
+            this.bottomPanel.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.glassBG2;
             this.bottomPanel.Controls.Add(this.playControl);
             this.bottomPanel.Controls.Add(this.VolumeMaster);
             this.bottomPanel.Controls.Add(this.labelLeftTime);
@@ -310,7 +310,7 @@
             this.VolumeMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.VolumeMaster.BackColor = System.Drawing.Color.Transparent;
             this.VolumeMaster.DM_BackColor = System.Drawing.Color.White;
-            this.VolumeMaster.DM_BlockColor = System.Drawing.Color.DarkGray;
+            this.VolumeMaster.DM_BlockColor = System.Drawing.Color.DimGray;
             this.VolumeMaster.DM_BufferColor = System.Drawing.Color.Silver;
             this.VolumeMaster.DM_BufferValue = 0D;
             this.VolumeMaster.DM_DrawRound = true;
@@ -388,6 +388,7 @@
             this.AlbumViewer.Size = new System.Drawing.Size(200, 200);
             this.AlbumViewer.TabIndex = 10;
             this.AlbumViewer.TabStop = false;
+            this.AlbumViewer.Visible = false;
             this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click);
             // 
             // MusicTitle
@@ -408,11 +409,11 @@
             this.ArtistName.AutoSize = true;
             this.ArtistName.BackColor = System.Drawing.Color.Transparent;
             this.ArtistName.BorderColor = System.Drawing.Color.Transparent;
-            this.ArtistName.Font = new System.Drawing.Font(".萍方-简", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ArtistName.Font = new System.Drawing.Font(".萍方-简", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ArtistName.ForeColor = System.Drawing.SystemColors.Control;
             this.ArtistName.Location = new System.Drawing.Point(382, 336);
             this.ArtistName.Name = "ArtistName";
-            this.ArtistName.Size = new System.Drawing.Size(185, 45);
+            this.ArtistName.Size = new System.Drawing.Size(121, 29);
             this.ArtistName.TabIndex = 12;
             this.ArtistName.Text = "ArtistName";
             // 
@@ -650,11 +651,11 @@
             this.panelHelp.Controls.Add(this.btnShowDSP);
             this.panelHelp.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelHelp.DownBack = null;
-            this.panelHelp.Location = new System.Drawing.Point(-9, 253);
+            this.panelHelp.Location = new System.Drawing.Point(0, 247);
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(951, 128);
+            this.panelHelp.Size = new System.Drawing.Size(931, 123);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -663,7 +664,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label5.ForeColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(633, 27);
+            this.label5.Location = new System.Drawing.Point(544, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 27);
             this.label5.TabIndex = 7;
@@ -674,7 +675,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ForeColor = System.Drawing.Color.Gray;
-            this.label4.Location = new System.Drawing.Point(526, 27);
+            this.label4.Location = new System.Drawing.Point(454, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 27);
             this.label4.TabIndex = 6;
@@ -685,7 +686,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(382, 27);
+            this.label3.Location = new System.Drawing.Point(359, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 27);
             this.label3.TabIndex = 5;
@@ -696,7 +697,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(264, 27);
+            this.label2.Location = new System.Drawing.Point(242, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 27);
             this.label2.TabIndex = 4;
@@ -707,7 +708,7 @@
             this.btnCloseHelpView.BackColor = System.Drawing.Color.Transparent;
             this.btnCloseHelpView.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.logout;
             this.btnCloseHelpView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCloseHelpView.Location = new System.Drawing.Point(653, 66);
+            this.btnCloseHelpView.Location = new System.Drawing.Point(549, 66);
             this.btnCloseHelpView.Name = "btnCloseHelpView";
             this.btnCloseHelpView.Size = new System.Drawing.Size(50, 50);
             this.btnCloseHelpView.TabIndex = 3;
@@ -721,7 +722,7 @@
             this.btnHelpView.BackColor = System.Drawing.Color.Transparent;
             this.btnHelpView.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.help;
             this.btnHelpView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelpView.Location = new System.Drawing.Point(528, 66);
+            this.btnHelpView.Location = new System.Drawing.Point(459, 66);
             this.btnHelpView.Name = "btnHelpView";
             this.btnHelpView.Size = new System.Drawing.Size(50, 50);
             this.btnHelpView.TabIndex = 2;
@@ -735,7 +736,7 @@
             this.btnEnrecoder.BackColor = System.Drawing.Color.Transparent;
             this.btnEnrecoder.BackgroundImage = global::HappyMaster_Dev.Properties.Resources._switch;
             this.btnEnrecoder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEnrecoder.Location = new System.Drawing.Point(401, 66);
+            this.btnEnrecoder.Location = new System.Drawing.Point(364, 66);
             this.btnEnrecoder.Name = "btnEnrecoder";
             this.btnEnrecoder.Size = new System.Drawing.Size(50, 50);
             this.btnEnrecoder.TabIndex = 1;
@@ -784,8 +785,10 @@
             this.DM_Radius = 1;
             this.DM_ShadowWidth = 6;
             this.DM_ShowDrawIcon = false;
+            this.DM_SkinOpacity = 0.9D;
             this.DM_TitleColor = System.Drawing.Color.Transparent;
             this.ForeColor = System.Drawing.Color.Transparent;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
