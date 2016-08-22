@@ -31,20 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpView));
             this.btnDone = new DMSkin.MetroDMButton();
             this.skinPictureBox1 = new CCWin.SkinControl.SkinPictureBox();
-            this.skinPictureBox2 = new CCWin.SkinControl.SkinPictureBox();
             this.metroLabel1 = new DMSkin.Metro.Controls.MetroLabel();
             this.metroLabel2 = new DMSkin.Metro.Controls.MetroLabel();
             this.metroLabel3 = new DMSkin.Metro.Controls.MetroLabel();
             this.skinTabControl1 = new CCWin.SkinControl.SkinTabControl();
             this.skinTabPage1 = new CCWin.SkinControl.SkinTabPage();
+            this.metroLabel5 = new DMSkin.Metro.Controls.MetroLabel();
+            this.metroLabel4 = new DMSkin.Metro.Controls.MetroLabel();
             this.gifBox1 = new CCWin.SkinControl.GifBox();
             this.skinTabPage2 = new CCWin.SkinControl.SkinTabPage();
-            this.metroLabel4 = new DMSkin.Metro.Controls.MetroLabel();
-            this.metroLabel5 = new DMSkin.Metro.Controls.MetroLabel();
-            this.metroLabel6 = new DMSkin.Metro.Controls.MetroLabel();
             this.metroLabel7 = new DMSkin.Metro.Controls.MetroLabel();
+            this.metroLabel6 = new DMSkin.Metro.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox2)).BeginInit();
             this.skinTabControl1.SuspendLayout();
             this.skinTabPage1.SuspendLayout();
             this.skinTabPage2.SuspendLayout();
@@ -80,17 +78,6 @@
             this.skinPictureBox1.Size = new System.Drawing.Size(100, 100);
             this.skinPictureBox1.TabIndex = 10;
             this.skinPictureBox1.TabStop = false;
-            // 
-            // skinPictureBox2
-            // 
-            this.skinPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.skinPictureBox2.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.HelpViewer;
-            this.skinPictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.skinPictureBox2.Location = new System.Drawing.Point(437, 73);
-            this.skinPictureBox2.Name = "skinPictureBox2";
-            this.skinPictureBox2.Size = new System.Drawing.Size(149, 100);
-            this.skinPictureBox2.TabIndex = 11;
-            this.skinPictureBox2.TabStop = false;
             // 
             // metroLabel1
             // 
@@ -139,7 +126,7 @@
             this.skinTabControl1.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Left;
             this.skinTabControl1.PageNorml = null;
             this.skinTabControl1.SelectedIndex = 1;
-            this.skinTabControl1.Size = new System.Drawing.Size(337, 225);
+            this.skinTabControl1.Size = new System.Drawing.Size(392, 225);
             this.skinTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.skinTabControl1.TabIndex = 15;
             // 
@@ -159,6 +146,24 @@
             this.skinTabPage1.TabIndex = 0;
             this.skinTabPage1.TabItemImage = null;
             this.skinTabPage1.Text = "作者信息";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(3, 149);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(211, 40);
+            this.metroLabel5.TabIndex = 17;
+            this.metroLabel5.Text = "身高186腿场110，还愣着干嘛，\r\n要我教你怎么泡我吗";
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(3, 70);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(106, 20);
+            this.metroLabel4.TabIndex = 16;
+            this.metroLabel4.Text = "QQ:992356585";
             // 
             // gifBox1
             // 
@@ -180,37 +185,10 @@
             this.skinTabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinTabPage2.Location = new System.Drawing.Point(0, 36);
             this.skinTabPage2.Name = "skinTabPage2";
-            this.skinTabPage2.Size = new System.Drawing.Size(337, 189);
+            this.skinTabPage2.Size = new System.Drawing.Size(392, 189);
             this.skinTabPage2.TabIndex = 1;
             this.skinTabPage2.TabItemImage = null;
             this.skinTabPage2.Text = "程序说明";
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(3, 70);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(106, 20);
-            this.metroLabel4.TabIndex = 16;
-            this.metroLabel4.Text = "QQ:992356585";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(3, 149);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(211, 40);
-            this.metroLabel5.TabIndex = 17;
-            this.metroLabel5.Text = "身高186腿场110，还愣着干嘛，\r\n要我教你怎么泡我吗";
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(193, 169);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(141, 20);
-            this.metroLabel6.TabIndex = 0;
-            this.metroLabel6.Text = "HappyMaster Beta3";
             // 
             // metroLabel7
             // 
@@ -222,6 +200,15 @@
             this.metroLabel7.Text = "本程序使用C#编写，vs2015社区版编译\r\n播放器内核为BASS.NET\r\n界面使用DMSKIN,CSKIN\r\n感谢作者小江小红帽分享\r\n程序在Github上开" +
     "放\r\n";
             // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(193, 169);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(141, 20);
+            this.metroLabel6.TabIndex = 0;
+            this.metroLabel6.Text = "HappyMaster Beta3";
+            // 
             // HelpView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -230,7 +217,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(593, 426);
             this.Controls.Add(this.skinTabControl1);
-            this.Controls.Add(this.skinPictureBox2);
             this.Controls.Add(this.skinPictureBox1);
             this.Controls.Add(this.btnDone);
             this.DM_howBorder = false;
@@ -243,7 +229,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.HelpView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox2)).EndInit();
             this.skinTabControl1.ResumeLayout(false);
             this.skinTabPage1.ResumeLayout(false);
             this.skinTabPage1.PerformLayout();
@@ -257,7 +242,6 @@
 
         private DMSkin.MetroDMButton btnDone;
         private CCWin.SkinControl.SkinPictureBox skinPictureBox1;
-        private CCWin.SkinControl.SkinPictureBox skinPictureBox2;
         private DMSkin.Metro.Controls.MetroLabel metroLabel1;
         private DMSkin.Metro.Controls.MetroLabel metroLabel2;
         private DMSkin.Metro.Controls.MetroLabel metroLabel3;

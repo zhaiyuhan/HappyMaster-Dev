@@ -44,7 +44,7 @@ namespace HappyMaster_Dev.View
         }
         private void GetPicture()
         {
-            //Try to start looking tehe image from the ID3V2
+            //Try to start looking the image from the ID3V2
             if (!GetPictureFromID3V2())
             {
 
@@ -774,6 +774,7 @@ namespace HappyMaster_Dev.View
         {
             panelSetting.Visible = false;
             panelMore.Visible = false;
+
             View.Infomation iv = new Infomation();
             iv.ShowDialog();
 

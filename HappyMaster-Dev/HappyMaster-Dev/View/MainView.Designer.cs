@@ -173,7 +173,7 @@
             this.panelSetting.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelSetting.DownBack = null;
             this.panelSetting.ForeColor = System.Drawing.Color.Black;
-            this.panelSetting.Location = new System.Drawing.Point(8, 247);
+            this.panelSetting.Location = new System.Drawing.Point(8, 245);
             this.panelSetting.MouseBack = null;
             this.panelSetting.Name = "panelSetting";
             this.panelSetting.NormlBack = null;
@@ -272,6 +272,8 @@
             // 
             // bottomPanel
             // 
+            this.bottomPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bottomPanel.BackColor = System.Drawing.Color.Transparent;
             this.bottomPanel.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.glassBG2;
             this.bottomPanel.Controls.Add(this.playControl);
@@ -281,13 +283,12 @@
             this.bottomPanel.Controls.Add(this.Pos);
             this.bottomPanel.Controls.Add(this.btnSetting);
             this.bottomPanel.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomPanel.DownBack = null;
-            this.bottomPanel.Location = new System.Drawing.Point(4, 455);
+            this.bottomPanel.Location = new System.Drawing.Point(0, 459);
             this.bottomPanel.MouseBack = null;
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.NormlBack = null;
-            this.bottomPanel.Size = new System.Drawing.Size(923, 82);
+            this.bottomPanel.Size = new System.Drawing.Size(931, 85);
             this.bottomPanel.TabIndex = 9;
             // 
             // playControl
@@ -320,7 +321,7 @@
             this.VolumeMaster.DM_RoundX = 1;
             this.VolumeMaster.DM_RoundY = 5;
             this.VolumeMaster.DM_Value = 100D;
-            this.VolumeMaster.Location = new System.Drawing.Point(802, 13);
+            this.VolumeMaster.Location = new System.Drawing.Point(810, 16);
             this.VolumeMaster.Name = "VolumeMaster";
             this.VolumeMaster.Size = new System.Drawing.Size(118, 24);
             this.VolumeMaster.TabIndex = 4;
@@ -331,7 +332,7 @@
             this.labelLeftTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLeftTime.AutoSize = true;
             this.labelLeftTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelLeftTime.Location = new System.Drawing.Point(859, 62);
+            this.labelLeftTime.Location = new System.Drawing.Point(867, 65);
             this.labelLeftTime.Name = "labelLeftTime";
             this.labelLeftTime.Size = new System.Drawing.Size(35, 12);
             this.labelLeftTime.TabIndex = 3;
@@ -342,7 +343,7 @@
             this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTime.AutoSize = true;
             this.labelTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelTime.Location = new System.Drawing.Point(44, 62);
+            this.labelTime.Location = new System.Drawing.Point(44, 65);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(35, 12);
             this.labelTime.TabIndex = 2;
@@ -355,9 +356,9 @@
             this.Pos.BackColor = System.Drawing.Color.Transparent;
             this.Pos.DM_UseCustomBackColor = true;
             this.Pos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Pos.Location = new System.Drawing.Point(85, 56);
+            this.Pos.Location = new System.Drawing.Point(85, 59);
             this.Pos.Name = "Pos";
-            this.Pos.Size = new System.Drawing.Size(762, 23);
+            this.Pos.Size = new System.Drawing.Size(770, 23);
             this.Pos.TabIndex = 1;
             this.Pos.Text = "metroTrackBar1";
             this.Pos.Value = 0;
@@ -686,7 +687,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(359, 27);
+            this.label3.Location = new System.Drawing.Point(356, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 27);
             this.label3.TabIndex = 5;
@@ -763,7 +764,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.beta4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(931, 541);
             this.Controls.Add(this.AlbumViewer);
@@ -774,9 +776,9 @@
             this.Controls.Add(this.RightView);
             this.Controls.Add(this.pictureBoxSpectrum);
             this.Controls.Add(this.ArtistName);
+            this.Controls.Add(this.panelSetting);
             this.Controls.Add(this.MusicTitle);
             this.Controls.Add(this.bottomPanel);
-            this.Controls.Add(this.panelSetting);
             this.Controls.Add(this.btnMax);
             this.Controls.Add(this.btnMin);
             this.Controls.Add(this.btnClose);

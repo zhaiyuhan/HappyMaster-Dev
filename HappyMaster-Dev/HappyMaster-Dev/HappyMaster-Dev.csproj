@@ -206,6 +206,7 @@
     <Content Include="Extra\CSkin.dll" />
     <Content Include="Extra\DMSkin.dll" />
     <Content Include="HappyMaster.ico" />
+    <None Include="Resources\beta4.jpg" />
     <None Include="Resources\MenuCDPlayerWhite.png" />
     <None Include="Resources\MenuCDPlayer.png" />
     <None Include="Resources\heiheihei.gif" />

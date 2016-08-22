@@ -93,6 +93,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap beta4 {
+            get {
+                object obj = ResourceManager.GetObject("beta4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap btnDown {
             get {
                 object obj = ResourceManager.GetObject("btnDown", resourceCulture);
@@ -456,16 +466,6 @@ namespace HappyMaster_Dev.Properties {
         public static System.Drawing.Bitmap logout {
             get {
                 object obj = ResourceManager.GetObject("logout", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap MainViewBG {
-            get {
-                object obj = ResourceManager.GetObject("MainViewBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

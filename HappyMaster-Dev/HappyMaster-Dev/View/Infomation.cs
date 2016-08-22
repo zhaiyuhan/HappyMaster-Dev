@@ -18,6 +18,7 @@ namespace HappyMaster_Dev.View
             InitializeComponent();
         }
         public static Image albumArt;
+        //copied from mainview
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
         {
@@ -41,7 +42,6 @@ namespace HappyMaster_Dev.View
         }
         private void GetPicture()
         {
-            //先尝试从ID3V2中查找图片
             if (!GetPictureFromID3V2())
             {
 
@@ -82,7 +82,7 @@ namespace HappyMaster_Dev.View
             catch (System.Exception)
             {
                 try
-                {//尝试从前面开始查找
+                {
                     for (int i = start; i < bystes.Length; i++)
                     {
                         if (bystes[i] == 0xFF && bystes[i + 1] == 0xd9)
@@ -124,7 +124,6 @@ namespace HappyMaster_Dev.View
                         {
                             break;
                         }
-                        //读取图片
                         if (((str == "APIC") || (str == "PIC")) && (obj2 is byte[]))
                         {
                             if (bytesToImage(obj2 as byte[]))
@@ -181,7 +180,7 @@ namespace HappyMaster_Dev.View
                 TextBoxTitle.Text = tagInfo.title;
                 TextBoxArtist.Text = tagInfo.artist;
                 TextBoxAlbum.Text = tagInfo.album;
-                LabelBit.Text = tagInfo.bitrate.ToString() + " kbps";
+                LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
                 LabelRate.Text = "44.100 kHZ";
                 TextBoxFileName.Text = tagInfo.filename;
                 PictureBox.BackgroundImage = MainView.albumArt;
@@ -190,7 +189,6 @@ namespace HappyMaster_Dev.View
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024;
             LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + last + "MB";
-            //HumanReadableFilesize(Convert.ToDouble(_fileinfo.Length)) + last;
             Bmp = (Bitmap)albumArt;
             BitmapData BmpData = new BitmapData();
             Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadWrite, Bmp.PixelFormat, BmpData);
@@ -201,8 +199,6 @@ namespace HappyMaster_Dev.View
             Bmp.UnlockBits(BmpData);
             TopPanel.BackgroundImage = Bmp;
             UpdateImage();
-           // TopPanel.BackgroundImage = workImage;
-
         }
         private String HumanReadableFilesize(double size)
         {
