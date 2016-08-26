@@ -129,7 +129,7 @@
             // 
             this.btnStop.BackColor = System.Drawing.Color.Transparent;
             this.btnStop.DownImage = global::CDPlayer.Properties.Resources.MineButtonPress;
-            this.btnStop.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnStop.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStop.Image = null;
             this.btnStop.IsShowBorder = false;
             this.btnStop.Location = new System.Drawing.Point(8, 126);
@@ -148,7 +148,7 @@
             // 
             this.btnPause.BackColor = System.Drawing.Color.Transparent;
             this.btnPause.DownImage = global::CDPlayer.Properties.Resources.MineButtonPress;
-            this.btnPause.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPause.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnPause.Image = null;
             this.btnPause.IsShowBorder = false;
             this.btnPause.Location = new System.Drawing.Point(7, 85);
@@ -167,7 +167,7 @@
             // 
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
             this.btnPlay.DownImage = global::CDPlayer.Properties.Resources.MineButtonPress;
-            this.btnPlay.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPlay.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnPlay.Image = null;
             this.btnPlay.IsShowBorder = false;
             this.btnPlay.Location = new System.Drawing.Point(8, 43);
@@ -186,7 +186,7 @@
             // 
             this.btnLoadFile.BackColor = System.Drawing.Color.Transparent;
             this.btnLoadFile.DownImage = global::CDPlayer.Properties.Resources.MineButtonPress;
-            this.btnLoadFile.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLoadFile.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLoadFile.Image = null;
             this.btnLoadFile.IsShowBorder = false;
             this.btnLoadFile.Location = new System.Drawing.Point(8, 3);

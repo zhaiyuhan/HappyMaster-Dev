@@ -25,7 +25,6 @@ namespace CDPlayer
             }
             PanelControlPanel.Width = 0;
             PanelControlPanel.BringToFront();
-            //Slider.Left = (this.ClientRectangle.Width - Slider.Width) / 2; 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -129,12 +128,19 @@ namespace CDPlayer
         {
             if (ifFirst == true)
             {
+                if (filename != string.Empty)
+                {                
                 stream = BassCd.BASS_CD_StreamCreateFile(filename,BASSFlag.BASS_SAMPLE_FLOAT);
                 Bass.BASS_ChannelPlay(stream, true);
                 ifFirst = false;
                 BASS_CD_INFO info = new BASS_CD_INFO();
                 BassCd.BASS_CD_GetInfo(stream,info);
                 Pos.Enabled = true;
+                }
+                else
+                {
+                    DMSkin.MetroMessageBox.Show(this, "No Stream read");
+                }
             }
             else if (ifFirst == false)
             {
