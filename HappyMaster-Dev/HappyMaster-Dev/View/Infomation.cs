@@ -18,7 +18,7 @@ namespace HappyMaster_Dev.View
             InitializeComponent();
         }
         public static Image albumArt;
-        //copied from mainview
+        //copied from Main View
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
         {
@@ -169,7 +169,11 @@ namespace HappyMaster_Dev.View
         Bass.BASS_ChannelGetInfo(stream, info);*/
         private void Infomation_Load(object sender, EventArgs e)
         {
-            _Filename = MainView.exfilename;
+            if(MainView.exfilename!=string.Empty)
+            {
+                _Filename = MainView.exfilename;
+            }
+            
             _stream = Bass.BASS_StreamCreateFile(_Filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
             BASS_CHANNELINFO _info = new BASS_CHANNELINFO();
             Bass.BASS_ChannelGetInfo(_stream, _info);
@@ -189,6 +193,9 @@ namespace HappyMaster_Dev.View
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024;
             LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + last + "MB";
+            /*Glass Top Background*/
+            while (albumArt != null)
+            {
             Bmp = (Bitmap)albumArt;
             BitmapData BmpData = new BitmapData();
             Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadWrite, Bmp.PixelFormat, BmpData);
@@ -199,18 +206,11 @@ namespace HappyMaster_Dev.View
             Bmp.UnlockBits(BmpData);
             TopPanel.BackgroundImage = Bmp;
             UpdateImage();
+            }
+            
+            /*End*/
         }
-        private String HumanReadableFilesize(double size)
-        {
-            String[] units = new String[] { "B", "KB", "MB", "GB", "TB", "PB" };
-            double mod = 1024.0;
-            int i = 0;
-            while (size >= mod)   {  size /= mod;   i++;  }
-            return Math.Round(size) + units[i];
-        }
-
-
-private void btnDone_Click(object sender, EventArgs e)
+        private void btnDone_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -126,7 +126,7 @@
             this.skinTabControl1.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Left;
             this.skinTabControl1.PageNorml = null;
             this.skinTabControl1.SelectedIndex = 1;
-            this.skinTabControl1.Size = new System.Drawing.Size(392, 225);
+            this.skinTabControl1.Size = new System.Drawing.Size(365, 225);
             this.skinTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.skinTabControl1.TabIndex = 15;
             // 
@@ -142,7 +142,7 @@
             this.skinTabPage1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinTabPage1.Location = new System.Drawing.Point(0, 36);
             this.skinTabPage1.Name = "skinTabPage1";
-            this.skinTabPage1.Size = new System.Drawing.Size(337, 189);
+            this.skinTabPage1.Size = new System.Drawing.Size(392, 189);
             this.skinTabPage1.TabIndex = 0;
             this.skinTabPage1.TabItemImage = null;
             this.skinTabPage1.Text = "作者信息";
@@ -185,7 +185,7 @@
             this.skinTabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.skinTabPage2.Location = new System.Drawing.Point(0, 36);
             this.skinTabPage2.Name = "skinTabPage2";
-            this.skinTabPage2.Size = new System.Drawing.Size(392, 189);
+            this.skinTabPage2.Size = new System.Drawing.Size(365, 189);
             this.skinTabPage2.TabIndex = 1;
             this.skinTabPage2.TabItemImage = null;
             this.skinTabPage2.Text = "程序说明";
@@ -203,11 +203,11 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(193, 169);
+            this.metroLabel6.Location = new System.Drawing.Point(224, 169);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(141, 20);
             this.metroLabel6.TabIndex = 0;
-            this.metroLabel6.Text = "HappyMaster Beta3";
+            this.metroLabel6.Text = "HappyMaster Beta4";
             // 
             // HelpView
             // 

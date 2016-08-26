@@ -20,7 +20,25 @@ namespace HappyMaster_Dev.View
             InitializeComponent();
             
         }
-
+        [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
+        public static extern int SetProcessWorkingSetSize(
+        IntPtr  hProcess,
+        int dwMinimumWorkingSetSize,
+        int dwMaximumWorkingSetSize
+        );
+        public static void ClearMemory()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            if(Environment.OSVersion.Platform==PlatformID.Win32NT)
+            {
+                SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
+            }
+        }
+        private void FreeMemory_Tick(object sender, EventArgs e)
+        {
+            ClearMemory();
+        }
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
         {
@@ -147,9 +165,10 @@ namespace HappyMaster_Dev.View
             return false;
         }
         #endregion GETPICTURE
-        public bool isPlay = false;
-        public string filename = String.Empty;
-        public int stream = 0;
+        public bool isPlay = false;//play state
+        public string filename = String.Empty;//filename
+        public int stream = 0;//stream
+        //empyty;
         public void InitUI()
         {
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
@@ -424,11 +443,9 @@ namespace HappyMaster_Dev.View
                 btnHidePicturebBox.BringToFront();
                 RightView.Visible = true;
                 LeftView.Visible = true;
-                panelSetting.Visible = false;
                 btnHidePicturebBox.Visible = true;
+                panelSetting.Visible = false;               
                 panelMore.Visible = false;
-            }
-            {
                 panelSetting.Visible = false;
             }
         }
@@ -640,15 +657,17 @@ namespace HappyMaster_Dev.View
         private void labelDoneTimer_Tick(object sender, EventArgs e)
         {
         }
-        /*Ex Value to diy main form*/
+        /*Ex Value to custom main form*/
         public static Image exBackground = null;
         public static double exop = 0.9;
-        public static bool ifRadius;
+        public static bool ifRadius = false;
         public static bool ifTran = false;
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
+            if (this.DM_Radius > 1) { ifRadius = true; }
+            else if (this.DM_Radius == 1) { ifRadius = false; }
             View.SettingView sv = new SettingView();
-            exBackground = this.BackgroundImage;
+            exBackground = this.BackgroundImage;           
             sv.ShowDialog();
             
         }
@@ -789,6 +808,8 @@ namespace HappyMaster_Dev.View
         {
             System.Diagnostics.Process.Start("CDPlayer.exe", System.IO.Directory.GetCurrentDirectory());
         }
+
+        
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {

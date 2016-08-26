@@ -97,6 +97,14 @@ namespace HappyMaster_Dev.View
         }
         private void Setting_Load(object sender, EventArgs e)
         {
+            if (MainView.ifRadius == true)
+            {
+                ifRadius.Checked = true;
+            }
+            else
+            {
+                ifRadius.Checked = false;
+            }
             OpToLevel(MainView.exop);
             MineEvent(thislevel);
             

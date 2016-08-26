@@ -76,6 +76,7 @@
             this.btnHelpView = new CCWin.SkinControl.SkinPictureBox();
             this.btnEnrecoder = new CCWin.SkinControl.SkinPictureBox();
             this.btnShowDSP = new CCWin.SkinControl.SkinPictureBox();
+            this.FreeMemory = new System.Windows.Forms.Timer(this.components);
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeftView)).BeginInit();
@@ -106,7 +107,7 @@
             this.btnClose.Size = new System.Drawing.Size(20, 20);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "";
-            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnMin
@@ -122,7 +123,7 @@
             this.btnMin.Size = new System.Drawing.Size(20, 20);
             this.btnMin.TabIndex = 1;
             this.btnMin.Text = "";
-            this.btnMin.UseVisualStyleBackColor = false;
+            this.btnMin.UseVisualStyleBackColor = true;
             this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
             // 
             // btnMax
@@ -138,7 +139,7 @@
             this.btnMax.Size = new System.Drawing.Size(20, 20);
             this.btnMax.TabIndex = 2;
             this.btnMax.Text = "";
-            this.btnMax.UseVisualStyleBackColor = false;
+            this.btnMax.UseVisualStyleBackColor = true;
             this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
             // btnLoadFile
@@ -760,6 +761,11 @@
             this.btnShowDSP.MouseEnter += new System.EventHandler(this.btnShowDSP_MouseEnter);
             this.btnShowDSP.MouseLeave += new System.EventHandler(this.btnShowDSP_MouseLeave);
             // 
+            // FreeMemory
+            // 
+            this.FreeMemory.Enabled = true;
+            this.FreeMemory.Tick += new System.EventHandler(this.FreeMemory_Tick);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -869,5 +875,6 @@
         private DMSkin.MetroDMButton btnHelpShow;
         private MaterialSkin.Controls.MaterialFlatButton btnDIY;
         private DMSkin.MetroDMButton btnCDPlayer;
+        private System.Windows.Forms.Timer FreeMemory;
     }
 }
