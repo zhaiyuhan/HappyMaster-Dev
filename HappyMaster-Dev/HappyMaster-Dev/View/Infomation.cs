@@ -17,7 +17,7 @@ namespace HappyMaster_Dev.View
         {
             InitializeComponent();
         }
-        public static Image albumArt;
+        public Image albumArt;// = MainView.exalbumart;
         //copied from Main View
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
@@ -158,9 +158,8 @@ namespace HappyMaster_Dev.View
                 CopyMemory(ImagePointer, ImageCopyPointer, DataLength);
                 Rectangle Rect = new Rectangle(0, 0, Bmp.Width, Bmp.Height);
                 Stopwatch Sw = new Stopwatch();
-                Sw.Start();
-                
-                    Bmp.GaussianBlur(ref Rect, 100, false);
+                Sw.Start();               
+                Bmp.GaussianBlur(ref Rect, 100, false);
                 Sw.Stop();
                 TopPanel.BackgroundImage = Bmp;
             }
@@ -169,7 +168,7 @@ namespace HappyMaster_Dev.View
         Bass.BASS_ChannelGetInfo(stream, info);*/
         private void Infomation_Load(object sender, EventArgs e)
         {
-            if(MainView.exfilename!=string.Empty)
+            if (MainView.exfilename != string.Empty) 
             {
                 _Filename = MainView.exfilename;
             }
@@ -187,27 +186,31 @@ namespace HappyMaster_Dev.View
                 LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
                 LabelRate.Text = "44.100 kHZ";
                 TextBoxFileName.Text = tagInfo.filename;
-                PictureBox.BackgroundImage = MainView.albumArt;
-                TopPanel.BackgroundImage = albumArt;
+                PictureBox.BackgroundImage = MainView.exalbumart;
+                TopPanel.BackgroundImage = MainView.exalbumart;
             }
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024;
             LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + last + "MB";
             /*Glass Top Background*/
-            while (albumArt != null)
+            if (albumArt == null)
             {
-            Bmp = (Bitmap)albumArt;
-            BitmapData BmpData = new BitmapData();
-            Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadWrite, Bmp.PixelFormat, BmpData);
-            ImagePointer = BmpData.Scan0;
-            DataLength = BmpData.Stride * BmpData.Height;
-            ImageCopyPointer = Marshal.AllocHGlobal(DataLength);
-            CopyMemory(ImageCopyPointer, ImagePointer, DataLength);
-            Bmp.UnlockBits(BmpData);
-            TopPanel.BackgroundImage = Bmp;
-            UpdateImage();
+                return;
             }
-            
+            else
+            {
+                Bmp = (Bitmap)albumArt;
+                BitmapData BmpData = new BitmapData();
+                Bmp.LockBits(new Rectangle(0, 0, Bmp.Width, Bmp.Height), ImageLockMode.ReadWrite, Bmp.PixelFormat, BmpData);
+                ImagePointer = BmpData.Scan0;
+                DataLength = BmpData.Stride * BmpData.Height;
+                ImageCopyPointer = Marshal.AllocHGlobal(DataLength);
+                CopyMemory(ImageCopyPointer, ImagePointer, DataLength);
+                Bmp.UnlockBits(BmpData);
+                TopPanel.BackgroundImage = Bmp;
+                UpdateImage();
+            }
+
             /*End*/
         }
         private void btnDone_Click(object sender, EventArgs e)

@@ -216,6 +216,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Beta5.jpg" />
+    <None Include="Resources\Beta5Final.jpg" />
     <None Include="Extra\Bass.Net.dll" />
     <Content Include="Extra\CSkin.dll" />
     <Content Include="Extra\DMSkin.dll" />

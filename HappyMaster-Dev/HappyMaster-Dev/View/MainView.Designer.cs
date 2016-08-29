@@ -653,11 +653,11 @@
             this.panelHelp.Controls.Add(this.btnShowDSP);
             this.panelHelp.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelHelp.DownBack = null;
-            this.panelHelp.Location = new System.Drawing.Point(0, 247);
+            this.panelHelp.Location = new System.Drawing.Point(0, 134);
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
-            this.panelHelp.Size = new System.Drawing.Size(931, 123);
+            this.panelHelp.Size = new System.Drawing.Size(931, 126);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -771,7 +771,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.beta4;
+            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Beta5;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(931, 541);
             this.Controls.Add(this.AlbumViewer);
@@ -875,6 +875,6 @@
         private DMSkin.MetroDMButton btnHelpShow;
         private MaterialSkin.Controls.MaterialFlatButton btnDIY;
         private DMSkin.MetroDMButton btnCDPlayer;
-        private System.Windows.Forms.Timer FreeMemory;
+        public System.Windows.Forms.Timer FreeMemory;
     }
 }

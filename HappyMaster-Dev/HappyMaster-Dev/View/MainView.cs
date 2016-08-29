@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -22,7 +23,7 @@ namespace HappyMaster_Dev.View
         }
         [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
         public static extern int SetProcessWorkingSetSize(
-        IntPtr  hProcess,
+        IntPtr hProcess,
         int dwMinimumWorkingSetSize,
         int dwMaximumWorkingSetSize
         );
@@ -30,14 +31,14 @@ namespace HappyMaster_Dev.View
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            if(Environment.OSVersion.Platform==PlatformID.Win32NT)
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
             {
                 SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
             }
         }
         private void FreeMemory_Tick(object sender, EventArgs e)
         {
-            ClearMemory();
+           ClearMemory();
         }
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
@@ -175,6 +176,10 @@ namespace HappyMaster_Dev.View
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
             AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
             playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();
+            Size panelHelpSize= new Size(931,126);
+            Point panelHelpLocation = new Point(0, 247);
+            panelHelp.Location = panelHelpLocation;
+            panelHelp.Size = panelHelpSize;
             //except playControl is always on top,and all of them are always in the middle
         }
         private void MainView_Load(object sender, EventArgs e)
@@ -291,8 +296,8 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
-        //Play function 
-       private void Play()
+        //Play function         
+        private void Play()
         {
             if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
@@ -305,7 +310,7 @@ namespace HappyMaster_Dev.View
                 Position.Enabled = true;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
                 AlbumViewer.BackgroundImage = albumArt;
-                this.Text = "正在播放";
+                //this.Text = "正在播放";
                 isPlay = true;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
@@ -313,7 +318,7 @@ namespace HappyMaster_Dev.View
                 //playing
                 Bass.BASS_ChannelPause(stream);
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
-                this.Text = "播放暂停";
+                //this.Text = "播放暂停";
                 isPlay = false;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PAUSED)
@@ -321,7 +326,7 @@ namespace HappyMaster_Dev.View
                 //pause
                 Bass.BASS_ChannelPlay(stream, false);
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
-                this.Text = "正在播放";
+                //this.Text = "正在播放";
                 isPlay = true;
             }
             else if (stream == 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
@@ -344,6 +349,8 @@ namespace HappyMaster_Dev.View
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 100);
             //set volume
             AlbumViewer.Visible = true;
+            //Thread threadPlay = new Thread(new ThreadStart(Play));
+            //threadPlay.Start();
             Play();
         }
         //free res
@@ -367,9 +374,12 @@ namespace HappyMaster_Dev.View
                 length = Bass.BASS_ChannelGetLength(stream); //get the stream length
                 totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
                 labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
+                MusicTitle.Text = "";
+                ArtistName.Text = "";
                 TAG_INFO tagInfo = new TAG_INFO(filename);
                 if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
                 {
+                    AlbumViewer.BackgroundImage = null;
                     GetPicture();
                     AlbumViewer.BackgroundImage = albumArt;
                     MusicTitle.Text = tagInfo.title;
@@ -650,6 +660,7 @@ namespace HappyMaster_Dev.View
         private void btnDone_Click(object sender, EventArgs e)
         {
             labelDoneTimer.Enabled = true;
+            View.InfoMessageBoxView.getText = "专辑图片高斯模糊处理设置成功ヽ(•̀ω•́ )ゝ";
             View.InfoMessageBoxView iv = new InfoMessageBoxView();
             iv.ShowDialog();
         }
@@ -661,7 +672,8 @@ namespace HappyMaster_Dev.View
         public static Image exBackground = null;
         public static double exop = 0.9;
         public static bool ifRadius = false;
-        public static bool ifTran = false;
+        public static bool ifTran = true;
+       
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
             if (this.DM_Radius > 1) { ifRadius = true; }
@@ -788,12 +800,22 @@ namespace HappyMaster_Dev.View
             View.HelpView hv = new HelpView();
             hv.ShowDialog();
         }
-        public static string exfilename=string.Empty;
+        public static string exfilename = string.Empty;
+        public static Image exalbumart = null;
         private void AlbumViewer_Click(object sender, EventArgs e)
         {
+            exalbumart = albumArt;
+            if (exfilename != null)
+            {
+                System.Diagnostics.Debug.WriteLine("exfilename is not empty and filename is " + exfilename);
+            }
+            if (exalbumart != null)
+            {
+                System.Diagnostics.Debug.WriteLine("exalbumart is not null");
+            }
+            //hide panelSetting and panelMore
             panelSetting.Visible = false;
             panelMore.Visible = false;
-
             View.Infomation iv = new Infomation();
             iv.ShowDialog();
 
@@ -814,18 +836,16 @@ namespace HappyMaster_Dev.View
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
             if(ifGlassEffect == false)
-            {
-               
+            {               
                 ifGlassEffect = true;
                 btnDone.Enabled = true;
                 labelbtnGlassAblumView.Text = "(｡･ω･)开启成功，请继续设置";
                 btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBoxChecked;
                 btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxCheckedHover;
                 BarRadius.Enabled = true;
-                BarRadius.Value = 10;              
-                    
-                    Bmp = (Bitmap)AlbumViewer.BackgroundImage;
-                   if(Bmp==null)
+                BarRadius.Value = 10;                                  
+                Bmp = (Bitmap)AlbumViewer.BackgroundImage;
+                if(Bmp==null)
                 {
                     DMSkin.MetroMessageBox.Show(this, "没有专辑图片(,,• ₃ •,,) ");
                     ifGlassEffect = false;
@@ -857,7 +877,10 @@ namespace HappyMaster_Dev.View
                 btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxHover;
                 BarRadius.Enabled = false;
                 BarRadius.Value = 0;
-                UpdateImage();              
+                UpdateImage();
+                View.InfoMessageBoxView.getText = "已经取消高斯模糊 (。-`ω´-) ";
+                View.InfoMessageBoxView iv = new InfoMessageBoxView();
+                iv.ShowDialog();
             }
            
         }

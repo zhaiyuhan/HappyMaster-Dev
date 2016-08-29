@@ -273,6 +273,8 @@
             // ifTran
             // 
             this.ifTran.AutoSize = true;
+            this.ifTran.Checked = true;
+            this.ifTran.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ifTran.DM_UseSelectable = true;
             this.ifTran.Location = new System.Drawing.Point(17, 166);
             this.ifTran.Name = "ifTran";

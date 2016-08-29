@@ -15,15 +15,25 @@ namespace HappyMaster_Dev.View
         {
             InitializeComponent();
         }
-
+        
+        public static string getText = string.Empty;
+        
         private void InfoMessageBoxView_Load(object sender, EventArgs e)
         {
+            
+            setLabel.Text = getText;
             CloseView.Enabled = true;
+
         }
 
         private void CloseView_Tick(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TextBoxinfo_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
