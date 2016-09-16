@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace HappyMaster_Dev.View
 {
-    public partial class InfoMessageBoxView : CCWin.CCSkinMain
+    public partial class InfoMessageBoxView : DMSkin.DUIMain
     {
         public InfoMessageBoxView()
         {
@@ -19,9 +19,10 @@ namespace HappyMaster_Dev.View
         public static string getText = string.Empty;
         
         private void InfoMessageBoxView_Load(object sender, EventArgs e)
-        {
-            
+        {           
             setLabel.Text = getText;
+            setLabel.Left = (this.ClientRectangle.Width - setLabel.Width) / 2;
+            setLabel.Top = (this.ClientRectangle.Height - setLabel.Height) / 2;
             CloseView.Enabled = true;
 
         }

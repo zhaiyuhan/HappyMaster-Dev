@@ -111,6 +111,7 @@
             this.ClearBg.NormalImage = global::HappyMaster_Dev.Properties.Resources.MineButtonNOMRMAL;
             this.ClearBg.Size = new System.Drawing.Size(89, 37);
             this.ClearBg.TabIndex = 11;
+            this.ClearBg.TabStop = false;
             this.ClearBg.Text = "撤销添加";
             this.ClearBg.UseVisualStyleBackColor = false;
             this.ClearBg.Click += new System.EventHandler(this.ClearBg_Click);
@@ -142,6 +143,7 @@
             this.btnChangeBg.NormalImage = global::HappyMaster_Dev.Properties.Resources.MineButtonNOMRMAL;
             this.btnChangeBg.Size = new System.Drawing.Size(89, 37);
             this.btnChangeBg.TabIndex = 9;
+            this.btnChangeBg.TabStop = false;
             this.btnChangeBg.Text = "更改窗体背景";
             this.btnChangeBg.UseVisualStyleBackColor = false;
             this.btnChangeBg.Click += new System.EventHandler(this.btnChangeBg_Click);
@@ -233,7 +235,7 @@
             // 
             this.OpTextBox.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OpTextBox.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OpTextBox.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.OpTextBox.SkinTxt.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F);
             this.OpTextBox.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.OpTextBox.SkinTxt.Name = "BaseText";
             this.OpTextBox.SkinTxt.Size = new System.Drawing.Size(122, 18);

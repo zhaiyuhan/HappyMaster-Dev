@@ -175,16 +175,22 @@ namespace HappyMaster_Dev.View
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
             AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
-            playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();
-            Size panelHelpSize= new Size(931,126);
-            Point panelHelpLocation = new Point(0, 247);
+            playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();            
+            //except playControl is always on top,and all of them are always in the middle
+            btnLoadFile.TabStop = false;
+        }
+        public void InitpanelHelp()
+        {
+            Size panelHelpSize = new Size(931, 116);
+            Point panelHelpLocation = new Point(0, this.Height - 250);
             panelHelp.Location = panelHelpLocation;
             panelHelp.Size = panelHelpSize;
-            //except playControl is always on top,and all of them are always in the middle
+            panelHelp.Left = (this.ClientRectangle.Width - panelHelp.Width) / 2;           
         }
         private void MainView_Load(object sender, EventArgs e)
         {
             InitUI();//Run...
+            InitpanelHelp();
            //Initialization interface,BASS.NET
             if (!Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_CPSPEAKERS, this.Handle))//Set  parameter
             {
@@ -199,6 +205,7 @@ namespace HappyMaster_Dev.View
         private void MainView_Resize(object sender, EventArgs e)
         {
             InitUI();
+            InitpanelHelp();
             //if Triggering Resize event,sure all of them are always in the middle
         }
         //btnControl ,like title bar
@@ -225,19 +232,29 @@ namespace HappyMaster_Dev.View
         }//title bar ,finished
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            switch (panelSetting.Visible)
+            if (canShowpanelSetting == true)
+            {
+                switch (panelSetting.Visible)
             {
                 case true:
                     panelSetting.Visible = false;
                     panelMore.Visible = false;
+                    playControl.Focus();
+                    btnLoadFile.TabStop = false;
                     break;
                 case false:
                     panelSetting.Visible = true;
                     panelSetting.BringToFront();
+                    labelVolumeValue.Text = "当前音量: " + volume;
                     break;
                 default:
                     break;
             }
+            }else if(canShowpanelSetting == false)
+            {
+                return;
+            }
+            
         }//Show Setting Panel ,make sure it is on top
          //after beta3.1 the event is useless
         private void btnAbout_MouseLeave(object sender, EventArgs e)
@@ -249,9 +266,7 @@ namespace HappyMaster_Dev.View
         {
             btnAbout.ForeColor = Color.White;
         }//
-
-        public static bool ifAboutViewOpen = false;//View.AboutView is not a dialog, so just can open one view
-        private void btnAbout_Click(object sender, EventArgs e)
+        void showAboutView()
         {
             if (ifAboutViewOpen == false)
             {
@@ -263,8 +278,15 @@ namespace HappyMaster_Dev.View
             }
             else
             {
+                return;
                 //ifAboutViewOpen = false;in View.AboutView FormClosingeEvent, so ifAboutViewOpen is static
             }
+        }
+        public static bool ifAboutViewOpen = false;//View.AboutView is not a dialog, so just can open one view
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            showAboutView();
+            
         }
         //PlayControl if true,pause icon, if false, play icon
         private void playControl_MouseEnter(object sender, EventArgs e)
@@ -296,6 +318,10 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
+        void creatstream()
+        {
+            stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+        }
         //Play function         
         private void Play()
         {
@@ -304,13 +330,13 @@ namespace HappyMaster_Dev.View
                 //first play
                 Bass.BASS_ChannelStop(stream);
                 Bass.BASS_StreamFree(stream);
-                stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+                creatstream();
                 //create stream
                 Bass.BASS_ChannelPlay(stream, true);
                 Position.Enabled = true;
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
                 AlbumViewer.BackgroundImage = albumArt;
-                //this.Text = "正在播放";
+                this.Text = "正在播放";
                 isPlay = true;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
@@ -318,7 +344,7 @@ namespace HappyMaster_Dev.View
                 //playing
                 Bass.BASS_ChannelPause(stream);
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
-                //this.Text = "播放暂停";
+                this.Text = "播放暂停";
                 isPlay = false;
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PAUSED)
@@ -326,7 +352,7 @@ namespace HappyMaster_Dev.View
                 //pause
                 Bass.BASS_ChannelPlay(stream, false);
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.pause;
-                //this.Text = "正在播放";
+                this.Text = "正在播放";
                 isPlay = true;
             }
             else if (stream == 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
@@ -349,8 +375,7 @@ namespace HappyMaster_Dev.View
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 100);
             //set volume
             AlbumViewer.Visible = true;
-            //Thread threadPlay = new Thread(new ThreadStart(Play));
-            //threadPlay.Start();
+            
             Play();
         }
         //free res
@@ -376,6 +401,12 @@ namespace HappyMaster_Dev.View
                 labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
                 MusicTitle.Text = "";
                 ArtistName.Text = "";
+                if (stream != 0)
+                {
+                    AlbumViewer.BackgroundImage = null;
+                    AlbumViewer.Visible = true;
+                    workImage = AlbumViewer.BackgroundImage;
+                }
                 TAG_INFO tagInfo = new TAG_INFO(filename);
                 if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
                 {
@@ -393,10 +424,12 @@ namespace HappyMaster_Dev.View
             LoadFile();//LoadFile Function
                        //Hide Surplus Panel
             panelSetting.Visible = false;
-            AlbumViewer.Visible = true;
+            //AlbumViewer.Visible = true;
             panelMore.Visible = false;
             //set workImage
-            workImage = AlbumViewer.BackgroundImage;
+            //workImage = AlbumViewer.BackgroundImage;
+            
+            playControl.Focus();
         }
 
         private void Position_Tick(object sender, EventArgs e)
@@ -407,7 +440,7 @@ namespace HappyMaster_Dev.View
             double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
             double remainingtime = totaltime - elapsedtime;//left time
             labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            labelLeftTime.Text = String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
+            labelLeftTime.Text = "- " + String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
             //set pos max value ,avoid overflow
             Pos.Maximum = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetLength(stream));
             //set pos, and double into int
@@ -419,8 +452,7 @@ namespace HappyMaster_Dev.View
                 //Live Picture Panel
             }
             else if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
-            {
-                pictureBoxSpectrum.Image = null;
+            {               
                 playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
                 Pos.Value = 0;
                 labelTime.Text = "00:00";
@@ -434,6 +466,8 @@ namespace HappyMaster_Dev.View
         {
             //set pos
             Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
+            Pos.TabStop = false;
+            playControl.Focus();
         }
         //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
@@ -447,6 +481,16 @@ namespace HappyMaster_Dev.View
         {
             while(pictureBoxSpectrum.Visible==false)
             {
+                if (ifTran == false)
+                {
+                    pictureBoxSpectrum.BackColor = Color.Gainsboro;
+                    pictureBoxSpectrum.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.glassBg;
+                }
+                else if (ifTran == true)
+                {
+                    pictureBoxSpectrum.BackColor = Color.Transparent;
+                    pictureBoxSpectrum.BackgroundImage = null;
+                }
                 pictureBoxSpectrum.Visible = true;
                 //make sure pictureBoxSpecturm and btnHidePictureBox on the top
                 pictureBoxSpectrum.BringToFront();
@@ -562,7 +606,7 @@ namespace HappyMaster_Dev.View
                 specIdx = 0;
             if (specIdx < 0)
                 specIdx = 15;
-            this.pictureBoxSpectrum.Image = null;
+            //this.pictureBoxSpectrum.Image = null;
             _vis.ClearPeaks();
         }
 
@@ -573,7 +617,7 @@ namespace HappyMaster_Dev.View
                 specIdx = 0;
             if (specIdx < 0)
                 specIdx = 15;
-            this.pictureBoxSpectrum.Image = null;
+            //this.pictureBoxSpectrum.Image = null;
             _vis.ClearPeaks();
         }
         //
@@ -606,7 +650,6 @@ namespace HappyMaster_Dev.View
         private void btnMore_MouseLeave(object sender, EventArgs e)
         {
             btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuNormal;
-           
         }
 
         private void btnMore_Click(object sender, EventArgs e)
@@ -673,7 +716,7 @@ namespace HappyMaster_Dev.View
         public static double exop = 0.9;
         public static bool ifRadius = false;
         public static bool ifTran = true;
-       
+        
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
             if (this.DM_Radius > 1) { ifRadius = true; }
@@ -681,14 +724,13 @@ namespace HappyMaster_Dev.View
             View.SettingView sv = new SettingView();
             exBackground = this.BackgroundImage;           
             sv.ShowDialog();
-            
+            Debug.WriteLine(ifTran);
         }
     
         private void btnDIY_Click(object sender, EventArgs e)
         {
             this.BackgroundImage = exBackground;
-            MainView_Paint(null,null);
-            
+            MainView_Paint(null,null);         
             this.Hide();
             this.Show();
         }
@@ -696,7 +738,7 @@ namespace HappyMaster_Dev.View
         {
             panelHelp.Visible = false;
             btnSetting.Enabled = true;
-
+            canShowpanelSetting = true;
         }
 
         private void btnShowDSP_Click(object sender, EventArgs e)
@@ -711,38 +753,38 @@ namespace HappyMaster_Dev.View
         //HelpPanel
         private void btnShowDSP_MouseEnter(object sender, EventArgs e)
         {
-            btnShowDSP.Height = 55;
-            btnShowDSP.Width = 55;
+            btnShowDSP.Height += 5;
+            btnShowDSP.Width += 5;
         }
 
         private void btnShowDSP_MouseLeave(object sender, EventArgs e)
         {
-            btnShowDSP.Height = 50;
-            btnShowDSP.Width = 50;
+            btnShowDSP.Height -= 5;
+            btnShowDSP.Width -= 5;
         }
 
         private void btnEnrecoder_MouseEnter(object sender, EventArgs e)
         {
-            btnEnrecoder.Height = 55;
-            btnEnrecoder.Width = 55;
+            btnEnrecoder.Height += 5;
+            btnEnrecoder.Width += 5;
         }
 
         private void btnEnrecoder_MouseLeave(object sender, EventArgs e)
         {
-            btnEnrecoder.Height = 50;
-            btnEnrecoder.Width = 50;
+            btnEnrecoder.Height -= 5;
+            btnEnrecoder.Width -= 5;
         }
 
         private void btnHelpView_MouseEnter(object sender, EventArgs e)
         {
-            btnHelpView.Width = 55;
-            btnHelpView.Height = 55;
+            btnHelpView.Width += 5;
+            btnHelpView.Height += 5;
         }
 
         private void btnHelpView_MouseLeave(object sender, EventArgs e)
         {
-            btnHelpView.Height = 50;
-            btnHelpView.Width = 50;
+            btnHelpView.Height -= 5;
+            btnHelpView.Width -= 5;
         }
 
         private void btnCloseHelpView_MouseEnter(object sender, EventArgs e)
@@ -761,15 +803,16 @@ namespace HappyMaster_Dev.View
         {
             panelMore.Visible = false;
             panelSetting.Visible = false;//Hide PanelMore PanelSetting
+            playControl.Focus();
         }
-
+        public bool canShowpanelSetting = true;
         private void btnHelpShow_Click(object sender, EventArgs e)
         {
             panelHelp.Visible = true;
             panelHelp.BringToFront();
             panelSetting.Visible = false;
             panelMore.Visible = false;
-            btnSetting.Enabled = false;
+            canShowpanelSetting = false;
         }
 
         private void btnHelpShow_MouseEnter(object sender, EventArgs e)
@@ -804,21 +847,23 @@ namespace HappyMaster_Dev.View
         public static Image exalbumart = null;
         private void AlbumViewer_Click(object sender, EventArgs e)
         {
-            exalbumart = albumArt;
-            if (exfilename != null)
+            if (stream != 0)
             {
-                System.Diagnostics.Debug.WriteLine("exfilename is not empty and filename is " + exfilename);
+                exalbumart = albumArt;
+                if (exfilename != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("exfilename is not empty and filename is " + exfilename);
+                }
+                if (exalbumart != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("exalbumart is not null");
+                }
+                //hide panelSetting and panelMore
+                panelSetting.Visible = false;
+                panelMore.Visible = false;
+                View.Infomation iv = new Infomation();
+                iv.ShowDialog();
             }
-            if (exalbumart != null)
-            {
-                System.Diagnostics.Debug.WriteLine("exalbumart is not null");
-            }
-            //hide panelSetting and panelMore
-            panelSetting.Visible = false;
-            panelMore.Visible = false;
-            View.Infomation iv = new Infomation();
-            iv.ShowDialog();
-
         }
 
         private void labelbtnGlassAblumView_Click(object sender, EventArgs e)
@@ -830,8 +875,264 @@ namespace HappyMaster_Dev.View
         {
             System.Diagnostics.Process.Start("CDPlayer.exe", System.IO.Directory.GetCurrentDirectory());
         }
+       
+        private void PlayThread_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+             Thread threadPlay = new Thread(new ThreadStart(creatstream));       
+             threadPlay.Start();
+             Thread.Sleep(5000);
+             e.Result = e.Argument + "work thread done";
+        }
 
+        private void MainView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keys.Space == e.KeyCode)
+            {
+                Play();
+            }else if (Keys.Down == e.KeyCode)
+            {
+                VolumeMaster.DM_Value -= 10;
+                volume = (int)VolumeMaster.DM_Value;
+                Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
+            }else if (Keys.Up == e.KeyCode)
+            {
+                VolumeMaster.DM_Value += 10;
+                volume = (int)VolumeMaster.DM_Value;
+                Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
+            }
+        }
+
+        private void MainView_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void PlayThread_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            Play();
+        }
+
+        private void pictureBoxSpectrum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RightView_MouseEnter(object sender, EventArgs e)
+        {
+            RightView.Width += 5;
+            //RightView.Height += 5;
+        }
+
+        private void RightView_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "向右切换";
+            thistip.SetToolTip(RightView, tipOverwrite);
+        }
+
+        private void RightView_MouseLeave(object sender, EventArgs e)
+        {
+            RightView.Width -= 5;
+            //RightView.Height -= 5;
+        }
+
+        private void LeftView_MouseEnter(object sender, EventArgs e)
+        {
+            LeftView.Width -= 5;
+            //LeftView.Height -= 5;
+        }
+
+        private void LeftView_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "向左切换";
+            thistip.SetToolTip(LeftView, tipOverwrite);
+        }
+
+        private void LeftView_MouseLeave(object sender, EventArgs e)
+        {
+            LeftView.Width += 5;
+            //LeftView.Height += 5;
+        }
+
+        private void btnHidePicturebBox_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "隐藏波形图片";
+            thistip.SetToolTip(btnHidePicturebBox, tipOverwrite);
+        }
+
+        private void btnClose_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "关闭程序";
+            thistip.SetToolTip(btnClose, tipOverwrite);
+        }
+
+        private void btnMin_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "最小化程序";
+            thistip.SetToolTip(btnMin, tipOverwrite);
+        }
+
+        private void btnMax_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "最大化程序";
+            thistip.SetToolTip(btnMax, tipOverwrite);
+        }
+
+        private void AlbumViewer_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "点击查看更多信息";
+            thistip.SetToolTip(AlbumViewer, tipOverwrite);
+        }
+
+        private void playControl_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "播放";
+            string tipOverwrite2 = "暂停/空格暂停";
+            switch(isPlay)
+            {
+                case true:
+                        thistip.SetToolTip(playControl, tipOverwrite2);
+                    break;
+                case false:
+                    thistip.SetToolTip(playControl, tipOverwrite);
+                    break;
+                default:
+                    break;
+            }
+        }
+         
+        private void VolumeMaster_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "当前音量" + volume.ToString() + Environment.NewLine + "拖动更新";
+            thistip.SetToolTip(VolumeMaster, tipOverwrite);
+                    
+        }
+
+        private void Pos_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            long pos = Bass.BASS_ChannelGetPosition(stream);
+            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
+            string tipOverwrite = String.Empty;
+            if (stream != 0)
+            {                
+                tipOverwrite= "当前进度" + String.Format(Utils.FixTimespan(elapsedtime, "MMSS")); 
+                thistip.SetToolTip(Pos, tipOverwrite);
+            }else if (stream == 0)
+            {
+                tipOverwrite = "当前进度 00:00";
+                thistip.SetToolTip(Pos, tipOverwrite);
+            }
+            
+        }
+
+        private void btnChangeTextColor_Click(object sender, EventArgs e)
+        {
+            if(MusicTitle.ForeColor==Color.White&&ArtistName.ForeColor==Color.White)
+            {
+                MusicTitle.ForeColor = Color.Black;
+                ArtistName.ForeColor = Color.Black;
+                labelTime.ForeColor = Color.Black;
+                labelLeftTime.ForeColor = Color.Black;
+                label2.ForeColor = Color.Black;
+                label3.ForeColor = Color.Black;
+                label4.ForeColor = Color.Black;
+                label5.ForeColor = Color.Black;
+            }
+            else
+            {
+                MusicTitle.ForeColor = Color.White;
+                ArtistName.ForeColor = Color.White;
+                labelTime.ForeColor = Color.White;
+                labelLeftTime.ForeColor = Color.White;
+                label2.ForeColor = Color.White;
+                label3.ForeColor = Color.White;
+                label4.ForeColor = Color.White;
+                label5.ForeColor = Color.White;
+            }
+        }
         
+        private void HidePanelMore()
+        {
+            if (panelMore.Visible == true) { panelMore.Visible = false; }
+        }
+        private void btnAbout_MouseEnter_1(object sender, EventArgs e)
+        {
+            HidePanelMore();
+        }
+
+        private void btnCDPlayer_MouseEnter(object sender, EventArgs e)
+        {
+            HidePanelMore();
+        }
+
+        private void btnShowLiveImage_MouseEnter(object sender, EventArgs e)
+        {
+            HidePanelMore();
+        }
+
+        private void btnLoadFile_MouseEnter(object sender, EventArgs e)
+        {
+            HidePanelMore();
+        }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
@@ -847,7 +1148,8 @@ namespace HappyMaster_Dev.View
                 Bmp = (Bitmap)AlbumViewer.BackgroundImage;
                 if(Bmp==null)
                 {
-                    DMSkin.MetroMessageBox.Show(this, "没有专辑图片(,,• ₃ •,,) ");
+                    View.InfoMessageBoxView.getText = "没有专辑图片(,,• ₃ •,,) ";
+                    new View.InfoMessageBoxView().ShowDialog();
                     ifGlassEffect = false;
                     labelbtnGlassAblumView.Text = "(・ˍ・*)是否高斯模糊专辑图片";
                     btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBox;

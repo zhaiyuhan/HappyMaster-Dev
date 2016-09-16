@@ -14,20 +14,23 @@ namespace HappyMaster_Dev.View
         {
 
         }
-
-        private void btnDone_Click(object sender, EventArgs e)
+        private void dmButtonClose1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnDone_MouseEnter(object sender, EventArgs e)
+        private void Linker_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            btnDone.ForeColor = Color.White;
-        }
+            switch (TextBoxInfo.Visible)
+            {
+                case true:
+                    TextBoxInfo.Visible = false;
+                    break;
+                case false:
+                    TextBoxInfo.Visible = true;
+                    break;
+            }
 
-        private void btnDone_MouseLeave(object sender, EventArgs e)
-        {
-            btnDone.ForeColor = Color.Black;
         }
     }
 }

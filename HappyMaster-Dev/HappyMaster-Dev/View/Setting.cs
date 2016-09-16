@@ -100,6 +100,14 @@ namespace HappyMaster_Dev.View
             {
                 ifRadius.Checked = false;
             }
+            if (MainView.ifTran == true)
+            {
+                ifTran.Checked = true;
+            }
+            else if (MainView.ifTran == false)
+            {
+                ifTran.Checked = false;
+            }
             OpToLevel(MainView.exop);
             MineEvent(thislevel);
             
@@ -109,15 +117,28 @@ namespace HappyMaster_Dev.View
         {
             this.Close();
         }
-
-        private void btnChangeBg_Click(object sender, EventArgs e)
+        public void LoadPic()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                MainView.exBackground = Image.FromFile(ofd.FileName);
-                ViewBg.BackgroundImage = Image.FromFile(ofd.FileName);        
+                try
+                {
+                    MainView.exBackground = Image.FromFile(ofd.FileName);
+                    ViewBg.BackgroundImage = Image.FromFile(ofd.FileName);
+                    btnSaveChanges.Focus();
+                }
+                catch (Exception)
+                {
+                    View.InfoMessageBoxView.getText = "不可接受的图片文件";
+                    new View.InfoMessageBoxView().ShowDialog();
+                }
             }
+        }
+        private void btnChangeBg_Click(object sender, EventArgs e)
+        {
+            LoadPic();
+            
         }
 
         private void btnChangeBg_MouseEnter(object sender, EventArgs e)
@@ -203,6 +224,9 @@ namespace HappyMaster_Dev.View
             if (ifRadius.Checked == true)
             {
                 MainView.ifTran = true;
+            }else if (ifRadius.Checked == false)
+            {
+                MainView.ifTran = false;
             }
         }
     }

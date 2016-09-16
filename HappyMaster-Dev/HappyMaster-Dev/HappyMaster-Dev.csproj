@@ -91,7 +91,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Extra\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="DMSkin, Version=0.3.0.6, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DMSkin, Version=0.3.1.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Extra\DMSkin.dll</HintPath>
     </Reference>
@@ -216,6 +216,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\248922-106.jpg" />
     <None Include="Resources\Beta5.jpg" />
     <None Include="Resources\Beta5Final.jpg" />
     <None Include="Extra\Bass.Net.dll" />

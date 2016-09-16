@@ -190,8 +190,8 @@ namespace HappyMaster_Dev.View
                 TopPanel.BackgroundImage = MainView.exalbumart;
             }
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
-            double last = _fileinfo.Length / 1024 % 1024;
-            LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + last + "MB";
+            double last = _fileinfo.Length / 1024 % 1024 / 10;            
+            LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + Math.Round(last, 2) + "MB";
             /*Glass Top Background*/
             if (albumArt == null)
             {

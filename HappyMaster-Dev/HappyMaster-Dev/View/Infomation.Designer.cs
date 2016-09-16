@@ -385,6 +385,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(467, 562);
             this.Controls.Add(this.LabelFileSize);
             this.Controls.Add(this.LabelCreatTime);
@@ -406,7 +407,8 @@
             this.Controls.Add(this.TextBoxTitle);
             this.Controls.Add(this.btnDone);
             this.DM_CanMove = false;
-            this.DM_ShadowWidth = 6;
+            this.DM_Radius = 5;
+            this.DM_ShadowWidth = 15;
             this.DM_ShowDrawIcon = false;
             this.DM_SkinOpacity = 0.8D;
             this.MaximizeBox = false;
