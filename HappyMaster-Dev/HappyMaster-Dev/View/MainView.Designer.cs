@@ -42,13 +42,12 @@
             this.btnShowLiveImage = new DMSkin.MetroDMButton();
             this.LeftView = new CCWin.SkinControl.SkinPictureBox();
             this.bottomPanel = new CCWin.SkinControl.SkinPanel();
+            this.btnSetting = new DMSkin.Controls.DM.DMIcon();
             this.playControl = new CCWin.SkinControl.SkinPictureBox();
             this.VolumeMaster = new DMSkin.Controls.DMProgressBar();
-            this.labelLeftTime = new System.Windows.Forms.Label();
-            this.labelTime = new System.Windows.Forms.Label();
+            this.labelLeftTime = new CCWin.SkinControl.SkinLabel();
+            this.labelTime = new CCWin.SkinControl.SkinLabel();
             this.Pos = new DMSkin.Metro.Controls.MetroTrackBar();
-            this.btnSetting = new DMSkin.MetroDMButton();
-            this.AlbumViewer = new CCWin.SkinControl.SkinPictureBox();
             this.MusicTitle = new CCWin.SkinControl.SkinLabel();
             this.ArtistName = new CCWin.SkinControl.SkinLabel();
             this.LoadMediaFile = new System.Windows.Forms.OpenFileDialog();
@@ -80,12 +79,15 @@
             this.btnShowDSP = new CCWin.SkinControl.SkinPictureBox();
             this.FreeMemory = new System.Windows.Forms.Timer(this.components);
             this.PlayThread = new System.ComponentModel.BackgroundWorker();
+            this.AlbumViewer = new CCWin.SkinControl.SkinPanel();
+            this.TabForpanelMore = new DMSkin.Controls.DMTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panelSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LeftView)).BeginInit();
             this.bottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AlbumViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpectrum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RightView)).BeginInit();
             this.panelMore.SuspendLayout();
@@ -95,6 +97,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnHelpView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnrecoder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowDSP)).BeginInit();
+            this.TabForpanelMore.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -103,7 +107,7 @@
             this.btnClose.DownImage = global::HappyMaster_Dev.Properties.Resources.buttonClosePRESS;
             this.btnClose.Image = null;
             this.btnClose.IsShowBorder = false;
-            this.btnClose.Location = new System.Drawing.Point(7, 12);
+            this.btnClose.Location = new System.Drawing.Point(10, 15);
             this.btnClose.MoveImage = global::HappyMaster_Dev.Properties.Resources.buttonCloseENTER;
             this.btnClose.Name = "btnClose";
             this.btnClose.NormalImage = global::HappyMaster_Dev.Properties.Resources.buttonCloseNORMAL;
@@ -121,7 +125,7 @@
             this.btnMin.DownImage = global::HappyMaster_Dev.Properties.Resources.buttonMinPRESS;
             this.btnMin.Image = null;
             this.btnMin.IsShowBorder = false;
-            this.btnMin.Location = new System.Drawing.Point(33, 12);
+            this.btnMin.Location = new System.Drawing.Point(36, 15);
             this.btnMin.MoveImage = global::HappyMaster_Dev.Properties.Resources.buttonMinENTER;
             this.btnMin.Name = "btnMin";
             this.btnMin.NormalImage = global::HappyMaster_Dev.Properties.Resources.buttonMinNOMAL;
@@ -139,7 +143,7 @@
             this.btnMax.DownImage = global::HappyMaster_Dev.Properties.Resources.buttonMax;
             this.btnMax.Image = null;
             this.btnMax.IsShowBorder = false;
-            this.btnMax.Location = new System.Drawing.Point(59, 12);
+            this.btnMax.Location = new System.Drawing.Point(62, 15);
             this.btnMax.MoveImage = global::HappyMaster_Dev.Properties.Resources.buttonMax;
             this.btnMax.Name = "btnMax";
             this.btnMax.NormalImage = global::HappyMaster_Dev.Properties.Resources.buttonMax;
@@ -158,12 +162,12 @@
             this.btnLoadFile.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLoadFile.Image = null;
             this.btnLoadFile.IsShowBorder = false;
-            this.btnLoadFile.Location = new System.Drawing.Point(7, 15);
+            this.btnLoadFile.Location = new System.Drawing.Point(1, 20);
             this.btnLoadFile.Margin = new System.Windows.Forms.Padding(0);
             this.btnLoadFile.MoveImage = global::HappyMaster_Dev.Properties.Resources.MenuLoadFileBlue;
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.NormalImage = global::HappyMaster_Dev.Properties.Resources.MenuLoadFileWhite;
-            this.btnLoadFile.Size = new System.Drawing.Size(238, 28);
+            this.btnLoadFile.Size = new System.Drawing.Size(242, 28);
             this.btnLoadFile.TabIndex = 5;
             this.btnLoadFile.TabStop = false;
             this.btnLoadFile.Text = "";
@@ -175,7 +179,7 @@
             // 
             this.panelSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panelSetting.BackColor = System.Drawing.Color.Transparent;
-            this.panelSetting.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuBG;
+            this.panelSetting.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuBgNew;
             this.panelSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelSetting.Controls.Add(this.btnCDPlayer);
             this.panelSetting.Controls.Add(this.LineforPanelSetting);
@@ -186,12 +190,14 @@
             this.panelSetting.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelSetting.DownBack = null;
             this.panelSetting.ForeColor = System.Drawing.Color.Black;
-            this.panelSetting.Location = new System.Drawing.Point(0, 256);
+            this.panelSetting.Location = new System.Drawing.Point(191, 279);
             this.panelSetting.Margin = new System.Windows.Forms.Padding(0);
             this.panelSetting.MouseBack = null;
             this.panelSetting.Name = "panelSetting";
             this.panelSetting.NormlBack = null;
-            this.panelSetting.Size = new System.Drawing.Size(252, 200);
+            this.panelSetting.Palace = true;
+            this.panelSetting.Radius = 20;
+            this.panelSetting.Size = new System.Drawing.Size(244, 177);
             this.panelSetting.TabIndex = 8;
             this.panelSetting.Visible = false;
             // 
@@ -202,12 +208,12 @@
             this.btnCDPlayer.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCDPlayer.Image = null;
             this.btnCDPlayer.IsShowBorder = false;
-            this.btnCDPlayer.Location = new System.Drawing.Point(7, 71);
+            this.btnCDPlayer.Location = new System.Drawing.Point(1, 74);
             this.btnCDPlayer.Margin = new System.Windows.Forms.Padding(0);
             this.btnCDPlayer.MoveImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayerWhite;
             this.btnCDPlayer.Name = "btnCDPlayer";
             this.btnCDPlayer.NormalImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayer;
-            this.btnCDPlayer.Size = new System.Drawing.Size(238, 28);
+            this.btnCDPlayer.Size = new System.Drawing.Size(242, 28);
             this.btnCDPlayer.TabIndex = 10;
             this.btnCDPlayer.TabStop = false;
             this.btnCDPlayer.Text = "";
@@ -220,7 +226,7 @@
             this.LineforPanelSetting.BackColor = System.Drawing.Color.Transparent;
             this.LineforPanelSetting.LineColor = System.Drawing.Color.Gray;
             this.LineforPanelSetting.LineHeight = 1;
-            this.LineforPanelSetting.Location = new System.Drawing.Point(9, 132);
+            this.LineforPanelSetting.Location = new System.Drawing.Point(5, 134);
             this.LineforPanelSetting.Name = "LineforPanelSetting";
             this.LineforPanelSetting.Size = new System.Drawing.Size(233, 10);
             this.LineforPanelSetting.TabIndex = 9;
@@ -231,9 +237,9 @@
             this.btnMore.BackColor = System.Drawing.Color.Transparent;
             this.btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuNormal;
             this.btnMore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMore.Location = new System.Drawing.Point(9, 105);
+            this.btnMore.Location = new System.Drawing.Point(3, 105);
             this.btnMore.Name = "btnMore";
-            this.btnMore.Size = new System.Drawing.Size(234, 23);
+            this.btnMore.Size = new System.Drawing.Size(238, 23);
             this.btnMore.TabIndex = 8;
             this.btnMore.TabStop = false;
             this.btnMore.Click += new System.EventHandler(this.btnMore_Click);
@@ -247,11 +253,11 @@
             this.btnAbout.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAbout.Image = null;
             this.btnAbout.IsShowBorder = false;
-            this.btnAbout.Location = new System.Drawing.Point(7, 139);
+            this.btnAbout.Location = new System.Drawing.Point(1, 146);
             this.btnAbout.MoveImage = global::HappyMaster_Dev.Properties.Resources.MenuAboutAppBlue;
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.NormalImage = global::HappyMaster_Dev.Properties.Resources.MenuAboutAppWhite;
-            this.btnAbout.Size = new System.Drawing.Size(238, 28);
+            this.btnAbout.Size = new System.Drawing.Size(242, 28);
             this.btnAbout.TabIndex = 7;
             this.btnAbout.TabStop = false;
             this.btnAbout.Text = "";
@@ -266,12 +272,12 @@
             this.btnShowLiveImage.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnShowLiveImage.Image = null;
             this.btnShowLiveImage.IsShowBorder = false;
-            this.btnShowLiveImage.Location = new System.Drawing.Point(7, 43);
+            this.btnShowLiveImage.Location = new System.Drawing.Point(1, 48);
             this.btnShowLiveImage.Margin = new System.Windows.Forms.Padding(0);
             this.btnShowLiveImage.MoveImage = global::HappyMaster_Dev.Properties.Resources.MenuLivePic;
             this.btnShowLiveImage.Name = "btnShowLiveImage";
             this.btnShowLiveImage.NormalImage = global::HappyMaster_Dev.Properties.Resources.MenuLivePicWhite;
-            this.btnShowLiveImage.Size = new System.Drawing.Size(238, 28);
+            this.btnShowLiveImage.Size = new System.Drawing.Size(242, 28);
             this.btnShowLiveImage.TabIndex = 6;
             this.btnShowLiveImage.TabStop = false;
             this.btnShowLiveImage.Text = "";
@@ -301,27 +307,44 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bottomPanel.BackColor = System.Drawing.Color.Transparent;
             this.bottomPanel.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.glassBG2;
+            this.bottomPanel.Controls.Add(this.btnSetting);
             this.bottomPanel.Controls.Add(this.playControl);
             this.bottomPanel.Controls.Add(this.VolumeMaster);
             this.bottomPanel.Controls.Add(this.labelLeftTime);
             this.bottomPanel.Controls.Add(this.labelTime);
             this.bottomPanel.Controls.Add(this.Pos);
-            this.bottomPanel.Controls.Add(this.btnSetting);
             this.bottomPanel.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.bottomPanel.DownBack = null;
-            this.bottomPanel.Location = new System.Drawing.Point(0, 459);
+            this.bottomPanel.Location = new System.Drawing.Point(193, 459);
             this.bottomPanel.MouseBack = null;
             this.bottomPanel.Name = "bottomPanel";
             this.bottomPanel.NormlBack = null;
-            this.bottomPanel.Size = new System.Drawing.Size(931, 85);
+            this.bottomPanel.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.bottomPanel.Size = new System.Drawing.Size(607, 69);
             this.bottomPanel.TabIndex = 9;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetting.DM_Color = System.Drawing.Color.White;
+            this.btnSetting.DM_Font_Size = 20F;
+            this.btnSetting.DM_Key = DMSkin.Controls.DM.DMIcon.DMIconKey.更多;
+            this.btnSetting.DM_Text = "";
+            this.btnSetting.Location = new System.Drawing.Point(3, 13);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(36, 24);
+            this.btnSetting.TabIndex = 6;
+            this.btnSetting.Text = "dmIcon1";
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click_1);
+            this.btnSetting.MouseEnter += new System.EventHandler(this.btnSetting_MouseEnter);
+            this.btnSetting.MouseLeave += new System.EventHandler(this.btnSetting_MouseLeave);
             // 
             // playControl
             // 
             this.playControl.BackColor = System.Drawing.Color.Transparent;
             this.playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
             this.playControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.playControl.Location = new System.Drawing.Point(455, 18);
+            this.playControl.Location = new System.Drawing.Point(281, 7);
             this.playControl.MaximumSize = new System.Drawing.Size(30, 30);
             this.playControl.Name = "playControl";
             this.playControl.Size = new System.Drawing.Size(30, 30);
@@ -347,7 +370,7 @@
             this.VolumeMaster.DM_RoundX = 1;
             this.VolumeMaster.DM_RoundY = 5;
             this.VolumeMaster.DM_Value = 100D;
-            this.VolumeMaster.Location = new System.Drawing.Point(810, 16);
+            this.VolumeMaster.Location = new System.Drawing.Point(486, 13);
             this.VolumeMaster.Name = "VolumeMaster";
             this.VolumeMaster.Size = new System.Drawing.Size(118, 24);
             this.VolumeMaster.TabIndex = 4;
@@ -358,11 +381,15 @@
             // labelLeftTime
             // 
             this.labelLeftTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLeftTime.ArtTextStyle = CCWin.SkinControl.ArtTextStyle.None;
             this.labelLeftTime.AutoSize = true;
+            this.labelLeftTime.BackColor = System.Drawing.Color.Transparent;
+            this.labelLeftTime.BorderColor = System.Drawing.Color.Transparent;
+            this.labelLeftTime.Font = new System.Drawing.Font("Microsoft YaHei Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelLeftTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelLeftTime.Location = new System.Drawing.Point(867, 65);
+            this.labelLeftTime.Location = new System.Drawing.Point(543, 49);
             this.labelLeftTime.Name = "labelLeftTime";
-            this.labelLeftTime.Size = new System.Drawing.Size(35, 12);
+            this.labelLeftTime.Size = new System.Drawing.Size(39, 17);
             this.labelLeftTime.TabIndex = 3;
             this.labelLeftTime.Text = "00:00";
             // 
@@ -370,10 +397,13 @@
             // 
             this.labelTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelTime.AutoSize = true;
+            this.labelTime.BackColor = System.Drawing.Color.Transparent;
+            this.labelTime.BorderColor = System.Drawing.Color.Transparent;
+            this.labelTime.Font = new System.Drawing.Font("Microsoft YaHei Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelTime.Location = new System.Drawing.Point(44, 65);
+            this.labelTime.Location = new System.Drawing.Point(40, 49);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(35, 12);
+            this.labelTime.Size = new System.Drawing.Size(39, 17);
             this.labelTime.TabIndex = 2;
             this.labelTime.Text = "00:00";
             // 
@@ -384,9 +414,9 @@
             this.Pos.BackColor = System.Drawing.Color.Transparent;
             this.Pos.DM_UseCustomBackColor = true;
             this.Pos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Pos.Location = new System.Drawing.Point(85, 59);
+            this.Pos.Location = new System.Drawing.Point(85, 43);
             this.Pos.Name = "Pos";
-            this.Pos.Size = new System.Drawing.Size(770, 23);
+            this.Pos.Size = new System.Drawing.Size(446, 23);
             this.Pos.TabIndex = 1;
             this.Pos.TabStop = false;
             this.Pos.Text = "metroTrackBar1";
@@ -394,44 +424,15 @@
             this.Pos.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Pos_Scroll);
             this.Pos.MouseHover += new System.EventHandler(this.Pos_MouseHover);
             // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.DownImage = global::HappyMaster_Dev.Properties.Resources.settings;
-            this.btnSetting.Image = null;
-            this.btnSetting.IsShowBorder = false;
-            this.btnSetting.Location = new System.Drawing.Point(4, 3);
-            this.btnSetting.MoveImage = global::HappyMaster_Dev.Properties.Resources.settings1;
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.NormalImage = global::HappyMaster_Dev.Properties.Resources.settingsNormal;
-            this.btnSetting.Size = new System.Drawing.Size(45, 45);
-            this.btnSetting.TabIndex = 0;
-            this.btnSetting.TabStop = false;
-            this.btnSetting.Text = "";
-            this.btnSetting.UseVisualStyleBackColor = true;
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
-            // 
-            // AlbumViewer
-            // 
-            this.AlbumViewer.BackColor = System.Drawing.Color.Transparent;
-            this.AlbumViewer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.AlbumViewer.Location = new System.Drawing.Point(343, 38);
-            this.AlbumViewer.Name = "AlbumViewer";
-            this.AlbumViewer.Size = new System.Drawing.Size(200, 200);
-            this.AlbumViewer.TabIndex = 10;
-            this.AlbumViewer.TabStop = false;
-            this.AlbumViewer.Visible = false;
-            this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click);
-            this.AlbumViewer.MouseHover += new System.EventHandler(this.AlbumViewer_MouseHover);
-            // 
             // MusicTitle
             // 
             this.MusicTitle.AutoSize = true;
             this.MusicTitle.BackColor = System.Drawing.Color.Transparent;
             this.MusicTitle.BorderColor = System.Drawing.Color.Transparent;
+            this.MusicTitle.CausesValidation = false;
             this.MusicTitle.Font = new System.Drawing.Font(".PingFang SC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MusicTitle.ForeColor = System.Drawing.Color.White;
-            this.MusicTitle.Location = new System.Drawing.Point(382, 294);
+            this.MusicTitle.Location = new System.Drawing.Point(389, 294);
             this.MusicTitle.Name = "MusicTitle";
             this.MusicTitle.Size = new System.Drawing.Size(175, 33);
             this.MusicTitle.TabIndex = 11;
@@ -444,7 +445,7 @@
             this.ArtistName.BorderColor = System.Drawing.Color.Transparent;
             this.ArtistName.Font = new System.Drawing.Font(".PingFang SC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ArtistName.ForeColor = System.Drawing.Color.White;
-            this.ArtistName.Location = new System.Drawing.Point(382, 336);
+            this.ArtistName.Location = new System.Drawing.Point(412, 350);
             this.ArtistName.Name = "ArtistName";
             this.ArtistName.Size = new System.Drawing.Size(120, 21);
             this.ArtistName.TabIndex = 12;
@@ -516,22 +517,17 @@
             // 
             this.panelMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panelMore.BackColor = System.Drawing.Color.Transparent;
-            this.panelMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.SecondMenuBG;
+            this.panelMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuBgNew;
             this.panelMore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelMore.Controls.Add(this.TabForpanelMore);
             this.panelMore.Controls.Add(this.btnChangeTextColor);
             this.panelMore.Controls.Add(this.labelVolumeValue);
             this.panelMore.Controls.Add(this.btnDIY);
             this.panelMore.Controls.Add(this.btnHelpShow);
-            this.panelMore.Controls.Add(this.btnDone);
             this.panelMore.Controls.Add(this.btnChangeBG);
-            this.panelMore.Controls.Add(this.label1);
-            this.panelMore.Controls.Add(this.ChkExpandEdge);
-            this.panelMore.Controls.Add(this.BarRadius);
-            this.panelMore.Controls.Add(this.labelbtnGlassAblumView);
-            this.panelMore.Controls.Add(this.btnGlassAblumView);
-            this.panelMore.Location = new System.Drawing.Point(255, 250);
+            this.panelMore.Location = new System.Drawing.Point(598, 244);
             this.panelMore.Name = "panelMore";
-            this.panelMore.Size = new System.Drawing.Size(232, 203);
+            this.panelMore.Size = new System.Drawing.Size(238, 209);
             this.panelMore.TabIndex = 17;
             this.panelMore.Visible = false;
             // 
@@ -542,7 +538,7 @@
             this.btnChangeTextColor.BackColor = System.Drawing.Color.White;
             this.btnChangeTextColor.Depth = 0;
             this.btnChangeTextColor.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeTextColor.Location = new System.Drawing.Point(150, 102);
+            this.btnChangeTextColor.Location = new System.Drawing.Point(143, 140);
             this.btnChangeTextColor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnChangeTextColor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChangeTextColor.Name = "btnChangeTextColor";
@@ -550,7 +546,7 @@
             this.btnChangeTextColor.Size = new System.Drawing.Size(61, 36);
             this.btnChangeTextColor.TabIndex = 11;
             this.btnChangeTextColor.TabStop = false;
-            this.btnChangeTextColor.Text = "字体颜色";
+            this.btnChangeTextColor.Text = "文字适应";
             this.btnChangeTextColor.UseVisualStyleBackColor = false;
             this.btnChangeTextColor.Click += new System.EventHandler(this.btnChangeTextColor_Click);
             // 
@@ -559,7 +555,7 @@
             this.labelVolumeValue.AutoSize = true;
             this.labelVolumeValue.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelVolumeValue.ForeColor = System.Drawing.Color.Black;
-            this.labelVolumeValue.Location = new System.Drawing.Point(10, 165);
+            this.labelVolumeValue.Location = new System.Drawing.Point(5, 182);
             this.labelVolumeValue.Name = "labelVolumeValue";
             this.labelVolumeValue.Size = new System.Drawing.Size(56, 17);
             this.labelVolumeValue.TabIndex = 10;
@@ -572,7 +568,7 @@
             this.btnDIY.BackColor = System.Drawing.Color.White;
             this.btnDIY.Depth = 0;
             this.btnDIY.ForeColor = System.Drawing.Color.Black;
-            this.btnDIY.Location = new System.Drawing.Point(83, 102);
+            this.btnDIY.Location = new System.Drawing.Point(74, 143);
             this.btnDIY.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDIY.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDIY.Name = "btnDIY";
@@ -592,7 +588,7 @@
             this.btnHelpShow.ForeColor = System.Drawing.Color.Black;
             this.btnHelpShow.Image = null;
             this.btnHelpShow.IsShowBorder = false;
-            this.btnHelpShow.Location = new System.Drawing.Point(162, 155);
+            this.btnHelpShow.Location = new System.Drawing.Point(165, 175);
             this.btnHelpShow.Margin = new System.Windows.Forms.Padding(0);
             this.btnHelpShow.MoveImage = global::HappyMaster_Dev.Properties.Resources.MineButtonENTER;
             this.btnHelpShow.Name = "btnHelpShow";
@@ -625,7 +621,7 @@
             this.btnChangeBG.BackColor = System.Drawing.Color.White;
             this.btnChangeBG.Depth = 0;
             this.btnChangeBG.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeBG.Location = new System.Drawing.Point(14, 102);
+            this.btnChangeBG.Location = new System.Drawing.Point(5, 143);
             this.btnChangeBG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnChangeBG.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChangeBG.Name = "btnChangeBG";
@@ -642,7 +638,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(34, 74);
+            this.label1.Location = new System.Drawing.Point(35, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 16);
             this.label1.TabIndex = 4;
@@ -653,7 +649,7 @@
             this.ChkExpandEdge.BackColor = System.Drawing.Color.Transparent;
             this.ChkExpandEdge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ChkExpandEdge.Checked = false;
-            this.ChkExpandEdge.Location = new System.Drawing.Point(14, 74);
+            this.ChkExpandEdge.Location = new System.Drawing.Point(11, 69);
             this.ChkExpandEdge.Name = "ChkExpandEdge";
             this.ChkExpandEdge.Size = new System.Drawing.Size(15, 19);
             this.ChkExpandEdge.TabIndex = 3;
@@ -666,7 +662,7 @@
             this.BarRadius.BarStyle = CCWin.SkinControl.HSLTrackBarStyle.Img;
             this.BarRadius.BaseColor = System.Drawing.Color.DarkGray;
             this.BarRadius.Enabled = false;
-            this.BarRadius.Location = new System.Drawing.Point(14, 45);
+            this.BarRadius.Location = new System.Drawing.Point(11, 24);
             this.BarRadius.Maximum = 255;
             this.BarRadius.Name = "BarRadius";
             this.BarRadius.Size = new System.Drawing.Size(197, 45);
@@ -685,7 +681,7 @@
             this.labelbtnGlassAblumView.BorderColor = System.Drawing.Color.Transparent;
             this.labelbtnGlassAblumView.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelbtnGlassAblumView.ForeColor = System.Drawing.Color.Black;
-            this.labelbtnGlassAblumView.Location = new System.Drawing.Point(35, 16);
+            this.labelbtnGlassAblumView.Location = new System.Drawing.Point(42, 3);
             this.labelbtnGlassAblumView.Name = "labelbtnGlassAblumView";
             this.labelbtnGlassAblumView.Size = new System.Drawing.Size(169, 17);
             this.labelbtnGlassAblumView.TabIndex = 1;
@@ -698,7 +694,7 @@
             this.btnGlassAblumView.DownImage = global::HappyMaster_Dev.Properties.Resources.checkBoxChecked;
             this.btnGlassAblumView.Image = null;
             this.btnGlassAblumView.IsShowBorder = false;
-            this.btnGlassAblumView.Location = new System.Drawing.Point(8, 16);
+            this.btnGlassAblumView.Location = new System.Drawing.Point(6, 6);
             this.btnGlassAblumView.MoveImage = global::HappyMaster_Dev.Properties.Resources.checkBoxHover;
             this.btnGlassAblumView.Name = "btnGlassAblumView";
             this.btnGlassAblumView.NormalImage = global::HappyMaster_Dev.Properties.Resources.checkBox;
@@ -729,14 +725,14 @@
             this.panelHelp.Controls.Add(this.btnShowDSP);
             this.panelHelp.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.panelHelp.DownBack = null;
-            this.panelHelp.Location = new System.Drawing.Point(0, 144);
+            this.panelHelp.Location = new System.Drawing.Point(7, 129);
             this.panelHelp.MouseBack = null;
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.NormlBack = null;
             this.panelHelp.Palace = true;
             this.panelHelp.Radius = 20;
             this.panelHelp.RoundStyle = CCWin.SkinClass.RoundStyle.All;
-            this.panelHelp.Size = new System.Drawing.Size(931, 116);
+            this.panelHelp.Size = new System.Drawing.Size(931, 109);
             this.panelHelp.TabIndex = 20;
             this.panelHelp.Visible = false;
             // 
@@ -850,12 +846,71 @@
             this.PlayThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.PlayThread_DoWork);
             this.PlayThread.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.PlayThread_RunWorkerCompleted);
             // 
+            // AlbumViewer
+            // 
+            this.AlbumViewer.BackColor = System.Drawing.Color.Transparent;
+            this.AlbumViewer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AlbumViewer.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.AlbumViewer.DownBack = null;
+            this.AlbumViewer.Location = new System.Drawing.Point(364, 38);
+            this.AlbumViewer.MouseBack = null;
+            this.AlbumViewer.Name = "AlbumViewer";
+            this.AlbumViewer.NormlBack = null;
+            this.AlbumViewer.Radius = 10;
+            this.AlbumViewer.RoundStyle = CCWin.SkinClass.RoundStyle.All;
+            this.AlbumViewer.Size = new System.Drawing.Size(200, 200);
+            this.AlbumViewer.TabIndex = 21;
+            this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click_1);
+            this.AlbumViewer.Paint += new System.Windows.Forms.PaintEventHandler(this.AlbumViewer_Paint_1);
+            // 
+            // TabForpanelMore
+            // 
+            this.TabForpanelMore.BackColor = System.Drawing.Color.Transparent;
+            this.TabForpanelMore.Controls.Add(this.tabPage1);
+            this.TabForpanelMore.Controls.Add(this.tabPage2);
+            this.TabForpanelMore.DMNormalBackColor = System.Drawing.Color.Transparent;
+            this.TabForpanelMore.ItemSize = new System.Drawing.Size(80, 32);
+            this.TabForpanelMore.Location = new System.Drawing.Point(4, 3);
+            this.TabForpanelMore.Name = "TabForpanelMore";
+            this.TabForpanelMore.SelectedIndex = 0;
+            this.TabForpanelMore.Size = new System.Drawing.Size(231, 134);
+            this.TabForpanelMore.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.TabForpanelMore.TabIndex = 22;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.labelbtnGlassAblumView);
+            this.tabPage1.Controls.Add(this.btnGlassAblumView);
+            this.tabPage1.Controls.Add(this.BarRadius);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.btnDone);
+            this.tabPage1.Controls.Add(this.ChkExpandEdge);
+            this.tabPage1.ForeColor = System.Drawing.Color.Black;
+            this.tabPage1.Location = new System.Drawing.Point(4, 36);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(223, 94);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "设置专辑图片";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.ForeColor = System.Drawing.Color.Black;
+            this.tabPage2.Location = new System.Drawing.Point(4, 36);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(223, 94);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "当前播放信息";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Beta5;
+            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Beta5_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(931, 541);
             this.Controls.Add(this.AlbumViewer);
@@ -864,25 +919,22 @@
             this.Controls.Add(this.LeftView);
             this.Controls.Add(this.btnHidePicturebBox);
             this.Controls.Add(this.RightView);
-            this.Controls.Add(this.pictureBoxSpectrum);
-            this.Controls.Add(this.ArtistName);
-            this.Controls.Add(this.panelSetting);
-            this.Controls.Add(this.MusicTitle);
             this.Controls.Add(this.bottomPanel);
+            this.Controls.Add(this.pictureBoxSpectrum);
+            this.Controls.Add(this.panelSetting);
+            this.Controls.Add(this.ArtistName);
+            this.Controls.Add(this.MusicTitle);
             this.Controls.Add(this.btnMax);
             this.Controls.Add(this.btnMin);
             this.Controls.Add(this.btnClose);
-            this.DM_EffectBack = System.Drawing.Color.Transparent;
             this.DM_howBorder = false;
-            this.DM_Radius = 1;
+            this.DM_RoundStyle = DMSkin.SkinClass.RoundStyle.None;
             this.DM_ShadowWidth = 6;
-            this.DM_ShowDrawIcon = false;
-            this.DM_SkinOpacity = 0.9D;
-            this.DM_TitleColor = System.Drawing.Color.Transparent;
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainView";
+            this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.Load += new System.EventHandler(this.MainView_Load);
@@ -897,7 +949,6 @@
             this.bottomPanel.ResumeLayout(false);
             this.bottomPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AlbumViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpectrum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RightView)).EndInit();
             this.panelMore.ResumeLayout(false);
@@ -909,6 +960,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnHelpView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEnrecoder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowDSP)).EndInit();
+            this.TabForpanelMore.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -924,13 +978,10 @@
         private DMSkin.MetroDMButton btnAbout;
         private DMSkin.MetroDMButton btnShowLiveImage;
         private CCWin.SkinControl.SkinPanel bottomPanel;
-        private DMSkin.MetroDMButton btnSetting;
         private DMSkin.Metro.Controls.MetroTrackBar Pos;
-        private System.Windows.Forms.Label labelLeftTime;
-        private System.Windows.Forms.Label labelTime;
+        private CCWin.SkinControl.SkinLabel labelLeftTime;
         private DMSkin.Controls.DMProgressBar VolumeMaster;
         private CCWin.SkinControl.SkinPictureBox playControl;
-        private CCWin.SkinControl.SkinLabel MusicTitle;
         private CCWin.SkinControl.SkinLabel ArtistName;
         public System.Windows.Forms.OpenFileDialog LoadMediaFile;
         private System.Windows.Forms.Timer Position;
@@ -946,7 +997,6 @@
         private CCWin.SkinControl.SkinTrackBar BarRadius;
         private System.Windows.Forms.Label label1;
         private DMSkin.Controls.DMCheckBox ChkExpandEdge;
-        public CCWin.SkinControl.SkinPictureBox AlbumViewer;
         private MaterialSkin.Controls.MaterialFlatButton btnChangeBG;
         private DMSkin.Metro.Controls.MetroButton btnDone;
         private System.Windows.Forms.Timer labelDoneTimer;
@@ -966,5 +1016,12 @@
         private System.ComponentModel.BackgroundWorker PlayThread;
         private System.Windows.Forms.Label labelVolumeValue;
         private MaterialSkin.Controls.MaterialFlatButton btnChangeTextColor;
+        private CCWin.SkinControl.SkinLabel MusicTitle;
+        private CCWin.SkinControl.SkinLabel labelTime;
+        private CCWin.SkinControl.SkinPanel AlbumViewer;
+        private DMSkin.Controls.DM.DMIcon btnSetting;
+        private DMSkin.Controls.DMTabControl TabForpanelMore;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

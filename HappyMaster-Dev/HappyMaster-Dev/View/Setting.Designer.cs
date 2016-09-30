@@ -306,7 +306,7 @@
             this.Controls.Add(this.ViewBg);
             this.Controls.Add(this.btnChangeBg);
             this.Controls.Add(this.btnSaveChanges);
-            this.DM_ShowDrawIcon = false;
+            //this.DM_ShowDrawIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingView";

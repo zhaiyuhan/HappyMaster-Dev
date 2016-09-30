@@ -189,6 +189,18 @@ namespace HappyMaster_Dev.View
                 PictureBox.BackgroundImage = MainView.exalbumart;
                 TopPanel.BackgroundImage = MainView.exalbumart;
             }
+            else
+            {
+                GetPicture();
+                TextBoxTitle.Text = tagInfo.title;
+                TextBoxArtist.Text = tagInfo.artist;
+                TextBoxAlbum.Text = tagInfo.album;
+                LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
+                LabelRate.Text = "44.100 kHZ";
+                TextBoxFileName.Text = tagInfo.filename;
+                PictureBox.BackgroundImage = MainView.exalbumart;
+                TopPanel.BackgroundImage = MainView.exalbumart;
+            }
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024 / 10;            
             LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + Math.Round(last, 2) + "MB";

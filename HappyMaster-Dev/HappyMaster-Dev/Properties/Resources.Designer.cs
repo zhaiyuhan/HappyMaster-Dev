@@ -103,6 +103,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Beta5_1 {
+            get {
+                object obj = ResourceManager.GetObject("Beta5.1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap btnDown {
             get {
                 object obj = ResourceManager.GetObject("btnDown", resourceCulture);
@@ -293,6 +303,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Clicked {
+            get {
+                object obj = ResourceManager.GetObject("Clicked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap compass {
             get {
                 object obj = ResourceManager.GetObject("compass", resourceCulture);
@@ -383,6 +403,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Hover {
+            get {
+                object obj = ResourceManager.GetObject("Hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap LeftWhite {
             get {
                 object obj = ResourceManager.GetObject("LeftWhite", resourceCulture);
@@ -423,9 +453,9 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap MenuBG {
+        public static System.Drawing.Bitmap MenuBgNew {
             get {
-                object obj = ResourceManager.GetObject("MenuBG", resourceCulture);
+                object obj = ResourceManager.GetObject("MenuBgNew", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -543,6 +573,16 @@ namespace HappyMaster_Dev.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Normal {
+            get {
+                object obj = ResourceManager.GetObject("Normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap OpLevel {
             get {
                 object obj = ResourceManager.GetObject("OpLevel", resourceCulture);
@@ -646,16 +686,6 @@ namespace HappyMaster_Dev.Properties {
         public static System.Drawing.Bitmap ScrollBarNOMARL {
             get {
                 object obj = ResourceManager.GetObject("ScrollBarNOMARL", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap SecondMenuBG {
-            get {
-                object obj = ResourceManager.GetObject("SecondMenuBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

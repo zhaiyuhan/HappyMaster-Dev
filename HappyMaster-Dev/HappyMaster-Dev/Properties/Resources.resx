@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="checkBoxChecked1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checkBoxChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RightWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RightWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="slider" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\slider.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuBgNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuBgNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MineButtonENTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MineButtonENTER.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,14 +136,14 @@
   <data name="SaveChange" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SaveChange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MenuBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuLoadFileWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuLoadFileWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="downWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\downWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PlayPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PlayPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Clicked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Clicked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="glassBgGry" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\glassBgGry.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,8 +157,8 @@
   <data name="checkedRadius" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RightWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RightWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="slider" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\slider.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="right-arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\right-arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,11 +175,14 @@
   <data name="checkBoxChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkBoxChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SecondMenuBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SecondMenuBG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="buttonCloseENTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\buttonCloseENTER.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buttonClosePRESS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttonClosePRESS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OpLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\OpLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buttonMax" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttonMax.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,11 +193,14 @@
   <data name="buttonMinPRESS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttonMinPRESS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="checkBoxIndeterminateHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkBoxIndeterminateHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuLoadFileWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MenuLoadFileWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MenuCDPlayerWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuCDPlayerWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MenuAboutAppWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuAboutAppWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -207,9 +213,6 @@
   </data>
   <data name="settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MoreOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MoreOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MenuLivePicWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuLivePicWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,8 +235,8 @@
   <data name="AboutViewBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuLoadFileBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MenuLoadFileBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="checkBoxChecked1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checkBoxChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="uncheckedHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uncheckedHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -246,6 +249,9 @@
   </data>
   <data name="Opstatic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Opstatic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuLoadFileBlue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MenuLoadFileBlue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MenuCDPlayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuCDPlayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,17 +277,17 @@
   <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btnUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ScrollBarNOMARL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ScrollBarNOMARL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="buttonCloseENTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\buttonCloseENTER.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="buttonCloseNORMAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\buttonCloseNORMAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="buttonMinENTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buttonMinENTER.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -295,17 +301,17 @@
   <data name="btnUpPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btnUpPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpLevel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpLevel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="buttonCloseNORMAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\buttonCloseNORMAL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btnUp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PlayPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MineButtonPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MineButtonPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MenuCDPlayerWhite" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MenuCDPlayerWhite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MoreOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MoreOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -315,5 +321,8 @@
   </data>
   <data name="checkBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\checkBox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Beta5.1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Beta5.1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

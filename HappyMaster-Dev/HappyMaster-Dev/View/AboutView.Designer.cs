@@ -55,13 +55,13 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(580, 357);
             this.Controls.Add(this.btnClose);
+            this.DM_CanResize = false;
             this.DM_howBorder = false;
             this.DM_Radius = 8;
-            this.DM_ShowDrawIcon = false;
-            this.DM_SkinOpacity = 0.8D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutView";
+            this.Opacity = 0.85D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

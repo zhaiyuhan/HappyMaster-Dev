@@ -111,9 +111,9 @@
             this.Controls.Add(this.Title);
             this.Controls.Add(this.labelCancel);
             this.Controls.Add(this.labelOK);
-            this.DM_DropBack = false;
+            //this.DM_DropBack = false;
             this.DM_howBorder = false;
-            this.DM_ShowDrawIcon = false;
+            //this.DM_ShowDrawIcon = false;
             this.Name = "MessageBoxView";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

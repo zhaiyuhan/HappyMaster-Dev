@@ -172,12 +172,18 @@ namespace HappyMaster_Dev.View
         //empyty;
         public void InitUI()
         {
+            bottomPanel.Size = new Size(607, 67);
+            bottomPanel.Left = (this.ClientRectangle.Width - bottomPanel.Width) / 2; bottomPanel.BringToFront();
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
             AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
-            playControl.Left = (this.ClientRectangle.Width - playControl.Width) / 2; playControl.BringToFront();            
+            playControl.Left = (this.bottomPanel.Width - playControl.Width) / 2; playControl.BringToFront();
+            panelSetting.Location = new Point(bottomPanel.Location.X, this.Width / 2 - 200);
+            panelMore.Location = new Point(panelSetting.Location.X + panelSetting.Width + 5, panelSetting.Location.Y - 20);
+            //custom layout
             //except playControl is always on top,and all of them are always in the middle
             btnLoadFile.TabStop = false;
+            Debug.WriteLine(playControl.Location);
         }
         public void InitpanelHelp()
         {
@@ -191,6 +197,7 @@ namespace HappyMaster_Dev.View
         {
             InitUI();//Run...
             InitpanelHelp();
+            this.Text = "欢迎";
            //Initialization interface,BASS.NET
             if (!Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_CPSPEAKERS, this.Handle))//Set  parameter
             {
@@ -230,6 +237,33 @@ namespace HappyMaster_Dev.View
                 WindowState = FormWindowState.Normal;
             }
         }//title bar ,finished
+        void btnSettingEvent()
+        {
+            if (canShowpanelSetting == true)
+            {
+                switch (panelSetting.Visible)
+                {
+                    case true:
+                        panelSetting.Visible = false;
+                        panelMore.Visible = false;
+                        playControl.Focus();
+                        btnLoadFile.TabStop = false;
+                        break;
+                    case false:
+                        panelSetting.Visible = true;
+                        panelSetting.BringToFront();
+                        playControl.Focus();
+                        labelVolumeValue.Text = "当前音量: " + volume;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (canShowpanelSetting == false)
+            {
+                return;
+            }
+        }
         private void btnSetting_Click(object sender, EventArgs e)
         {
             if (canShowpanelSetting == true)
@@ -245,6 +279,7 @@ namespace HappyMaster_Dev.View
                 case false:
                     panelSetting.Visible = true;
                     panelSetting.BringToFront();
+                    playControl.Focus();
                     labelVolumeValue.Text = "当前音量: " + volume;
                     break;
                 default:
@@ -338,6 +373,9 @@ namespace HappyMaster_Dev.View
                 AlbumViewer.BackgroundImage = albumArt;
                 this.Text = "正在播放";
                 isPlay = true;
+                Debug.WriteLine("Now Playing");
+                Debug.WriteLine(tagInfo.title + " Title");
+                Debug.WriteLine(tagInfo.artist + " Artist");
             }
             else if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_PLAYING)
             {
@@ -387,10 +425,41 @@ namespace HappyMaster_Dev.View
             Bass.BASS_Free();
         }//
         long length = 0; double totaltime; public static Image albumArt;
+        TAG_INFO tagInfo;
+        void outputtagInfoTitle(string title)
+        {
+            if (title != string.Empty) 
+            {
+                MusicTitle.Text = title;
+                while(MusicTitle.Text=="")
+                {
+                    MusicTitle.Text = filename;
+                }
+            }
+            else
+            {
+                MusicTitle.Text = filename;
+            }
+        }
+        void outputtagInfoArtist(string artsit)
+        {
+            if (tagInfo.artist != string.Empty && tagInfo.album != string.Empty)
+            {
+                ArtistName.Text = tagInfo.artist + " - " + tagInfo.album;
+            }
+            else if (tagInfo.artist != string.Empty && tagInfo.album == string.Empty)
+            {
+                ArtistName.Text = tagInfo.artist;
+            }
+            else if (tagInfo.artist == string.Empty && tagInfo.album != string.Empty)
+            {
+                ArtistName.Text = tagInfo.album;
+            }
+        }
         //function LoadFile
         public void LoadFile()
         {
-            if(LoadMediaFile.ShowDialog()==DialogResult.OK)
+            if (LoadMediaFile.ShowDialog() == DialogResult.OK) 
             {
                 if (File.Exists(LoadMediaFile.FileName)) { filename = LoadMediaFile.FileName; } else { filename = String.Empty; }//get filename 
                 exfilename = LoadMediaFile.FileName;//set filename
@@ -407,16 +476,27 @@ namespace HappyMaster_Dev.View
                     AlbumViewer.Visible = true;
                     workImage = AlbumViewer.BackgroundImage;
                 }
-                TAG_INFO tagInfo = new TAG_INFO(filename);
+                tagInfo = new TAG_INFO(filename);
                 if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
-                {
+                {//get tag information
                     AlbumViewer.BackgroundImage = null;
                     GetPicture();
                     AlbumViewer.BackgroundImage = albumArt;
-                    MusicTitle.Text = tagInfo.title;
-                    ArtistName.Text = tagInfo.artist + " - " + tagInfo.album;
+                    string setTitle = tagInfo.title;
+                    outputtagInfoTitle(setTitle);
+                    outputtagInfoArtist(tagInfo.artist);
                     InitUI();
-                }//get tag information
+                }else
+                {
+                    //if no artist infomation 
+                    AlbumViewer.BackgroundImage = null;
+                    GetPicture();
+                    AlbumViewer.BackgroundImage = albumArt;
+                    string setTitle = tagInfo.title;
+                    outputtagInfoTitle(setTitle);
+                    outputtagInfoArtist(tagInfo.artist);
+                    InitUI();
+                }
             }
         }
         public void btnLoadFile_Click(object sender, EventArgs e)
@@ -440,7 +520,7 @@ namespace HappyMaster_Dev.View
             double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
             double remainingtime = totaltime - elapsedtime;//left time
             labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            labelLeftTime.Text = "- " + String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
+            labelLeftTime.Text = " -" + String.Format(Utils.FixTimespan(remainingtime, "MMSS"));
             //set pos max value ,avoid overflow
             Pos.Maximum = (int)Bass.BASS_ChannelBytes2Seconds(stream, Bass.BASS_ChannelGetLength(stream));
             //set pos, and double into int
@@ -679,7 +759,7 @@ namespace HappyMaster_Dev.View
                 Rectangle Rect = new Rectangle(0, 0, Bmp.Width, Bmp.Height);
                 Stopwatch Sw = new Stopwatch();
                 Sw.Start();
-                if (ifGlassEffect==true)
+                if (ifGlassEffect==true)                   
                     Bmp.GaussianBlur(ref Rect, BarRadius.Value, ChkExpandEdge.Checked);
                 Sw.Stop();             
             }
@@ -827,7 +907,7 @@ namespace HappyMaster_Dev.View
 
         private void MainView_Paint(object sender, PaintEventArgs e)
         {
-            this.DM_SkinOpacity = exop;         
+            //this.DM_SkinOpacity = exop;         
             if(ifRadius==true)
             {
                 this.DM_Radius = 6;
@@ -845,26 +925,6 @@ namespace HappyMaster_Dev.View
         }
         public static string exfilename = string.Empty;
         public static Image exalbumart = null;
-        private void AlbumViewer_Click(object sender, EventArgs e)
-        {
-            if (stream != 0)
-            {
-                exalbumart = albumArt;
-                if (exfilename != null)
-                {
-                    System.Diagnostics.Debug.WriteLine("exfilename is not empty and filename is " + exfilename);
-                }
-                if (exalbumart != null)
-                {
-                    System.Diagnostics.Debug.WriteLine("exalbumart is not null");
-                }
-                //hide panelSetting and panelMore
-                panelSetting.Visible = false;
-                panelMore.Visible = false;
-                View.Infomation iv = new Infomation();
-                iv.ShowDialog();
-            }
-        }
 
         private void labelbtnGlassAblumView_Click(object sender, EventArgs e)
         {
@@ -1083,30 +1143,27 @@ namespace HappyMaster_Dev.View
             }
             
         }
-
+        bool ifOnForeColorSuit = false;
         private void btnChangeTextColor_Click(object sender, EventArgs e)
         {
-            if(MusicTitle.ForeColor==Color.White&&ArtistName.ForeColor==Color.White)
+            switch(ifOnForeColorSuit)
             {
-                MusicTitle.ForeColor = Color.Black;
-                ArtistName.ForeColor = Color.Black;
-                labelTime.ForeColor = Color.Black;
-                labelLeftTime.ForeColor = Color.Black;
-                label2.ForeColor = Color.Black;
-                label3.ForeColor = Color.Black;
-                label4.ForeColor = Color.Black;
-                label5.ForeColor = Color.Black;
-            }
-            else
-            {
-                MusicTitle.ForeColor = Color.White;
-                ArtistName.ForeColor = Color.White;
-                labelTime.ForeColor = Color.White;
-                labelLeftTime.ForeColor = Color.White;
-                label2.ForeColor = Color.White;
-                label3.ForeColor = Color.White;
-                label4.ForeColor = Color.White;
-                label5.ForeColor = Color.White;
+                case false:
+                    MusicTitle.ForeColorSuit = true;
+                    ArtistName.ForeColorSuit = true;
+                    labelTime.ForeColorSuit = true;
+                    labelLeftTime.ForeColorSuit = true;
+                    ifOnForeColorSuit = true;
+                    break;
+                case true:
+                    MusicTitle.ForeColorSuit = false;
+                    ArtistName.ForeColorSuit = false;
+                    labelTime.ForeColorSuit = false;
+                    labelLeftTime.ForeColorSuit = false;
+                    ifOnForeColorSuit = false;
+                    break;
+                default:
+                    break;
             }
         }
         
@@ -1132,6 +1189,65 @@ namespace HappyMaster_Dev.View
         private void btnLoadFile_MouseEnter(object sender, EventArgs e)
         {
             HidePanelMore();
+        }
+
+        private void AlbumViewer_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics,
+                                this.AlbumViewer.ClientRectangle,
+                                Color.Gray,//7f9db9
+                                3,
+                                ButtonBorderStyle.Solid,
+                                Color.Gray,
+                                3,
+                                ButtonBorderStyle.Solid,
+                                Color.Gray,
+                                3,
+                                ButtonBorderStyle.Solid,
+                                Color.Gray,
+                                3,
+                                ButtonBorderStyle.Solid);
+        }
+
+        private void AlbumViewer_Click_1(object sender, EventArgs e)
+        {
+            if (stream != 0)
+            {
+                exalbumart = albumArt;
+                if (exfilename != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("exfilename is not empty and filename is " + exfilename);
+                }
+                if (exalbumart != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("exalbumart is not null");
+                }
+                //hide panelSetting and panelMore
+                panelSetting.Visible = false;
+                panelMore.Visible = false;
+                View.Infomation iv = new Infomation();
+                iv.ShowDialog();
+            }
+        }
+
+        private void AlbumViewer_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnSetting_Click_1(object sender, EventArgs e)
+        {
+            btnSettingEvent();
+        }
+
+        private void btnSetting_MouseEnter(object sender, EventArgs e)
+        {
+            btnSetting.DM_Color = Color.LightGray;
+        }
+
+        private void btnSetting_MouseLeave(object sender, EventArgs e)
+        {
+            btnSetting.DM_Color = Color.White;
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)

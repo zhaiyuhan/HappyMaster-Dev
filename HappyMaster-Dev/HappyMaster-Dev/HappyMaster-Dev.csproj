@@ -216,6 +216,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Beta5.1.jpg" />
+    <None Include="Resources\Normal.png" />
+    <None Include="Resources\Hover.png" />
+    <None Include="Resources\Clicked.png" />
+    <None Include="Resources\MenuBgNew.png" />
+    <None Include="Resources\NewMenuBg.png" />
     <None Include="Resources\248922-106.jpg" />
     <None Include="Resources\Beta5.jpg" />
     <None Include="Resources\Beta5Final.jpg" />
