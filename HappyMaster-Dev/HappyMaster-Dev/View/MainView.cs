@@ -185,18 +185,10 @@ namespace HappyMaster_Dev.View
             btnLoadFile.TabStop = false;
             Debug.WriteLine(playControl.Location);
         }
-        public void InitpanelHelp()
-        {
-            Size panelHelpSize = new Size(931, 116);
-            Point panelHelpLocation = new Point(0, this.Height - 250);
-            panelHelp.Location = panelHelpLocation;
-            panelHelp.Size = panelHelpSize;
-            panelHelp.Left = (this.ClientRectangle.Width - panelHelp.Width) / 2;           
-        }
+
         private void MainView_Load(object sender, EventArgs e)
         {
             InitUI();//Run...
-            InitpanelHelp();
             this.Text = "欢迎";
            //Initialization interface,BASS.NET
             if (!Bass.BASS_Init(-1, 44100, BASSInit.BASS_DEVICE_CPSPEAKERS, this.Handle))//Set  parameter
@@ -212,7 +204,6 @@ namespace HappyMaster_Dev.View
         private void MainView_Resize(object sender, EventArgs e)
         {
             InitUI();
-            InitpanelHelp();
             //if Triggering Resize event,sure all of them are always in the middle
         }
         //btnControl ,like title bar
@@ -244,14 +235,14 @@ namespace HappyMaster_Dev.View
                 switch (panelSetting.Visible)
                 {
                     case true:
-                        panelSetting.Visible = false;
+                        AnimatorforPanelSetting.Hide(panelSetting);
                         panelMore.Visible = false;
                         playControl.Focus();
                         btnLoadFile.TabStop = false;
                         break;
                     case false:
-                        panelSetting.Visible = true;
                         panelSetting.BringToFront();
+                        AnimatorforPanelSetting.Show(panelSetting);                       
                         playControl.Focus();
                         labelVolumeValue.Text = "当前音量: " + volume;
                         break;
@@ -473,7 +464,7 @@ namespace HappyMaster_Dev.View
                 if (stream != 0)
                 {
                     AlbumViewer.BackgroundImage = null;
-                    AlbumViewer.Visible = true;
+                    AnimatorforPanelSetting.Show(AlbumViewer);
                     workImage = AlbumViewer.BackgroundImage;
                 }
                 tagInfo = new TAG_INFO(filename);
@@ -723,25 +714,35 @@ namespace HappyMaster_Dev.View
         private void btnMore_MouseEnter(object sender, EventArgs e)
         {
             btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MoreOn;
-            panelMore.Visible = true;
-            panelMore.BringToFront();
+            showPanelMore();
         }
 
         private void btnMore_MouseLeave(object sender, EventArgs e)
         {
             btnMore.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.MenuNormal;
         }
-
+        void showPanelMore()
+        {
+            panelMore.BringToFront();
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.HorizSlide;
+            AnimatorforPanelSetting.Show(panelMore);
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
+        }
+        void hidepanelMore()
+        {
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.HorizSlide;
+            AnimatorforPanelSetting.Hide(panelMore);
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
+        }
         private void btnMore_Click(object sender, EventArgs e)
         {
             if (panelMore.Visible == false)
             {
-                panelMore.Visible = true;
-            panelMore.BringToFront();
+                showPanelMore();
             }
             else
             {
-                panelMore.Visible = false;
+                hidepanelMore();
             }
             
         }
@@ -816,7 +817,6 @@ namespace HappyMaster_Dev.View
         }
         private void btnCloseHelpView_Click(object sender, EventArgs e)
         {
-            panelHelp.Visible = false;
             btnSetting.Enabled = true;
             canShowpanelSetting = true;
         }
@@ -831,53 +831,6 @@ namespace HappyMaster_Dev.View
             System.Diagnostics.Process.Start("EncoderViewer.exe", System.IO.Directory.GetCurrentDirectory());
         }
         //HelpPanel
-        private void btnShowDSP_MouseEnter(object sender, EventArgs e)
-        {
-            btnShowDSP.Height += 5;
-            btnShowDSP.Width += 5;
-        }
-
-        private void btnShowDSP_MouseLeave(object sender, EventArgs e)
-        {
-            btnShowDSP.Height -= 5;
-            btnShowDSP.Width -= 5;
-        }
-
-        private void btnEnrecoder_MouseEnter(object sender, EventArgs e)
-        {
-            btnEnrecoder.Height += 5;
-            btnEnrecoder.Width += 5;
-        }
-
-        private void btnEnrecoder_MouseLeave(object sender, EventArgs e)
-        {
-            btnEnrecoder.Height -= 5;
-            btnEnrecoder.Width -= 5;
-        }
-
-        private void btnHelpView_MouseEnter(object sender, EventArgs e)
-        {
-            btnHelpView.Width += 5;
-            btnHelpView.Height += 5;
-        }
-
-        private void btnHelpView_MouseLeave(object sender, EventArgs e)
-        {
-            btnHelpView.Height -= 5;
-            btnHelpView.Width -= 5;
-        }
-
-        private void btnCloseHelpView_MouseEnter(object sender, EventArgs e)
-        {
-            btnCloseHelpView.Height = 55;
-            btnHelpView.Width = 55;
-        }
-
-        private void btnCloseHelpView_MouseLeave(object sender, EventArgs e)
-        {
-            btnCloseHelpView.Height = 50;
-            btnHelpView.Width = 50;
-        }//
 
         private void MainView_Click(object sender, EventArgs e)
         {
@@ -888,11 +841,16 @@ namespace HappyMaster_Dev.View
         public bool canShowpanelSetting = true;
         private void btnHelpShow_Click(object sender, EventArgs e)
         {
-            panelHelp.Visible = true;
-            panelHelp.BringToFront();
-            panelSetting.Visible = false;
-            panelMore.Visible = false;
-            canShowpanelSetting = false;
+            if (TabForpanelMore.SelectedTab == tabPage1)
+            {
+                TabForpanelMore.SelectedTab = TabForpanelMore.TabPages[1];
+                btnHelpShow.Text = "Custom";
+            }else if (TabForpanelMore.SelectedTab == tabPage2)
+            {
+                TabForpanelMore.SelectedTab = TabForpanelMore.TabPages[0];
+                btnHelpShow.Text = "Help";
+            }
+            
         }
 
         private void btnHelpShow_MouseEnter(object sender, EventArgs e)
@@ -1167,28 +1125,24 @@ namespace HappyMaster_Dev.View
             }
         }
         
-        private void HidePanelMore()
-        {
-            if (panelMore.Visible == true) { panelMore.Visible = false; }
-        }
         private void btnAbout_MouseEnter_1(object sender, EventArgs e)
         {
-            HidePanelMore();
+            hidepanelMore();
         }
 
         private void btnCDPlayer_MouseEnter(object sender, EventArgs e)
         {
-            HidePanelMore();
+            hidepanelMore();
         }
 
         private void btnShowLiveImage_MouseEnter(object sender, EventArgs e)
         {
-            HidePanelMore();
+            hidepanelMore();
         }
 
         private void btnLoadFile_MouseEnter(object sender, EventArgs e)
         {
-            HidePanelMore();
+            hidepanelMore();
         }
 
         private void AlbumViewer_Paint(object sender, PaintEventArgs e)
@@ -1248,6 +1202,32 @@ namespace HappyMaster_Dev.View
         private void btnSetting_MouseLeave(object sender, EventArgs e)
         {
             btnSetting.DM_Color = Color.White;
+        }
+
+        private void AnimatorforPanelSetting_FramePainted(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void AnimatorforPanelSetting_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void showDSPView_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("DSPViewer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
+        private void btnEncoderView_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("EncoderViewer.exe", System.IO.Directory.GetCurrentDirectory());
+        }
+
+        private void btnShowHelp_Click(object sender, EventArgs e)
+        {
+            View.HelpView hv = new HelpView();
+            hv.ShowDialog();
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
