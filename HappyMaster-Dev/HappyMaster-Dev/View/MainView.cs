@@ -178,8 +178,8 @@ namespace HappyMaster_Dev.View
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
             AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
             playControl.Left = (this.bottomPanel.Width - playControl.Width) / 2; playControl.BringToFront();
-            panelSetting.Location = new Point(bottomPanel.Location.X, this.Width / 2 - 200);
-            panelMore.Location = new Point(panelSetting.Location.X + panelSetting.Width + 5, panelSetting.Location.Y - 20);
+            panelSetting.Location = new Point(bottomPanel.Location.X, bottomPanel.Location.Y - (panelSetting.Height + 10));
+            panelMore.Location = new Point(panelSetting.Location.X + panelSetting.Width + 5, panelSetting.Location.Y - 25);
             //custom layout
             //except playControl is always on top,and all of them are always in the middle
             btnLoadFile.TabStop = false;
@@ -447,46 +447,63 @@ namespace HappyMaster_Dev.View
                 ArtistName.Text = tagInfo.album;
             }
         }
+        //function restart Timer
+        void cleanTimer()
+        {
+            Position.Enabled = false;//stop Timer
+            Pos.Value = 0;
+            labelTime.Text = "00:00";
+            playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
+        }
         //function LoadFile
         public void LoadFile()
         {
-            if (LoadMediaFile.ShowDialog() == DialogResult.OK) 
+            if (LoadMediaFile.ShowDialog() == DialogResult.OK)
             {
-                if (File.Exists(LoadMediaFile.FileName)) { filename = LoadMediaFile.FileName; } else { filename = String.Empty; }//get filename 
-                exfilename = LoadMediaFile.FileName;//set filename
-                Bass.BASS_StreamFree(stream);//free last stream
-                stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
-                length = Bass.BASS_ChannelGetLength(stream); //get the stream length
-                totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
-                labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
-                MusicTitle.Text = "";
-                ArtistName.Text = "";
-                if (stream != 0)
+                if (File.Exists(LoadMediaFile.FileName)) {filename = LoadMediaFile.FileName;}else { filename = String.Empty; }//get filename 
+                //exfilename = LoadMediaFile.FileName;//set filename
+                try
                 {
-                    AlbumViewer.BackgroundImage = null;
-                    AnimatorforPanelSetting.Show(AlbumViewer);
-                    workImage = AlbumViewer.BackgroundImage;
+                    Bass.BASS_StreamFree(stream);//free last stream    
+                    cleanTimer();               
+                    stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
+                    length = Bass.BASS_ChannelGetLength(stream); //get the stream length
+                    totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
+                    labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
+                    MusicTitle.Text = "";
+                    ArtistName.Text = "";
+                    if (stream != 0)
+                    {
+                        AlbumViewer.BackgroundImage = null;
+                        AnimatorforPanelSetting.Show(AlbumViewer);
+                        workImage = AlbumViewer.BackgroundImage;
+                    }
+                    tagInfo = new TAG_INFO(filename);
+                    if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
+                    {//get tag information
+                        AlbumViewer.BackgroundImage = null;
+                        GetPicture();
+                        AlbumViewer.BackgroundImage = albumArt;
+                        string setTitle = tagInfo.title;
+                        outputtagInfoTitle(setTitle);
+                        outputtagInfoArtist(tagInfo.artist);
+                        InitUI();
+                    } else
+                    {
+                        //if no artist infomation 
+                        AlbumViewer.BackgroundImage = null;
+                        GetPicture();
+                        AlbumViewer.BackgroundImage = albumArt;
+                        string setTitle = tagInfo.title;
+                        outputtagInfoTitle(setTitle);
+                        outputtagInfoArtist(tagInfo.artist);
+                        InitUI();
+                    }
                 }
-                tagInfo = new TAG_INFO(filename);
-                if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
-                {//get tag information
-                    AlbumViewer.BackgroundImage = null;
-                    GetPicture();
-                    AlbumViewer.BackgroundImage = albumArt;
-                    string setTitle = tagInfo.title;
-                    outputtagInfoTitle(setTitle);
-                    outputtagInfoArtist(tagInfo.artist);
-                    InitUI();
-                }else
+                catch (Exception)
                 {
-                    //if no artist infomation 
-                    AlbumViewer.BackgroundImage = null;
-                    GetPicture();
-                    AlbumViewer.BackgroundImage = albumArt;
-                    string setTitle = tagInfo.title;
-                    outputtagInfoTitle(setTitle);
-                    outputtagInfoArtist(tagInfo.artist);
-                    InitUI();
+                    View.InfoMessageBoxView.getText = "不可接受的图片文件";
+                    new View.InfoMessageBoxView().ShowDialog();
                 }
             }
         }
@@ -498,9 +515,9 @@ namespace HappyMaster_Dev.View
             //AlbumViewer.Visible = true;
             panelMore.Visible = false;
             //set workImage
-            //workImage = AlbumViewer.BackgroundImage;
-            
+            //workImage = AlbumViewer.BackgroundImage;            
             playControl.Focus();
+            
         }
 
         private void Position_Tick(object sender, EventArgs e)
@@ -547,7 +564,8 @@ namespace HappyMaster_Dev.View
             volume = (int)VolumeMaster.DM_Value;
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
         }//
-
+        bool ifTran = true;
+ 
         private void btnShowLiveImage_Click(object sender, EventArgs e)
         {
             while(pictureBoxSpectrum.Visible==false)
@@ -793,27 +811,49 @@ namespace HappyMaster_Dev.View
         {
         }
         /*Ex Value to custom main form*/
-        public static Image exBackground = null;
-        public static double exop = 0.9;
-        public static bool ifRadius = false;
-        public static bool ifTran = true;
-        
+        //public static Image exBackground = null;
+        //public static double exop = 0.9;
+        //public static bool ifRadius = false;
+        //public static bool ifTran = true;
+        //waste since Beta4.8
         private void btnChangeBG_Click(object sender, EventArgs e)
         {
-            if (this.DM_Radius > 1) { ifRadius = true; }
-            else if (this.DM_Radius == 1) { ifRadius = false; }
-            View.SettingView sv = new SettingView();
-            exBackground = this.BackgroundImage;           
-            sv.ShowDialog();
-            Debug.WriteLine(ifTran);
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    this.BackgroundImage = Image.FromFile(ofd.FileName);                   
+                }
+                catch (Exception)
+                {
+                    View.InfoMessageBoxView.getText = "不可接受的图片文件";
+                    new View.InfoMessageBoxView().ShowDialog();
+                }
+            }
         }
-    
+        bool ifOp = true;
         private void btnDIY_Click(object sender, EventArgs e)
         {
-            this.BackgroundImage = exBackground;
-            MainView_Paint(null,null);         
-            this.Hide();
-            this.Show();
+            switch(ifOp)
+            {
+                case true:
+                    this.Opacity = 1.00;
+                    btnDIY.Text = "应用窗体透明";
+                    ifOp = false;
+                    break;
+                case false:
+                    this.Opacity = 0.85;
+                    btnDIY.Text = "取消窗体透明";
+                    ifOp = true;
+                    break;
+                default:
+                    break;
+            }
+            //this.BackgroundImage = exBackground;
+            //MainView_Paint(null,null);         
+            //this.Hide();
+            //this.Show();
         }
         private void btnCloseHelpView_Click(object sender, EventArgs e)
         {
@@ -866,14 +906,14 @@ namespace HappyMaster_Dev.View
         private void MainView_Paint(object sender, PaintEventArgs e)
         {
             //this.DM_SkinOpacity = exop;         
-            if(ifRadius==true)
-            {
-                this.DM_Radius = 6;
-            }  
-            if(ifRadius==false)
-            {
-                pictureBoxSpectrum.BackgroundImage = null;
-            }
+            //if(ifRadius==true)
+            //{
+            //    this.DM_Radius = 6;
+            //}  
+            //if(ifRadius==false)
+            //{
+            //    pictureBoxSpectrum.BackgroundImage = null;
+            //}
         }
 
         private void btnHelpView_Click(object sender, EventArgs e)

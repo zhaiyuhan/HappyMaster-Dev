@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CCWin.SkinControl.Animation animation1 = new CCWin.SkinControl.Animation();
+            CCWin.SkinControl.Animation animation3 = new CCWin.SkinControl.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.btnClose = new DMSkin.MetroDMButton();
             this.btnMin = new DMSkin.MetroDMButton();
@@ -564,9 +564,9 @@
             this.tabPage1.Controls.Add(this.labelbtnGlassAblumView);
             this.tabPage1.Controls.Add(this.btnChangeTextColor);
             this.tabPage1.Controls.Add(this.btnGlassAblumView);
+            this.tabPage1.Controls.Add(this.btnDIY);
             this.tabPage1.Controls.Add(this.BarRadius);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnDIY);
             this.tabPage1.Controls.Add(this.btnDone);
             this.tabPage1.Controls.Add(this.ChkExpandEdge);
             this.tabPage1.Controls.Add(this.btnChangeBG);
@@ -603,7 +603,7 @@
             this.AnimatorforPanelSetting.SetDecoration(this.btnChangeTextColor, CCWin.SkinControl.DecorationType.None);
             this.btnChangeTextColor.Depth = 0;
             this.btnChangeTextColor.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeTextColor.Location = new System.Drawing.Point(158, 94);
+            this.btnChangeTextColor.Location = new System.Drawing.Point(158, 88);
             this.btnChangeTextColor.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnChangeTextColor.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChangeTextColor.Name = "btnChangeTextColor";
@@ -636,19 +636,19 @@
             // BarRadius
             // 
             this.BarRadius.BackColor = System.Drawing.Color.Transparent;
-            this.BarRadius.Bar = global::HappyMaster_Dev.Properties.Resources.slider;
+            this.BarRadius.Bar = ((System.Drawing.Image)(resources.GetObject("BarRadius.Bar")));
             this.BarRadius.BarStyle = CCWin.SkinControl.HSLTrackBarStyle.Img;
             this.BarRadius.BaseColor = System.Drawing.Color.DarkGray;
             this.AnimatorforPanelSetting.SetDecoration(this.BarRadius, CCWin.SkinControl.DecorationType.None);
             this.BarRadius.Enabled = false;
-            this.BarRadius.Location = new System.Drawing.Point(11, 24);
+            this.BarRadius.Location = new System.Drawing.Point(11, 11);
             this.BarRadius.Maximum = 255;
             this.BarRadius.Name = "BarRadius";
             this.BarRadius.Size = new System.Drawing.Size(197, 45);
             this.BarRadius.TabIndex = 2;
             this.BarRadius.TabStop = false;
             this.BarRadius.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.BarRadius.Track = global::HappyMaster_Dev.Properties.Resources.ScrollBarNOMARL;
+            this.BarRadius.Track = ((System.Drawing.Image)(resources.GetObject("BarRadius.Track")));
             this.BarRadius.Value = 10;
             this.BarRadius.Scroll += new System.EventHandler(this.BarRadius_Scroll);
             this.BarRadius.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BarRadius_MouseUp);
@@ -659,7 +659,7 @@
             this.AnimatorforPanelSetting.SetDecoration(this.label1, CCWin.SkinControl.DecorationType.None);
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(35, 72);
+            this.label1.Location = new System.Drawing.Point(33, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 16);
             this.label1.TabIndex = 4;
@@ -673,15 +673,15 @@
             this.AnimatorforPanelSetting.SetDecoration(this.btnDIY, CCWin.SkinControl.DecorationType.None);
             this.btnDIY.Depth = 0;
             this.btnDIY.ForeColor = System.Drawing.Color.Black;
-            this.btnDIY.Location = new System.Drawing.Point(89, 94);
+            this.btnDIY.Location = new System.Drawing.Point(73, 88);
             this.btnDIY.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnDIY.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnDIY.Name = "btnDIY";
             this.btnDIY.Primary = false;
-            this.btnDIY.Size = new System.Drawing.Size(61, 36);
+            this.btnDIY.Size = new System.Drawing.Size(86, 36);
             this.btnDIY.TabIndex = 9;
             this.btnDIY.TabStop = false;
-            this.btnDIY.Text = "应用设置";
+            this.btnDIY.Text = "取消窗体透明";
             this.btnDIY.UseVisualStyleBackColor = false;
             this.btnDIY.Click += new System.EventHandler(this.btnDIY_Click);
             // 
@@ -690,7 +690,7 @@
             this.AnimatorforPanelSetting.SetDecoration(this.btnDone, CCWin.SkinControl.DecorationType.None);
             this.btnDone.DM_UseSelectable = true;
             this.btnDone.Enabled = false;
-            this.btnDone.Location = new System.Drawing.Point(152, 70);
+            this.btnDone.Location = new System.Drawing.Point(152, 59);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(65, 23);
             this.btnDone.TabIndex = 7;
@@ -704,7 +704,7 @@
             this.ChkExpandEdge.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ChkExpandEdge.Checked = false;
             this.AnimatorforPanelSetting.SetDecoration(this.ChkExpandEdge, CCWin.SkinControl.DecorationType.None);
-            this.ChkExpandEdge.Location = new System.Drawing.Point(11, 69);
+            this.ChkExpandEdge.Location = new System.Drawing.Point(11, 59);
             this.ChkExpandEdge.Name = "ChkExpandEdge";
             this.ChkExpandEdge.Size = new System.Drawing.Size(15, 19);
             this.ChkExpandEdge.TabIndex = 3;
@@ -718,7 +718,7 @@
             this.AnimatorforPanelSetting.SetDecoration(this.btnChangeBG, CCWin.SkinControl.DecorationType.None);
             this.btnChangeBG.Depth = 0;
             this.btnChangeBG.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeBG.Location = new System.Drawing.Point(20, 94);
+            this.btnChangeBG.Location = new System.Drawing.Point(4, 88);
             this.btnChangeBG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnChangeBG.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChangeBG.Name = "btnChangeBG";
@@ -726,7 +726,7 @@
             this.btnChangeBG.Size = new System.Drawing.Size(61, 36);
             this.btnChangeBG.TabIndex = 6;
             this.btnChangeBG.TabStop = false;
-            this.btnChangeBG.Text = "窗体设置";
+            this.btnChangeBG.Text = "更换壁纸";
             this.btnChangeBG.UseVisualStyleBackColor = false;
             this.btnChangeBG.Click += new System.EventHandler(this.btnChangeBG_Click);
             // 
@@ -880,22 +880,22 @@
             // 
             this.AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
             this.AnimatorforPanelSetting.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.AnimatorforPanelSetting.DefaultAnimation = animation1;
+            animation3.AnimateOnlyDifferences = true;
+            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
+            animation3.LeafCoeff = 0F;
+            animation3.MaxTime = 1F;
+            animation3.MinTime = 0F;
+            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
+            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
+            animation3.MosaicSize = 0;
+            animation3.Padding = new System.Windows.Forms.Padding(0);
+            animation3.RotateCoeff = 0F;
+            animation3.RotateLimit = 0F;
+            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
+            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
+            animation3.TimeCoeff = 0F;
+            animation3.TransparencyCoeff = 0F;
+            this.AnimatorforPanelSetting.DefaultAnimation = animation3;
             this.AnimatorforPanelSetting.MouseDown += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.AnimatorforPanelSetting_MouseDown);
             this.AnimatorforPanelSetting.FramePainted += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.AnimatorforPanelSetting_FramePainted);
             // 
@@ -904,7 +904,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.Beta5_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(931, 541);
             this.Controls.Add(this.AlbumViewer);
@@ -928,7 +927,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainView";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.85D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.Load += new System.EventHandler(this.MainView_Load);

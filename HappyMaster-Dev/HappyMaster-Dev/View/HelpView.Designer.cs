@@ -69,9 +69,9 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(8, 78);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(173, 20);
+            this.metroLabel1.Size = new System.Drawing.Size(159, 20);
             this.metroLabel1.TabIndex = 2;
-            this.metroLabel1.Text = "HappyMaster Beta4Final";
+            this.metroLabel1.Text = "HappyMaster Beta5RC";
             // 
             // metroLabel2
             // 
@@ -80,7 +80,7 @@
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(96, 20);
             this.metroLabel2.TabIndex = 3;
-            this.metroLabel2.Text = "版本号 0.4.6.8";
+            this.metroLabel2.Text = "版本号 0.5.0.0";
             // 
             // metroLabel3
             // 
