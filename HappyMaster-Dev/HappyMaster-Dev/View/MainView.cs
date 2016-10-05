@@ -199,6 +199,7 @@ namespace HappyMaster_Dev.View
             }
             MusicTitle.Text = "";
             ArtistName.Text = "";
+            
         }
 
         private void MainView_Resize(object sender, EventArgs e)
@@ -404,7 +405,6 @@ namespace HappyMaster_Dev.View
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, (int)VolumeMaster.DM_Value * 100);
             //set volume
             AlbumViewer.Visible = true;
-            
             Play();
         }
         //free res
@@ -461,7 +461,7 @@ namespace HappyMaster_Dev.View
             if (LoadMediaFile.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(LoadMediaFile.FileName)) {filename = LoadMediaFile.FileName;}else { filename = String.Empty; }//get filename 
-                //exfilename = LoadMediaFile.FileName;//set filename
+                exfilename = LoadMediaFile.FileName;//set filename
                 try
                 {
                     Bass.BASS_StreamFree(stream);//free last stream    
@@ -509,11 +509,13 @@ namespace HappyMaster_Dev.View
         }
         public void btnLoadFile_Click(object sender, EventArgs e)
         {
+            panelMore.Visible = false;
+            panelSetting.Visible = false;
             LoadFile();//LoadFile Function
                        //Hide Surplus Panel
-            panelSetting.Visible = false;
+            
             //AlbumViewer.Visible = true;
-            panelMore.Visible = false;
+            
             //set workImage
             //workImage = AlbumViewer.BackgroundImage;            
             playControl.Focus();
@@ -546,6 +548,7 @@ namespace HappyMaster_Dev.View
                 labelTime.Text = "00:00";
                 labelLeftTime.Text = "00:00";
                 this.Text = "Happy Master";
+                isPlay = false;//avoid playcontrol cannot show normal
                 //Finished play
             }
         }
@@ -742,13 +745,13 @@ namespace HappyMaster_Dev.View
         void showPanelMore()
         {
             panelMore.BringToFront();
-            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.HorizSlide;
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
             AnimatorforPanelSetting.Show(panelMore);
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
         }
         void hidepanelMore()
         {
-            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.HorizSlide;
+            AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
             AnimatorforPanelSetting.Hide(panelMore);
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
         }
@@ -1071,17 +1074,6 @@ namespace HappyMaster_Dev.View
             thistip.SetToolTip(btnMax, tipOverwrite);
         }
 
-        private void AlbumViewer_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
-            string tipOverwrite = "点击查看更多信息";
-            thistip.SetToolTip(AlbumViewer, tipOverwrite);
-        }
 
         private void playControl_MouseHover(object sender, EventArgs e)
         {
@@ -1268,6 +1260,30 @@ namespace HappyMaster_Dev.View
         {
             View.HelpView hv = new HelpView();
             hv.ShowDialog();
+        }
+
+        private void btnSetting_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "打开菜单";
+            thistip.SetToolTip(btnSetting, tipOverwrite);
+        }
+
+        private void AlbumViewer_MouseHover_1(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "点击查看更多信息";
+            thistip.SetToolTip(AlbumViewer, tipOverwrite);
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using GdipEffect;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace HappyMaster_Dev.View
 {
@@ -166,13 +167,56 @@ namespace HappyMaster_Dev.View
         }/*
         BASS_CHANNELINFO info = new BASS_CHANNELINFO();
         Bass.BASS_ChannelGetInfo(stream, info);*/
+        string thisFileType = string.Empty;
+        public void getType()
+        {
+            BASS_CHANNELINFO info = new BASS_CHANNELINFO();
+            Bass.BASS_ChannelGetInfo(_stream, info); // get info
+            Debug.WriteLine(info.freq);
+            LabelRate.Text = info.freq + " kHZ";
+            switch (info.ctype)
+            {
+                case BASSChannelType.BASS_CTYPE_STREAM_MP3:
+                    btnCopyFile.Text= "拷贝MP3文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_MF:
+                    btnCopyFile.Text = "拷贝FLAC文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_OGG:
+                    btnCopyFile.Text = "拷贝OGG文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_AAC:
+                    btnCopyFile.Text = "拷贝ACC文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_WAV:
+                    btnCopyFile.Text = "拷贝WAV文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_WMA:
+                    btnCopyFile.Text = "拷贝WMA文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_APE:
+                    btnCopyFile.Text = "拷贝APE文件到";
+                    break;
+                case BASSChannelType.BASS_CTYPE_STREAM_FLAC:
+                    btnCopyFile.Text = "拷贝FLAC文件到";
+                    break;
+                default:
+                    btnCopyFile.Text = "拷贝未知格式文件到";
+                    break;
+
+            }
+        }
+        void outputFileName()
+        {
+            string strFilePath = _Filename;
+            CopyFile.FileName=TextBoxTitle.Text+ Path.GetExtension(strFilePath);
+        }
         private void Infomation_Load(object sender, EventArgs e)
         {
             if (MainView.exfilename != string.Empty) 
             {
                 _Filename = MainView.exfilename;
-            }
-            
+            }           
             _stream = Bass.BASS_StreamCreateFile(_Filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
             BASS_CHANNELINFO _info = new BASS_CHANNELINFO();
             Bass.BASS_ChannelGetInfo(_stream, _info);
@@ -184,7 +228,7 @@ namespace HappyMaster_Dev.View
                 TextBoxArtist.Text = tagInfo.artist;
                 TextBoxAlbum.Text = tagInfo.album;
                 LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
-                LabelRate.Text = "44.100 kHZ";
+                
                 TextBoxFileName.Text = tagInfo.filename;
                 PictureBox.BackgroundImage = MainView.exalbumart;
                 TopPanel.BackgroundImage = MainView.exalbumart;
@@ -196,7 +240,7 @@ namespace HappyMaster_Dev.View
                 TextBoxArtist.Text = tagInfo.artist;
                 TextBoxAlbum.Text = tagInfo.album;
                 LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
-                LabelRate.Text = "44.100 kHZ";
+                
                 TextBoxFileName.Text = tagInfo.filename;
                 PictureBox.BackgroundImage = MainView.exalbumart;
                 TopPanel.BackgroundImage = MainView.exalbumart;
@@ -204,6 +248,7 @@ namespace HappyMaster_Dev.View
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024 / 10;            
             LabelFileSize.Text = _fileinfo.Length / 1024 / 1024 + "." + Math.Round(last, 2) + "MB";
+            LabelLastEditTime.Text = _fileinfo.LastWriteTime.ToString();
             /*Glass Top Background*/
             if (albumArt == null)
             {
@@ -224,6 +269,7 @@ namespace HappyMaster_Dev.View
             }
 
             /*End*/
+            getType();
         }
         private void btnDone_Click(object sender, EventArgs e)
         {
@@ -240,10 +286,37 @@ namespace HappyMaster_Dev.View
             btnDone.ForeColor = Color.Black;
         }
 
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            Bitmap outputImage = new Bitmap(PictureBox.BackgroundImage);
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "获取专辑图片并保存为";
+            sfd.Filter = "JPG文件(*.jpg)|*.jpg";           
+            sfd.FileName = TextBoxTitle.Text + "的专辑封面";
+            sfd.ShowDialog();
+            outputImage.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+
+        private void PictureBox_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip thistip = new ToolTip();
+            thistip.InitialDelay = 200;
+            thistip.AutoPopDelay = 10 * 100;
+            thistip.ReshowDelay = 200;
+            thistip.ShowAlways = true;
+            thistip.IsBalloon = false;
+            string tipOverwrite = "保存专辑图片";
+            thistip.SetToolTip(PictureBox, tipOverwrite);
+        }
+        
         private void btnCopyFile_Click(object sender, EventArgs e)
         {
-            if (CopyFile.ShowDialog() ==System.Windows.Forms.DialogResult.OK) 
-            {            
+            
+            CopyFile.Title = "拷贝文件到";
+            //getType();         
+            outputFileName();                 
+            if (CopyFile.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
+            {                
                 _fileinfo.CopyTo(CopyFile.FileName);
             }
         }

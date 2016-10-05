@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpView));
             this.dmButtonClose1 = new DMSkin.Controls.DMButtonClose();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnAbout = new MaterialSkin.Controls.MaterialFlatButton();
             this.metroLabel1 = new DMSkin.Metro.Controls.MetroLabel();
             this.metroLabel2 = new DMSkin.Metro.Controls.MetroLabel();
             this.metroLabel3 = new DMSkin.Metro.Controls.MetroLabel();
@@ -49,20 +49,21 @@
             this.dmButtonClose1.TabIndex = 0;
             this.dmButtonClose1.Click += new System.EventHandler(this.dmButtonClose1_Click);
             // 
-            // materialFlatButton1
+            // btnAbout
             // 
-            this.materialFlatButton1.AutoSize = true;
-            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(8, 10);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(104, 36);
-            this.materialFlatButton1.TabIndex = 1;
-            this.materialFlatButton1.Text = "关于HappyMaster";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.btnAbout.AutoSize = true;
+            this.btnAbout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnAbout.Depth = 0;
+            this.btnAbout.Location = new System.Drawing.Point(8, 10);
+            this.btnAbout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnAbout.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Primary = false;
+            this.btnAbout.Size = new System.Drawing.Size(104, 36);
+            this.btnAbout.TabIndex = 1;
+            this.btnAbout.Text = "关于HappyMaster";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // metroLabel1
             // 
@@ -172,7 +173,7 @@
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.materialFlatButton1);
+            this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.dmButtonClose1);
             this.DM_CanResize = false;
             this.MaximizeBox = false;
@@ -191,7 +192,7 @@
         #endregion
 
         private DMSkin.Controls.DMButtonClose dmButtonClose1;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton btnAbout;
         private DMSkin.Metro.Controls.MetroLabel metroLabel1;
         private DMSkin.Metro.Controls.MetroLabel metroLabel2;
         private DMSkin.Metro.Controls.MetroLabel metroLabel3;

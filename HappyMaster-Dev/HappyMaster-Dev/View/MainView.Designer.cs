@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CCWin.SkinControl.Animation animation3 = new CCWin.SkinControl.Animation();
+            CCWin.SkinControl.Animation animation2 = new CCWin.SkinControl.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.btnClose = new DMSkin.MetroDMButton();
             this.btnMin = new DMSkin.MetroDMButton();
@@ -62,9 +62,9 @@
             this.labelbtnGlassAblumView = new CCWin.SkinControl.SkinLabel();
             this.btnChangeTextColor = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnGlassAblumView = new DMSkin.MetroDMButton();
+            this.btnDIY = new MaterialSkin.Controls.MaterialFlatButton();
             this.BarRadius = new CCWin.SkinControl.SkinTrackBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDIY = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnDone = new DMSkin.Metro.Controls.MetroButton();
             this.ChkExpandEdge = new DMSkin.Controls.DMCheckBox();
             this.btnChangeBG = new MaterialSkin.Controls.MaterialFlatButton();
@@ -343,6 +343,7 @@
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click_1);
             this.btnSetting.MouseEnter += new System.EventHandler(this.btnSetting_MouseEnter);
             this.btnSetting.MouseLeave += new System.EventHandler(this.btnSetting_MouseLeave);
+            this.btnSetting.MouseHover += new System.EventHandler(this.btnSetting_MouseHover);
             // 
             // playControl
             // 
@@ -633,38 +634,6 @@
             this.btnGlassAblumView.UseVisualStyleBackColor = false;
             this.btnGlassAblumView.Click += new System.EventHandler(this.btnGlassAblumView_Click);
             // 
-            // BarRadius
-            // 
-            this.BarRadius.BackColor = System.Drawing.Color.Transparent;
-            this.BarRadius.Bar = ((System.Drawing.Image)(resources.GetObject("BarRadius.Bar")));
-            this.BarRadius.BarStyle = CCWin.SkinControl.HSLTrackBarStyle.Img;
-            this.BarRadius.BaseColor = System.Drawing.Color.DarkGray;
-            this.AnimatorforPanelSetting.SetDecoration(this.BarRadius, CCWin.SkinControl.DecorationType.None);
-            this.BarRadius.Enabled = false;
-            this.BarRadius.Location = new System.Drawing.Point(11, 11);
-            this.BarRadius.Maximum = 255;
-            this.BarRadius.Name = "BarRadius";
-            this.BarRadius.Size = new System.Drawing.Size(197, 45);
-            this.BarRadius.TabIndex = 2;
-            this.BarRadius.TabStop = false;
-            this.BarRadius.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.BarRadius.Track = ((System.Drawing.Image)(resources.GetObject("BarRadius.Track")));
-            this.BarRadius.Value = 10;
-            this.BarRadius.Scroll += new System.EventHandler(this.BarRadius_Scroll);
-            this.BarRadius.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BarRadius_MouseUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.AnimatorforPanelSetting.SetDecoration(this.label1, CCWin.SkinControl.DecorationType.None);
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(33, 59);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 16);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "扩展边际不啦 _(:3 」∠)_ ";
-            // 
             // btnDIY
             // 
             this.btnDIY.AutoSize = true;
@@ -684,6 +653,39 @@
             this.btnDIY.Text = "取消窗体透明";
             this.btnDIY.UseVisualStyleBackColor = false;
             this.btnDIY.Click += new System.EventHandler(this.btnDIY_Click);
+            // 
+            // BarRadius
+            // 
+            this.BarRadius.BackColor = System.Drawing.Color.Transparent;
+            this.BarRadius.BackRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.BarRadius.Bar = ((System.Drawing.Image)(resources.GetObject("BarRadius.Bar")));
+            this.BarRadius.BarStyle = CCWin.SkinControl.HSLTrackBarStyle.Img;
+            this.BarRadius.BaseColor = System.Drawing.Color.DarkGray;
+            this.AnimatorforPanelSetting.SetDecoration(this.BarRadius, CCWin.SkinControl.DecorationType.None);
+            this.BarRadius.Enabled = false;
+            this.BarRadius.Location = new System.Drawing.Point(11, 11);
+            this.BarRadius.Maximum = 255;
+            this.BarRadius.Name = "BarRadius";
+            this.BarRadius.Size = new System.Drawing.Size(197, 45);
+            this.BarRadius.TabIndex = 2;
+            this.BarRadius.TabStop = false;
+            this.BarRadius.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.BarRadius.Track = ((System.Drawing.Image)(resources.GetObject("BarRadius.Track")));
+            this.BarRadius.Value = 10;
+            this.BarRadius.Scroll += new System.EventHandler(this.BarRadius_Scroll);
+            this.BarRadius.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BarRadius_MouseUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.AnimatorforPanelSetting.SetDecoration(this.label1, CCWin.SkinControl.DecorationType.None);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(33, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "扩展边际不啦 _(:3 」∠)_ ";
             // 
             // btnDone
             // 
@@ -875,27 +877,28 @@
             this.AlbumViewer.TabIndex = 21;
             this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click_1);
             this.AlbumViewer.Paint += new System.Windows.Forms.PaintEventHandler(this.AlbumViewer_Paint_1);
+            this.AlbumViewer.MouseHover += new System.EventHandler(this.AlbumViewer_MouseHover_1);
             // 
             // AnimatorforPanelSetting
             // 
             this.AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
             this.AnimatorforPanelSetting.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
-            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
-            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            this.AnimatorforPanelSetting.DefaultAnimation = animation3;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.AnimatorforPanelSetting.DefaultAnimation = animation2;
             this.AnimatorforPanelSetting.MouseDown += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.AnimatorforPanelSetting_MouseDown);
             this.AnimatorforPanelSetting.FramePainted += new System.EventHandler<System.Windows.Forms.PaintEventArgs>(this.AnimatorforPanelSetting_FramePainted);
             // 

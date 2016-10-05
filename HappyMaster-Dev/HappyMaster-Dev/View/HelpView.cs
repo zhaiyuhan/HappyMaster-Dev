@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Drawing;
-
+using Un4seen.Bass;
 namespace HappyMaster_Dev.View
 {
     public partial class HelpView : DMSkin.Main
@@ -31,6 +30,11 @@ namespace HappyMaster_Dev.View
                     break;
             }
 
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            BassNet.ShowAbout(new System.Windows.Forms.Form());
         }
     }
 }

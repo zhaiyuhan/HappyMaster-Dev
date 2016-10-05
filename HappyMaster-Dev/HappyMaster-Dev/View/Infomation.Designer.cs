@@ -50,6 +50,8 @@
             this.LabelRate = new System.Windows.Forms.Label();
             this.LabelCreatTime = new System.Windows.Forms.Label();
             this.LabelFileSize = new System.Windows.Forms.Label();
+            this.skinLabel9 = new CCWin.SkinControl.SkinLabel();
+            this.LabelLastEditTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +85,8 @@
             this.PictureBox.Size = new System.Drawing.Size(100, 100);
             this.PictureBox.TabIndex = 10;
             this.PictureBox.TabStop = false;
+            this.PictureBox.Click += new System.EventHandler(this.PictureBox_Click);
+            this.PictureBox.MouseHover += new System.EventHandler(this.PictureBox_MouseHover);
             // 
             // TextBoxTitle
             // 
@@ -216,7 +220,8 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(11, 162);
+            this.skinLabel1.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel1.Location = new System.Drawing.Point(7, 199);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(56, 17);
             this.skinLabel1.TabIndex = 15;
@@ -228,7 +233,8 @@
             this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel2.BorderColor = System.Drawing.Color.White;
             this.skinLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel2.Location = new System.Drawing.Point(11, 199);
+            this.skinLabel2.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel2.Location = new System.Drawing.Point(11, 162);
             this.skinLabel2.Name = "skinLabel2";
             this.skinLabel2.Size = new System.Drawing.Size(44, 17);
             this.skinLabel2.TabIndex = 16;
@@ -240,6 +246,7 @@
             this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel3.BorderColor = System.Drawing.Color.White;
             this.skinLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel3.Location = new System.Drawing.Point(11, 237);
             this.skinLabel3.Name = "skinLabel3";
             this.skinLabel3.Size = new System.Drawing.Size(32, 17);
@@ -252,7 +259,8 @@
             this.skinLabel4.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel4.BorderColor = System.Drawing.Color.White;
             this.skinLabel4.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel4.Location = new System.Drawing.Point(11, 385);
+            this.skinLabel4.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel4.Location = new System.Drawing.Point(11, 330);
             this.skinLabel4.Name = "skinLabel4";
             this.skinLabel4.Size = new System.Drawing.Size(44, 17);
             this.skinLabel4.TabIndex = 19;
@@ -265,7 +273,8 @@
             this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel5.BorderColor = System.Drawing.Color.White;
             this.skinLabel5.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel5.Location = new System.Drawing.Point(11, 356);
+            this.skinLabel5.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel5.Location = new System.Drawing.Point(11, 300);
             this.skinLabel5.Name = "skinLabel5";
             this.skinLabel5.Size = new System.Drawing.Size(44, 17);
             this.skinLabel5.TabIndex = 20;
@@ -278,11 +287,12 @@
             this.skinLabel6.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel6.BorderColor = System.Drawing.Color.White;
             this.skinLabel6.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel6.Location = new System.Drawing.Point(11, 413);
+            this.skinLabel6.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel6.Location = new System.Drawing.Point(11, 360);
             this.skinLabel6.Name = "skinLabel6";
-            this.skinLabel6.Size = new System.Drawing.Size(56, 17);
+            this.skinLabel6.Size = new System.Drawing.Size(80, 17);
             this.skinLabel6.TabIndex = 23;
-            this.skinLabel6.Text = "添加时间";
+            this.skinLabel6.Text = "上次修改时间";
             this.skinLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // skinLabel7
@@ -291,7 +301,8 @@
             this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel7.BorderColor = System.Drawing.Color.White;
             this.skinLabel7.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel7.Location = new System.Drawing.Point(11, 440);
+            this.skinLabel7.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel7.Location = new System.Drawing.Point(11, 420);
             this.skinLabel7.Name = "skinLabel7";
             this.skinLabel7.Size = new System.Drawing.Size(56, 17);
             this.skinLabel7.TabIndex = 25;
@@ -304,6 +315,7 @@
             this.skinLabel8.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel8.BorderColor = System.Drawing.Color.White;
             this.skinLabel8.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel8.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel8.Location = new System.Drawing.Point(11, 467);
             this.skinLabel8.Name = "skinLabel8";
             this.skinLabel8.Size = new System.Drawing.Size(32, 17);
@@ -352,7 +364,7 @@
             // LabelBit
             // 
             this.LabelBit.AutoSize = true;
-            this.LabelBit.Location = new System.Drawing.Point(109, 359);
+            this.LabelBit.Location = new System.Drawing.Point(109, 300);
             this.LabelBit.Name = "LabelBit";
             this.LabelBit.Size = new System.Drawing.Size(0, 12);
             this.LabelBit.TabIndex = 31;
@@ -360,7 +372,7 @@
             // LabelRate
             // 
             this.LabelRate.AutoSize = true;
-            this.LabelRate.Location = new System.Drawing.Point(109, 388);
+            this.LabelRate.Location = new System.Drawing.Point(109, 330);
             this.LabelRate.Name = "LabelRate";
             this.LabelRate.Size = new System.Drawing.Size(0, 12);
             this.LabelRate.TabIndex = 32;
@@ -368,7 +380,7 @@
             // LabelCreatTime
             // 
             this.LabelCreatTime.AutoSize = true;
-            this.LabelCreatTime.Location = new System.Drawing.Point(111, 413);
+            this.LabelCreatTime.Location = new System.Drawing.Point(111, 390);
             this.LabelCreatTime.Name = "LabelCreatTime";
             this.LabelCreatTime.Size = new System.Drawing.Size(0, 12);
             this.LabelCreatTime.TabIndex = 33;
@@ -376,10 +388,32 @@
             // LabelFileSize
             // 
             this.LabelFileSize.AutoSize = true;
-            this.LabelFileSize.Location = new System.Drawing.Point(111, 440);
+            this.LabelFileSize.Location = new System.Drawing.Point(111, 420);
             this.LabelFileSize.Name = "LabelFileSize";
             this.LabelFileSize.Size = new System.Drawing.Size(0, 12);
             this.LabelFileSize.TabIndex = 34;
+            // 
+            // skinLabel9
+            // 
+            this.skinLabel9.AutoSize = true;
+            this.skinLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel9.BorderColor = System.Drawing.Color.White;
+            this.skinLabel9.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel9.ForeColor = System.Drawing.Color.Gray;
+            this.skinLabel9.Location = new System.Drawing.Point(11, 390);
+            this.skinLabel9.Name = "skinLabel9";
+            this.skinLabel9.Size = new System.Drawing.Size(56, 17);
+            this.skinLabel9.TabIndex = 35;
+            this.skinLabel9.Text = "添加时间";
+            this.skinLabel9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LabelLastEditTime
+            // 
+            this.LabelLastEditTime.AutoSize = true;
+            this.LabelLastEditTime.Location = new System.Drawing.Point(111, 363);
+            this.LabelLastEditTime.Name = "LabelLastEditTime";
+            this.LabelLastEditTime.Size = new System.Drawing.Size(0, 12);
+            this.LabelLastEditTime.TabIndex = 36;
             // 
             // Infomation
             // 
@@ -387,6 +421,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(467, 562);
+            this.Controls.Add(this.LabelLastEditTime);
+            this.Controls.Add(this.skinLabel9);
             this.Controls.Add(this.LabelFileSize);
             this.Controls.Add(this.LabelCreatTime);
             this.Controls.Add(this.LabelRate);
@@ -447,5 +483,7 @@
         private System.Windows.Forms.Label LabelRate;
         private System.Windows.Forms.Label LabelCreatTime;
         private System.Windows.Forms.Label LabelFileSize;
+        private CCWin.SkinControl.SkinLabel skinLabel9;
+        private System.Windows.Forms.Label LabelLastEditTime;
     }
 }
