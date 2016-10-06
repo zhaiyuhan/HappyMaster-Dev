@@ -199,7 +199,7 @@ namespace HappyMaster_Dev.View
             }
             MusicTitle.Text = "";
             ArtistName.Text = "";
-            
+            FreeMemory.Enabled = true;
         }
 
         private void MainView_Resize(object sender, EventArgs e)
@@ -345,15 +345,49 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
+        private GCHandle _hGCFile;
+        
         void creatstream()
         {
-            stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+            //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+            FileStream fs = File.OpenRead(filename);
+            long length = fs.Length;
+            byte[] buffer = new byte[length];
+            fs.Read(buffer, 0, (int)length);
+            fs.Close();
+            _hGCFile = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+            stream = Bass.BASS_StreamCreateFile(_hGCFile.AddrOfPinnedObject(),0L, length, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+            /*
+            RECORDPROC _myRecProc; 
+        int _recHandle = 0;
+        BASSBuffer _monBuffer = new BASSBuffer(2f, 44100, 2, 16);
+        //int _monStream = 0;
+        STREAMPROC _monProc = null;   
+            bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
+            {
+                _monBuffer.Write(buffer, length);
+                return true;
+            }
+
+            int MonitoringStream(int handle, IntPtr buffer, int length, IntPtr user)
+            {
+                return _monBuffer.Read(buffer, length, user.ToInt32());
+            }
+            
+            
+Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 20);
+Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
+_myRecProc = new RECORDPROC(MyRecording);
+        _recHandle = Bass.BASS_RecordStart(44100, 2, BASSFlag.BASS_DEFAULT, 20, _myRecProc, IntPtr.Zero);
+_monProc = new STREAMPROC(MonitoringStream);
+        stream = Bass.BASS_StreamCreate(44100, 2, 0, _monProc, IntPtr.Zero);*/
         }
-        //Play function         
-        private void Play()
+    //Play function         
+    private void Play()
         {
             if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
+                FreeMemory.Enabled = false;
                 //first play
                 Bass.BASS_ChannelStop(stream);
                 Bass.BASS_StreamFree(stream);
@@ -500,9 +534,10 @@ namespace HappyMaster_Dev.View
                         InitUI();
                     }
                 }
+                
                 catch (Exception)
                 {
-                    View.InfoMessageBoxView.getText = "不可接受的图片文件";
+                    View.InfoMessageBoxView.getText = "不可创建流";
                     new View.InfoMessageBoxView().ShowDialog();
                 }
             }
@@ -524,6 +559,7 @@ namespace HappyMaster_Dev.View
 
         private void Position_Tick(object sender, EventArgs e)
         {
+            //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
             length = Bass.BASS_ChannelGetLength(stream); 
             totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); 
             long pos = Bass.BASS_ChannelGetPosition(stream); 
@@ -549,6 +585,7 @@ namespace HappyMaster_Dev.View
                 labelLeftTime.Text = "00:00";
                 this.Text = "Happy Master";
                 isPlay = false;//avoid playcontrol cannot show normal
+                FreeMemory.Enabled = true;//clear memory
                 //Finished play
             }
         }
