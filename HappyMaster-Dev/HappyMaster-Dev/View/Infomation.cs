@@ -235,15 +235,15 @@ namespace HappyMaster_Dev.View
             }
             else
             {
-                GetPicture();
+                //GetPicture();
                 TextBoxTitle.Text = tagInfo.title;
                 TextBoxArtist.Text = tagInfo.artist;
                 TextBoxAlbum.Text = tagInfo.album;
                 LabelBit.Text = tagInfo.bitrate.ToString() + " K bps";
                 
                 TextBoxFileName.Text = tagInfo.filename;
-                PictureBox.BackgroundImage = MainView.exalbumart;
-                TopPanel.BackgroundImage = MainView.exalbumart;
+                PictureBox.BackgroundImage = null;
+                TopPanel.BackgroundImage = null;
             }
             LabelCreatTime.Text = "" + _fileinfo.CreationTime;
             double last = _fileinfo.Length / 1024 % 1024 / 10;            
@@ -288,13 +288,20 @@ namespace HappyMaster_Dev.View
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
-            Bitmap outputImage = new Bitmap(PictureBox.BackgroundImage);
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "获取专辑图片并保存为";
-            sfd.Filter = "JPG文件(*.jpg)|*.jpg";           
-            sfd.FileName = TextBoxTitle.Text + "的专辑封面";
-            sfd.ShowDialog();
-            outputImage.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            if (PictureBox.BackgroundImage != null)
+            {
+                Bitmap outputImage = new Bitmap(PictureBox.BackgroundImage);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "获取专辑图片并保存为";
+                sfd.Filter = "JPG文件(*.jpg)|*.jpg";
+                sfd.FileName = TextBoxTitle.Text + "的专辑封面";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    outputImage.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+
+                
+            }
         }
 
         private void PictureBox_MouseHover(object sender, EventArgs e)

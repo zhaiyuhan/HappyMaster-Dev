@@ -210,6 +210,11 @@ namespace HappyMaster_Dev.View
         //btnControl ,like title bar
         private void btnClose_Click(object sender, EventArgs e)
         {
+            Bass.BASS_ChannelStop(stream);
+            Bass.BASS_StreamFree(stream);
+            Bass.BASS_Stop();
+            Bass.BASS_Free();
+            //stop playing and free stream
             Application.Exit();
         }
 
@@ -346,52 +351,59 @@ namespace HappyMaster_Dev.View
             }
         }
         private GCHandle _hGCFile;
-        
-        void creatstream()
+        private RECORDPROC _myRecProc; 
+        private int _recHandle = 0;
+        private BASSBuffer _monBuffer = new BASSBuffer(2f, 44100, 2, 16);
+        //private int _monStream = 0;
+        private STREAMPROC _monProc = null;
+
+
+//Bass.BASS_ChannelPlay(_monStream, false);
+
+private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         {
+            _monBuffer.Write(buffer, length);
+            return true;
+        }
+
+        private int MonitoringStream(int handle, IntPtr buffer, int length, IntPtr user)
+        {
+            return _monBuffer.Read(buffer, length, user.ToInt32());
+        }
+        void createstream()
+        {
+            //if (0 > 1) 
+            //{
+            //Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 20);
+            //Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
+            //_myRecProc = new RECORDPROC(MyRecording);
+            //_recHandle = Bass.BASS_RecordStart(44100, 2, BASSFlag.BASS_DEFAULT, 20, _myRecProc, IntPtr.Zero);
+            //_monProc = new STREAMPROC(MonitoringStream);
+            //stream = Bass.BASS_StreamCreate(44100, 2, 0, _monProc, IntPtr.Zero);
+            //}
+            
             //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
+            //this method to create stream from file is wasted since beta 5.0, because of Buffer is better
+
             FileStream fs = File.OpenRead(filename);
             long length = fs.Length;
             byte[] buffer = new byte[length];
             fs.Read(buffer, 0, (int)length);
             fs.Close();
             _hGCFile = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-            stream = Bass.BASS_StreamCreateFile(_hGCFile.AddrOfPinnedObject(),0L, length, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
-            /*
-            RECORDPROC _myRecProc; 
-        int _recHandle = 0;
-        BASSBuffer _monBuffer = new BASSBuffer(2f, 44100, 2, 16);
-        //int _monStream = 0;
-        STREAMPROC _monProc = null;   
-            bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
-            {
-                _monBuffer.Write(buffer, length);
-                return true;
-            }
+            stream = Bass.BASS_StreamCreateFile(_hGCFile.AddrOfPinnedObject(), 0L, length, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
 
-            int MonitoringStream(int handle, IntPtr buffer, int length, IntPtr user)
-            {
-                return _monBuffer.Read(buffer, length, user.ToInt32());
-            }
-            
-            
-Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_UPDATEPERIOD, 20);
-Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_BUFFER, 100);
-_myRecProc = new RECORDPROC(MyRecording);
-        _recHandle = Bass.BASS_RecordStart(44100, 2, BASSFlag.BASS_DEFAULT, 20, _myRecProc, IntPtr.Zero);
-_monProc = new STREAMPROC(MonitoringStream);
-        stream = Bass.BASS_StreamCreate(44100, 2, 0, _monProc, IntPtr.Zero);*/
         }
-    //Play function         
-    private void Play()
+        //Play function         
+        private void Play()
         {
             if (stream != 0 && Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {
                 FreeMemory.Enabled = false;
                 //first play
-                Bass.BASS_ChannelStop(stream);
-                Bass.BASS_StreamFree(stream);
-                creatstream();
+                //Bass.BASS_ChannelStop(stream);
+                //Bass.BASS_StreamFree(stream);
+                //createstream();
                 //create stream
                 Bass.BASS_ChannelPlay(stream, true);
                 Position.Enabled = true;
@@ -489,6 +501,37 @@ _monProc = new STREAMPROC(MonitoringStream);
             labelTime.Text = "00:00";
             playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
         }
+        void outputInfomation()
+        {
+            if (stream != 0)
+            {
+                AlbumViewer.BackgroundImage = null;
+                AnimatorforPanelSetting.Show(AlbumViewer);
+                workImage = AlbumViewer.BackgroundImage;
+            }
+            tagInfo = new TAG_INFO(filename);
+            if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
+            {//get tag information
+                AlbumViewer.BackgroundImage = null;
+                GetPicture();
+                AlbumViewer.BackgroundImage = albumArt;
+                string setTitle = tagInfo.title;
+                outputtagInfoTitle(setTitle);
+                outputtagInfoArtist(tagInfo.artist);
+                InitUI();
+            }
+            else
+            {
+                //if no artist information 
+                AlbumViewer.BackgroundImage = null;
+                //GetPicture();
+                //AlbumViewer.BackgroundImage = albumArt;
+                string setTitle = tagInfo.title;
+                outputtagInfoTitle(setTitle);
+                outputtagInfoArtist(tagInfo.artist);
+                InitUI();
+            }
+        }
         //function LoadFile
         public void LoadFile()
         {
@@ -498,41 +541,19 @@ _monProc = new STREAMPROC(MonitoringStream);
                 exfilename = LoadMediaFile.FileName;//set filename
                 try
                 {
+                    Bass.BASS_ChannelStop(stream);
                     Bass.BASS_StreamFree(stream);//free last stream    
-                    cleanTimer();               
-                    stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
+                    cleanTimer();
+                    isPlay = false;
+                    PlayThread.RunWorkerAsync();
+                    //createstream();
+                    //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
                     length = Bass.BASS_ChannelGetLength(stream); //get the stream length
                     totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
                     labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
                     MusicTitle.Text = "";
                     ArtistName.Text = "";
-                    if (stream != 0)
-                    {
-                        AlbumViewer.BackgroundImage = null;
-                        AnimatorforPanelSetting.Show(AlbumViewer);
-                        workImage = AlbumViewer.BackgroundImage;
-                    }
-                    tagInfo = new TAG_INFO(filename);
-                    if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
-                    {//get tag information
-                        AlbumViewer.BackgroundImage = null;
-                        GetPicture();
-                        AlbumViewer.BackgroundImage = albumArt;
-                        string setTitle = tagInfo.title;
-                        outputtagInfoTitle(setTitle);
-                        outputtagInfoArtist(tagInfo.artist);
-                        InitUI();
-                    } else
-                    {
-                        //if no artist infomation 
-                        AlbumViewer.BackgroundImage = null;
-                        GetPicture();
-                        AlbumViewer.BackgroundImage = albumArt;
-                        string setTitle = tagInfo.title;
-                        outputtagInfoTitle(setTitle);
-                        outputtagInfoArtist(tagInfo.artist);
-                        InitUI();
-                    }
+                    //outputInfomation();
                 }
                 
                 catch (Exception)
@@ -554,7 +575,7 @@ _monProc = new STREAMPROC(MonitoringStream);
             //set workImage
             //workImage = AlbumViewer.BackgroundImage;            
             playControl.Focus();
-            
+            btnLoadFile_Leave(btnLoadFile, new EventArgs());
         }
 
         private void Position_Tick(object sender, EventArgs e)
@@ -584,18 +605,25 @@ _monProc = new STREAMPROC(MonitoringStream);
                 labelTime.Text = "00:00";
                 labelLeftTime.Text = "00:00";
                 this.Text = "Happy Master";
-                isPlay = false;//avoid playcontrol cannot show normal
+                isPlay = false;//avoid play control cannot show normal
                 FreeMemory.Enabled = true;//clear memory
                 //Finished play
             }
         }
-
+        void setPos()
+        {
+            Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
+        }
         private void Pos_Scroll(object sender, ScrollEventArgs e)
         {
             //set pos
-            Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
-            Pos.TabStop = false;
-            playControl.Focus();
+            setPosValue = Pos.Value;
+            getPosValue = (double)setPosValue;
+            Bass.BASS_ChannelSetPosition(stream, getPosValue);
+            //setPosition.RunWorkerAsync();
+            //Bass.BASS_ChannelSetPosition(stream, setPosValue);
+            //Pos.TabStop = false;
+            //playControl.Focus();
         }
         //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
@@ -976,10 +1004,7 @@ _monProc = new STREAMPROC(MonitoringStream);
        
         private void PlayThread_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-             Thread threadPlay = new Thread(new ThreadStart(creatstream));       
-             threadPlay.Start();
-             Thread.Sleep(5000);
-             e.Result = e.Argument + "work thread done";
+            createstream();
         }
 
         private void MainView_KeyDown(object sender, KeyEventArgs e)
@@ -1007,7 +1032,8 @@ _monProc = new STREAMPROC(MonitoringStream);
 
         private void PlayThread_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            Play();
+            outputInfomation();
+            Thread.Sleep(200);
         }
 
         private void pictureBoxSpectrum_Click(object sender, EventArgs e)
@@ -1260,6 +1286,7 @@ _monProc = new STREAMPROC(MonitoringStream);
 
         private void btnSetting_Click_1(object sender, EventArgs e)
         {
+            btnLoadFile.Visible = true;
             btnSettingEvent();
         }
 
@@ -1321,6 +1348,31 @@ _monProc = new STREAMPROC(MonitoringStream);
             thistip.IsBalloon = false;
             string tipOverwrite = "点击查看更多信息";
             thistip.SetToolTip(AlbumViewer, tipOverwrite);
+        }
+
+        private void btnLoadFile_Leave(object sender, EventArgs e)
+        {
+            btnLoadFile.Visible = false;
+        }
+        double getPosValue = 0.0;
+        int setPosValue = 0;
+        private void setPosition_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Position.Enabled = false;
+            Bass.BASS_ChannelPause(stream);
+            if (setPosition.IsBusy != true)
+            {
+                getPosValue = (double)setPosValue;
+            }
+            
+        }
+
+        private void setPosition_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            //setPos();
+            Bass.BASS_ChannelSetPosition(stream, getPosValue);
+            Bass.BASS_ChannelPlay(stream, false);
+            Position.Enabled = true;
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
