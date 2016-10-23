@@ -506,6 +506,8 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
             if (stream != 0)
             {
                 AlbumViewer.BackgroundImage = null;
+                MusicTitle.Text = "";
+                ArtistName.Text = "";
                 AnimatorforPanelSetting.Show(AlbumViewer);
                 workImage = AlbumViewer.BackgroundImage;
             }
@@ -531,6 +533,10 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
                 outputtagInfoArtist(tagInfo.artist);
                 InitUI();
             }
+            length = Bass.BASS_ChannelGetLength(stream); //get the stream length
+            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
+            labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
+            
         }
         //function LoadFile
         public void LoadFile()
@@ -546,14 +552,6 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
                     cleanTimer();
                     isPlay = false;
                     PlayThread.RunWorkerAsync();
-                    //createstream();
-                    //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);//create new stream
-                    length = Bass.BASS_ChannelGetLength(stream); //get the stream length
-                    totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length); //get the total time
-                    labelLeftTime.Text = String.Format(Utils.FixTimespan(totaltime, "MMSS"));//set time to MMSS minutes second             
-                    MusicTitle.Text = "";
-                    ArtistName.Text = "";
-                    //outputInfomation();
                 }
                 
                 catch (Exception)
@@ -568,14 +566,11 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
             panelMore.Visible = false;
             panelSetting.Visible = false;
             LoadFile();//LoadFile Function
-                       //Hide Surplus Panel
-            
-            //AlbumViewer.Visible = true;
-            
+                       //Hide Surplus Panel         
+            //AlbumViewer.Visible = true;        
             //set workImage
             //workImage = AlbumViewer.BackgroundImage;            
-            playControl.Focus();
-            btnLoadFile_Leave(btnLoadFile, new EventArgs());
+            playControl.Focus();          
         }
 
         private void Position_Tick(object sender, EventArgs e)
@@ -612,18 +607,22 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         }
         void setPos()
         {
-            Bass.BASS_ChannelSetPosition(stream, (double)Pos.Value);
-        }
-        private void Pos_Scroll(object sender, ScrollEventArgs e)
-        {
-            //set pos
             setPosValue = Pos.Value;
             getPosValue = (double)setPosValue;
             Bass.BASS_ChannelSetPosition(stream, getPosValue);
-            //setPosition.RunWorkerAsync();
-            //Bass.BASS_ChannelSetPosition(stream, setPosValue);
-            //Pos.TabStop = false;
-            //playControl.Focus();
+            Position.Enabled = true;
+        }
+        private void Pos_Scroll(object sender, ScrollEventArgs e)
+        {
+            Position.Enabled = false;
+            string thisTime = String.Empty;
+            length = Bass.BASS_ChannelGetLength(stream);
+            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length);
+            long pos = Bass.BASS_ChannelGetPosition(stream);
+            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
+            labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            thisTime = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            setToolTip(thisTime, Pos);        
         }
         //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
@@ -1088,8 +1087,7 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
             LeftView.Width += 5;
             //LeftView.Height += 5;
         }
-
-        private void btnHidePicturebBox_MouseHover(object sender, EventArgs e)
+        void setToolTip(string tip,Control OXC)
         {
             ToolTip thistip = new ToolTip();
             thistip.InitialDelay = 200;
@@ -1097,44 +1095,26 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
             thistip.ReshowDelay = 200;
             thistip.ShowAlways = true;
             thistip.IsBalloon = false;
-            string tipOverwrite = "隐藏波形图片";
-            thistip.SetToolTip(btnHidePicturebBox, tipOverwrite);
+            thistip.SetToolTip(OXC, tip);
+        }
+        private void btnHidePicturebBox_MouseHover(object sender, EventArgs e)
+        {
+            setToolTip("隐藏波形图片", btnHidePicturebBox);
         }
 
         private void btnClose_MouseHover(object sender, EventArgs e)
         {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
-            string tipOverwrite = "关闭程序";
-            thistip.SetToolTip(btnClose, tipOverwrite);
+            setToolTip("关闭程序", btnClose);
         }
 
         private void btnMin_MouseHover(object sender, EventArgs e)
         {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
-            string tipOverwrite = "最小化程序";
-            thistip.SetToolTip(btnMin, tipOverwrite);
+            setToolTip("最小化程序", btnMin);
         }
 
         private void btnMax_MouseHover(object sender, EventArgs e)
         {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
-            string tipOverwrite = "最大化程序";
-            thistip.SetToolTip(btnMax, tipOverwrite);
+            setToolTip("最大化程序", btnMax);
         }
 
 
@@ -1163,37 +1143,30 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
          
         private void VolumeMaster_MouseHover(object sender, EventArgs e)
         {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
             string tipOverwrite = "当前音量" + volume.ToString() + Environment.NewLine + "拖动更新";
-            thistip.SetToolTip(VolumeMaster, tipOverwrite);
-                    
+            setToolTip(tipOverwrite, VolumeMaster);               
         }
 
         private void Pos_MouseHover(object sender, EventArgs e)
         {
-            ToolTip thistip = new ToolTip();
-            thistip.InitialDelay = 200;
-            thistip.AutoPopDelay = 10 * 100;
-            thistip.ReshowDelay = 200;
-            thistip.ShowAlways = true;
-            thistip.IsBalloon = false;
-            long pos = Bass.BASS_ChannelGetPosition(stream);
-            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
-            string tipOverwrite = String.Empty;
-            if (stream != 0)
-            {                
-                tipOverwrite= "当前进度" + String.Format(Utils.FixTimespan(elapsedtime, "MMSS")); 
-                thistip.SetToolTip(Pos, tipOverwrite);
-            }else if (stream == 0)
-            {
-                tipOverwrite = "当前进度 00:00";
-                thistip.SetToolTip(Pos, tipOverwrite);
-            }
+            //ToolTip thistip = new ToolTip();
+            //thistip.InitialDelay = 200;
+            //thistip.AutoPopDelay = 10 * 100;
+            //thistip.ReshowDelay = 200;
+            //thistip.ShowAlways = true;
+            //thistip.IsBalloon = false;
+            //long pos = Bass.BASS_ChannelGetPosition(stream);
+            //double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);
+            //string tipOverwrite = String.Empty;
+            //if (stream != 0)
+            //{                
+            //    tipOverwrite= "当前进度" + String.Format(Utils.FixTimespan(elapsedtime, "MMSS")); 
+            //    thistip.SetToolTip(Pos, tipOverwrite);
+            //}else if (stream == 0)
+            //{
+            //    tipOverwrite = "当前进度 00:00";
+            //    thistip.SetToolTip(Pos, tipOverwrite);
+            //}
             
         }
         bool ifOnForeColorSuit = false;
@@ -1356,23 +1329,25 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         }
         double getPosValue = 0.0;
         int setPosValue = 0;
-        private void setPosition_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            Position.Enabled = false;
-            Bass.BASS_ChannelPause(stream);
-            if (setPosition.IsBusy != true)
-            {
-                getPosValue = (double)setPosValue;
-            }
-            
-        }
 
-        private void setPosition_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void Pos_MouseDown(object sender, MouseEventArgs e)
         {
             //setPos();
-            Bass.BASS_ChannelSetPosition(stream, getPosValue);
-            Bass.BASS_ChannelPlay(stream, false);
-            Position.Enabled = true;
+        }
+
+        private void Pos_MouseClick(object sender, MouseEventArgs e)
+        {
+            setPos();
+        }
+
+        private void Pos_Click(object sender, EventArgs e)
+        {
+            //setPos();
+        }
+
+        private void Pos_MouseUp(object sender, MouseEventArgs e)
+        {
+            setPos();
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
