@@ -235,19 +235,20 @@ namespace HappyMaster_Dev.View
             }
         }//title bar ,finished
         void btnSettingEvent()
-        {
-            if (canShowpanelSetting == true)
-            {
+        {           
                 switch (panelSetting.Visible)
                 {
                     case true:
+                        
                         AnimatorforPanelSetting.Hide(panelSetting);
                         panelMore.Visible = false;
                         playControl.Focus();
                         btnLoadFile.TabStop = false;
                         break;
                     case false:
+                        Debug.WriteLine("触发");
                         panelSetting.BringToFront();
+                        AnimatorforPanelSetting.WaitAllAnimations();
                         AnimatorforPanelSetting.Show(panelSetting);                       
                         playControl.Focus();
                         labelVolumeValue.Text = "当前音量: " + volume;
@@ -255,16 +256,10 @@ namespace HappyMaster_Dev.View
                     default:
                         break;
                 }
-            }
-            else if (canShowpanelSetting == false)
-            {
-                return;
-            }
+            
         }
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            if (canShowpanelSetting == true)
-            {
                 switch (panelSetting.Visible)
             {
                 case true:
@@ -281,10 +276,6 @@ namespace HappyMaster_Dev.View
                     break;
                 default:
                     break;
-            }
-            }else if(canShowpanelSetting == false)
-            {
-                return;
             }
             
         }//Show Setting Panel ,make sure it is on top
@@ -508,14 +499,18 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
                 AlbumViewer.BackgroundImage = null;
                 MusicTitle.Text = "";
                 ArtistName.Text = "";
-                AnimatorforPanelSetting.Show(AlbumViewer);
                 workImage = AlbumViewer.BackgroundImage;
             }
             tagInfo = new TAG_INFO(filename);
+            
             if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
-            {//get tag information
-                AlbumViewer.BackgroundImage = null;
+            {//get tag information                              
+                
                 GetPicture();
+                AnimatorforPanelSetting.WaitAllAnimations();
+                AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
+                AnimatorforPanelSetting.Show(AlbumViewer);
+                AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
                 AlbumViewer.BackgroundImage = albumArt;
                 string setTitle = tagInfo.title;
                 outputtagInfoTitle(setTitle);
@@ -615,14 +610,14 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         private void Pos_Scroll(object sender, ScrollEventArgs e)
         {
             Position.Enabled = false;
-            string thisTime = String.Empty;
-            length = Bass.BASS_ChannelGetLength(stream);
-            totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length);
-            long pos = Bass.BASS_ChannelGetPosition(stream);
-            double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
-            labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            thisTime = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            setToolTip(thisTime, Pos);        
+            //string thisTime = String.Empty;
+            //length = Bass.BASS_ChannelGetLength(stream);
+            //totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length);
+            //long pos = Bass.BASS_ChannelGetPosition(stream);
+            //double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
+            //labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            //thisTime = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
+            //setToolTip(thisTime, Pos);        
         }
         //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
@@ -809,12 +804,14 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         void showPanelMore()
         {
             panelMore.BringToFront();
+            
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
             AnimatorforPanelSetting.Show(panelMore);
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
         }
         void hidepanelMore()
         {
+            
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
             AnimatorforPanelSetting.Hide(panelMore);
             AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
@@ -925,7 +922,6 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         private void btnCloseHelpView_Click(object sender, EventArgs e)
         {
             btnSetting.Enabled = true;
-            canShowpanelSetting = true;
         }
 
         private void btnShowDSP_Click(object sender, EventArgs e)
@@ -945,7 +941,6 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
             panelSetting.Visible = false;//Hide PanelMore PanelSetting
             playControl.Focus();
         }
-        public bool canShowpanelSetting = true;
         private void btnHelpShow_Click(object sender, EventArgs e)
         {
             if (TabForpanelMore.SelectedTab == tabPage1)
@@ -1031,6 +1026,10 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
 
         private void PlayThread_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+          AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
+          AnimatorforPanelSetting.Hide(AlbumViewer);
+          AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
+          AlbumViewer.BackgroundImage = null;
             outputInfomation();
             Thread.Sleep(200);
         }
@@ -1348,6 +1347,12 @@ private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
         private void Pos_MouseUp(object sender, MouseEventArgs e)
         {
             setPos();
+        }
+
+        private void VolumeMaster_MouseLeave(object sender, EventArgs e)
+        {
+            volume = (int)VolumeMaster.DM_Value;
+            Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
         }
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
