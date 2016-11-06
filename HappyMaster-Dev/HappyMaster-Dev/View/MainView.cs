@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using GdipEffect;
 using System.Diagnostics;
+using System.Windows.Shell;
 
 namespace HappyMaster_Dev.View
 {
@@ -341,26 +342,27 @@ namespace HappyMaster_Dev.View
                     break;
             }
         }
-        private GCHandle _hGCFile;
-        private RECORDPROC _myRecProc; 
-        private int _recHandle = 0;
-        private BASSBuffer _monBuffer = new BASSBuffer(2f, 44100, 2, 16);
-        //private int _monStream = 0;
-        private STREAMPROC _monProc = null;
+
+       private GCHandle _hGCFile;
+//        private RECORDPROC _myRecProc; 
+//        private int _recHandle = 0;
+//        private BASSBuffer _monBuffer = new BASSBuffer(2f, 44100, 2, 16);
+//        //private int _monStream = 0;
+//        private STREAMPROC _monProc = null;
 
 
-//Bass.BASS_ChannelPlay(_monStream, false);
+////Bass.BASS_ChannelPlay(_monStream, false);
 
-private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
-        {
-            _monBuffer.Write(buffer, length);
-            return true;
-        }
+//private bool MyRecording(int handle, IntPtr buffer, int length, IntPtr user)
+//        {
+//            _monBuffer.Write(buffer, length);
+//            return true;
+//        }
 
-        private int MonitoringStream(int handle, IntPtr buffer, int length, IntPtr user)
-        {
-            return _monBuffer.Read(buffer, length, user.ToInt32());
-        }
+//        private int MonitoringStream(int handle, IntPtr buffer, int length, IntPtr user)
+//        {
+//            return _monBuffer.Read(buffer, length, user.ToInt32());
+//        }
         void createstream()
         {
             //if (0 > 1) 
