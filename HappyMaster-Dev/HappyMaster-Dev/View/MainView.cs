@@ -12,6 +12,7 @@ using System.Drawing.Imaging;
 using GdipEffect;
 using System.Diagnostics;
 using System.Windows.Media.Effects;
+using HappyMaster_Dev.Core;
 
 namespace HappyMaster_Dev.View
 {
@@ -173,7 +174,8 @@ namespace HappyMaster_Dev.View
         //empyty;
         public void InitUI()
         {
-            bottomPanel.Size = new Size(607, 67);
+            /*the style since beta 4.0*/
+            bottomPanel.Size = new Size(607, 67);//set fixed size
             bottomPanel.Left = (this.ClientRectangle.Width - bottomPanel.Width) / 2; bottomPanel.BringToFront();
             MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
             ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
@@ -541,6 +543,8 @@ namespace HappyMaster_Dev.View
         //function LoadFile
         public void LoadFile()
         {
+            HandleBASSError HBE = new HandleBASSError();
+            HBE.HandleBASSErrorMethod(Bass.BASS_ErrorGetCode());
             if (LoadMediaFile.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(LoadMediaFile.FileName)) {filename = LoadMediaFile.FileName;}else { filename = String.Empty; }//get filename 
@@ -552,11 +556,10 @@ namespace HappyMaster_Dev.View
                     cleanTimer();
                     isPlay = false;
                     PlayThread.RunWorkerAsync();
-                }
-                
+                }               
                 catch (Exception)
                 {
-                    View.InfoMessageBoxView.getText = "不可创建流";
+                    View.InfoMessageBoxView.getText = HBE.ToString();
                     new View.InfoMessageBoxView().ShowDialog();
                 }
             }
