@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using GdipEffect;
 using System.Diagnostics;
-using System.Windows.Shell;
+using System.Windows.Media.Effects;
 
 namespace HappyMaster_Dev.View
 {
@@ -513,6 +513,9 @@ namespace HappyMaster_Dev.View
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
                 AnimatorforPanelSetting.Show(AlbumViewer);
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
+                DropShadowEffect effect = new DropShadowEffect();
+                effect.BlurRadius = 10.0;
+                //GdipBitmapApplyEffect(albumArt.NativeHandle(), effect, ref Rect, false, IntPtr.Zero, 0);
                 AlbumViewer.BackgroundImage = albumArt;
                 string setTitle = tagInfo.title;
                 outputtagInfoTitle(setTitle);
