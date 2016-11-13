@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Infomation));
             this.btnDone = new DMSkin.MetroDMButton();
-            this.PictureBox = new CCWin.SkinControl.SkinPictureBox();
             this.TextBoxTitle = new CCWin.SkinControl.SkinTextBox();
             this.TextBoxArtist = new CCWin.SkinControl.SkinTextBox();
             this.TextBoxAlbum = new CCWin.SkinControl.SkinTextBox();
@@ -46,14 +45,15 @@
             this.btnCopyFile = new MaterialSkin.Controls.MaterialFlatButton();
             this.CopyFile = new System.Windows.Forms.SaveFileDialog();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.PictureBox = new System.Windows.Forms.PictureBox();
             this.LabelBit = new System.Windows.Forms.Label();
             this.LabelRate = new System.Windows.Forms.Label();
             this.LabelCreatTime = new System.Windows.Forms.Label();
             this.LabelFileSize = new System.Windows.Forms.Label();
             this.skinLabel9 = new CCWin.SkinControl.SkinLabel();
             this.LabelLastEditTime = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.TopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDone
@@ -75,18 +75,6 @@
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             this.btnDone.MouseEnter += new System.EventHandler(this.btnDone_MouseEnter);
             this.btnDone.MouseLeave += new System.EventHandler(this.btnDone_MouseLeave);
-            // 
-            // PictureBox
-            // 
-            this.PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBox.Location = new System.Drawing.Point(13, 17);
-            this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(100, 100);
-            this.PictureBox.TabIndex = 10;
-            this.PictureBox.TabStop = false;
-            this.PictureBox.Click += new System.EventHandler(this.PictureBox_Click);
-            this.PictureBox.MouseHover += new System.EventHandler(this.PictureBox_MouseHover);
             // 
             // TextBoxTitle
             // 
@@ -116,7 +104,7 @@
             // 
             this.TextBoxTitle.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTitle.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxTitle.SkinTxt.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F);
+            this.TextBoxTitle.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.TextBoxTitle.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.TextBoxTitle.SkinTxt.Name = "BaseText";
             this.TextBoxTitle.SkinTxt.ReadOnly = true;
@@ -158,7 +146,7 @@
             // 
             this.TextBoxArtist.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxArtist.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxArtist.SkinTxt.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F);
+            this.TextBoxArtist.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.TextBoxArtist.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.TextBoxArtist.SkinTxt.Name = "BaseText";
             this.TextBoxArtist.SkinTxt.ReadOnly = true;
@@ -200,7 +188,7 @@
             // 
             this.TextBoxAlbum.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxAlbum.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBoxAlbum.SkinTxt.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F);
+            this.TextBoxAlbum.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.TextBoxAlbum.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.TextBoxAlbum.SkinTxt.Name = "BaseText";
             this.TextBoxAlbum.SkinTxt.ReadOnly = true;
@@ -219,7 +207,7 @@
             this.skinLabel1.AutoSize = true;
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
-            this.skinLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel1.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel1.Location = new System.Drawing.Point(7, 199);
             this.skinLabel1.Name = "skinLabel1";
@@ -232,7 +220,7 @@
             this.skinLabel2.AutoSize = true;
             this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel2.BorderColor = System.Drawing.Color.White;
-            this.skinLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel2.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel2.Location = new System.Drawing.Point(11, 162);
             this.skinLabel2.Name = "skinLabel2";
@@ -245,7 +233,7 @@
             this.skinLabel3.AutoSize = true;
             this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel3.BorderColor = System.Drawing.Color.White;
-            this.skinLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel3.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel3.Location = new System.Drawing.Point(11, 237);
             this.skinLabel3.Name = "skinLabel3";
@@ -258,7 +246,7 @@
             this.skinLabel4.AutoSize = true;
             this.skinLabel4.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel4.BorderColor = System.Drawing.Color.White;
-            this.skinLabel4.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel4.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel4.Location = new System.Drawing.Point(11, 330);
             this.skinLabel4.Name = "skinLabel4";
@@ -272,7 +260,7 @@
             this.skinLabel5.AutoSize = true;
             this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel5.BorderColor = System.Drawing.Color.White;
-            this.skinLabel5.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel5.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel5.Location = new System.Drawing.Point(11, 300);
             this.skinLabel5.Name = "skinLabel5";
@@ -286,7 +274,7 @@
             this.skinLabel6.AutoSize = true;
             this.skinLabel6.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel6.BorderColor = System.Drawing.Color.White;
-            this.skinLabel6.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel6.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel6.Location = new System.Drawing.Point(11, 360);
             this.skinLabel6.Name = "skinLabel6";
@@ -300,7 +288,7 @@
             this.skinLabel7.AutoSize = true;
             this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel7.BorderColor = System.Drawing.Color.White;
-            this.skinLabel7.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel7.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel7.Location = new System.Drawing.Point(11, 420);
             this.skinLabel7.Name = "skinLabel7";
@@ -314,7 +302,7 @@
             this.skinLabel8.AutoSize = true;
             this.skinLabel8.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel8.BorderColor = System.Drawing.Color.White;
-            this.skinLabel8.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel8.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel8.Location = new System.Drawing.Point(11, 467);
             this.skinLabel8.Name = "skinLabel8";
@@ -360,6 +348,18 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(480, 125);
             this.TopPanel.TabIndex = 30;
+            this.TopPanel.MouseHover += new System.EventHandler(this.TopPanel_MouseHover);
+            // 
+            // PictureBox
+            // 
+            this.PictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PictureBox.Location = new System.Drawing.Point(13, 18);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(100, 100);
+            this.PictureBox.TabIndex = 11;
+            this.PictureBox.TabStop = false;
+            this.PictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox_Paint);
+            this.PictureBox.MouseHover += new System.EventHandler(this.PictureBox_MouseHover);
             // 
             // LabelBit
             // 
@@ -398,7 +398,7 @@
             this.skinLabel9.AutoSize = true;
             this.skinLabel9.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel9.BorderColor = System.Drawing.Color.White;
-            this.skinLabel9.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel9.ForeColor = System.Drawing.Color.Gray;
             this.skinLabel9.Location = new System.Drawing.Point(11, 390);
             this.skinLabel9.Name = "skinLabel9";
@@ -453,8 +453,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.Infomation_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.TopPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,7 +463,6 @@
         #endregion
 
         private DMSkin.MetroDMButton btnDone;
-        private CCWin.SkinControl.SkinPictureBox PictureBox;
         private CCWin.SkinControl.SkinTextBox TextBoxTitle;
         private CCWin.SkinControl.SkinTextBox TextBoxArtist;
         private CCWin.SkinControl.SkinTextBox TextBoxAlbum;
@@ -485,5 +484,6 @@
         private System.Windows.Forms.Label LabelFileSize;
         private CCWin.SkinControl.SkinLabel skinLabel9;
         private System.Windows.Forms.Label LabelLastEditTime;
+        private System.Windows.Forms.PictureBox PictureBox;
     }
 }

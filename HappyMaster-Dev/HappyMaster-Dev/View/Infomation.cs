@@ -9,6 +9,7 @@ using System.Diagnostics;
 using GdipEffect;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace HappyMaster_Dev.View
 {
@@ -303,8 +304,7 @@ namespace HappyMaster_Dev.View
                 
             }
         }
-
-        private void PictureBox_MouseHover(object sender, EventArgs e)
+        protected void setToolTip()
         {
             ToolTip thistip = new ToolTip();
             thistip.InitialDelay = 200;
@@ -315,7 +315,52 @@ namespace HappyMaster_Dev.View
             string tipOverwrite = "保存专辑图片";
             thistip.SetToolTip(PictureBox, tipOverwrite);
         }
+        private void TopPanel_MouseHover(object sender, EventArgs e)
+        {
+        }
+
+        private void PictureBox_MouseHover(object sender, EventArgs e)
+        {
+            setToolTip();
+        }
+        private const int CS_DROPSHADOW = 0x00020000;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                // add the drop shadow flag for automatically drawing
+                // a drop shadow around the form
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
         
+        private void PictureBox_Paint(object sender, PaintEventArgs e)
+        {
+           // PictureBox
+            /*PictureBox panel = (PictureBox)sender;
+            Color[] shadow = new Color[3];
+            shadow[0] = Color.FromArgb(181, 181, 181);
+            shadow[1] = Color.FromArgb(195, 195, 195);
+            shadow[2] = Color.FromArgb(211, 211, 211);
+            Pen pen = new Pen(shadow[0]);
+            using (pen)
+            {
+                foreach (PictureBox p in panel.Controls.OfType<PictureBox>())
+                {
+                    Point pt = p.Location;
+                    pt.Y += p.Height;
+                    for (var sp = 0; sp < 3; sp++)
+                    {
+                        pen.Color = shadow[sp];
+                        e.Graphics.DrawLine(pen, pt.X, pt.Y, pt.X + p.Width - 1, pt.Y);
+                        pt.Y++;
+                    }
+                }
+            }*/
+        }
+
         private void btnCopyFile_Click(object sender, EventArgs e)
         {
             

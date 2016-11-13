@@ -155,7 +155,7 @@
             this.btnLoadFile.BackColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.btnLoadFile, CCWin.SkinControl.DecorationType.None);
             this.btnLoadFile.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuLoadFileBlue;
-            this.btnLoadFile.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLoadFile.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnLoadFile.Image = null;
             this.btnLoadFile.IsShowBorder = false;
             this.btnLoadFile.Location = new System.Drawing.Point(1, 20);
@@ -204,7 +204,7 @@
             this.btnCDPlayer.BackColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.btnCDPlayer, CCWin.SkinControl.DecorationType.None);
             this.btnCDPlayer.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuCDPlayerWhite;
-            this.btnCDPlayer.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnCDPlayer.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCDPlayer.Image = null;
             this.btnCDPlayer.IsShowBorder = false;
             this.btnCDPlayer.Location = new System.Drawing.Point(1, 74);
@@ -252,7 +252,7 @@
             this.btnAbout.BackColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.btnAbout, CCWin.SkinControl.DecorationType.None);
             this.btnAbout.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuAboutAppBlue;
-            this.btnAbout.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAbout.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAbout.Image = null;
             this.btnAbout.IsShowBorder = false;
             this.btnAbout.Location = new System.Drawing.Point(1, 146);
@@ -272,7 +272,7 @@
             this.btnShowLiveImage.BackColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.btnShowLiveImage, CCWin.SkinControl.DecorationType.None);
             this.btnShowLiveImage.DownImage = global::HappyMaster_Dev.Properties.Resources.MenuLivePic;
-            this.btnShowLiveImage.Font = new System.Drawing.Font(".PingFang SC", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnShowLiveImage.Font = new System.Drawing.Font(".萍方-简", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnShowLiveImage.Image = null;
             this.btnShowLiveImage.IsShowBorder = false;
             this.btnShowLiveImage.Location = new System.Drawing.Point(1, 48);
@@ -396,7 +396,7 @@
             this.labelLeftTime.BackColor = System.Drawing.Color.Transparent;
             this.labelLeftTime.BorderColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.labelLeftTime, CCWin.SkinControl.DecorationType.None);
-            this.labelLeftTime.Font = new System.Drawing.Font("Microsoft YaHei Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelLeftTime.Font = new System.Drawing.Font("微软雅黑 Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelLeftTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.labelLeftTime.Location = new System.Drawing.Point(537, 49);
             this.labelLeftTime.Name = "labelLeftTime";
@@ -411,7 +411,7 @@
             this.labelTime.BackColor = System.Drawing.Color.Transparent;
             this.labelTime.BorderColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.labelTime, CCWin.SkinControl.DecorationType.None);
-            this.labelTime.Font = new System.Drawing.Font("Microsoft YaHei Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelTime.Font = new System.Drawing.Font("微软雅黑 Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.labelTime.Location = new System.Drawing.Point(40, 49);
             this.labelTime.Name = "labelTime";
@@ -445,11 +445,11 @@
             this.MusicTitle.BorderColor = System.Drawing.Color.Transparent;
             this.MusicTitle.CausesValidation = false;
             this.AnimatorforPanelSetting.SetDecoration(this.MusicTitle, CCWin.SkinControl.DecorationType.None);
-            this.MusicTitle.Font = new System.Drawing.Font(".PingFang SC", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.MusicTitle.Font = new System.Drawing.Font(".萍方-简", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MusicTitle.ForeColor = System.Drawing.Color.White;
             this.MusicTitle.Location = new System.Drawing.Point(389, 294);
             this.MusicTitle.Name = "MusicTitle";
-            this.MusicTitle.Size = new System.Drawing.Size(175, 33);
+            this.MusicTitle.Size = new System.Drawing.Size(171, 45);
             this.MusicTitle.TabIndex = 11;
             this.MusicTitle.Text = "MusicTitle";
             // 
@@ -459,11 +459,11 @@
             this.ArtistName.BackColor = System.Drawing.Color.Transparent;
             this.ArtistName.BorderColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.ArtistName, CCWin.SkinControl.DecorationType.None);
-            this.ArtistName.Font = new System.Drawing.Font(".PingFang SC", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ArtistName.Font = new System.Drawing.Font(".萍方-简", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ArtistName.ForeColor = System.Drawing.Color.White;
             this.ArtistName.Location = new System.Drawing.Point(412, 350);
             this.ArtistName.Name = "ArtistName";
-            this.ArtistName.Size = new System.Drawing.Size(120, 21);
+            this.ArtistName.Size = new System.Drawing.Size(121, 29);
             this.ArtistName.TabIndex = 12;
             this.ArtistName.Text = "ArtistName";
             // 
@@ -589,7 +589,7 @@
             this.labelbtnGlassAblumView.BackColor = System.Drawing.Color.Transparent;
             this.labelbtnGlassAblumView.BorderColor = System.Drawing.Color.Transparent;
             this.AnimatorforPanelSetting.SetDecoration(this.labelbtnGlassAblumView, CCWin.SkinControl.DecorationType.None);
-            this.labelbtnGlassAblumView.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelbtnGlassAblumView.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelbtnGlassAblumView.ForeColor = System.Drawing.Color.Black;
             this.labelbtnGlassAblumView.Location = new System.Drawing.Point(42, 3);
             this.labelbtnGlassAblumView.Name = "labelbtnGlassAblumView";
@@ -681,7 +681,7 @@
             // 
             this.label1.AutoSize = true;
             this.AnimatorforPanelSetting.SetDecoration(this.label1, CCWin.SkinControl.DecorationType.None);
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("微软雅黑 Light", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(34, 70);
             this.label1.Name = "label1";
@@ -816,7 +816,7 @@
             // 
             this.labelVolumeValue.AutoSize = true;
             this.AnimatorforPanelSetting.SetDecoration(this.labelVolumeValue, CCWin.SkinControl.DecorationType.None);
-            this.labelVolumeValue.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelVolumeValue.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.labelVolumeValue.ForeColor = System.Drawing.Color.Black;
             this.labelVolumeValue.Location = new System.Drawing.Point(5, 182);
             this.labelVolumeValue.Name = "labelVolumeValue";
@@ -878,7 +878,7 @@
             this.AlbumViewer.TabIndex = 21;
             this.AlbumViewer.Visible = false;
             this.AlbumViewer.Click += new System.EventHandler(this.AlbumViewer_Click_1);
-            this.AlbumViewer.Paint += new System.Windows.Forms.PaintEventHandler(this.AlbumViewer_Paint_1);
+            this.AlbumViewer.Paint += new System.Windows.Forms.PaintEventHandler(this.AlbumViewer_Paint);
             this.AlbumViewer.MouseHover += new System.EventHandler(this.AlbumViewer_MouseHover_1);
             // 
             // AnimatorforPanelSetting

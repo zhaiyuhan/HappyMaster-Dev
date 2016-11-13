@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using GdipEffect;
 using System.Diagnostics;
-using System.Windows.Media.Effects;
 using HappyMaster_Dev.Core;
+using System.Linq;
 
 namespace HappyMaster_Dev.View
 {
@@ -515,9 +515,7 @@ namespace HappyMaster_Dev.View
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
                 AnimatorforPanelSetting.Show(AlbumViewer);
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
-                DropShadowEffect effect = new DropShadowEffect();
-                effect.BlurRadius = 10.0;
-                //GdipBitmapApplyEffect(albumArt.NativeHandle(), effect, ref Rect, false, IntPtr.Zero, 0);
+                
                 AlbumViewer.BackgroundImage = albumArt;
                 string setTitle = tagInfo.title;
                 outputtagInfoTitle(setTitle);
@@ -1219,23 +1217,32 @@ namespace HappyMaster_Dev.View
         {
             hidepanelMore();
         }
-
+        
         private void AlbumViewer_Paint(object sender, PaintEventArgs e)
         {
-            ControlPaint.DrawBorder(e.Graphics,
-                                this.AlbumViewer.ClientRectangle,
-                                Color.Gray,//7f9db9
-                                3,
-                                ButtonBorderStyle.Solid,
-                                Color.Gray,
-                                3,
-                                ButtonBorderStyle.Solid,
-                                Color.Gray,
-                                3,
-                                ButtonBorderStyle.Solid,
-                                Color.Gray,
-                                3,
-                                ButtonBorderStyle.Solid);
+            Debug.WriteLine("Painting");
+            Panel panel = (Panel)sender;
+            Color[] shadow = new Color[3];
+            shadow[0] = Color.FromArgb(181, 181, 181);
+            shadow[1] = Color.FromArgb(195, 195, 195);
+            shadow[2] = Color.FromArgb(211, 211, 211);
+            Pen pen = new Pen(shadow[0]);
+            using (pen)
+            {
+                foreach (Panel p in panel.Controls.OfType<Panel>())
+                {
+                    Point pt = p.Location;
+                    pt.Y += p.Height;
+                    for (var sp = 0; sp < 3; sp++)
+                    {
+                        pen.Color = shadow[sp];
+                        e.Graphics.DrawLine(pen, pt.X, pt.Y, pt.X + p.Width - 1, pt.Y);
+                        e.Graphics.DrawLine(pen, pt.X + sp, pt.Y, pt.X + p.Width - 1 + sp, pt.Y);
+                        e.Graphics.DrawLine(pen, p.Right + sp, p.Top + sp, p.Right + sp, p.Bottom + sp);
+                        pt.Y++;
+                    }
+                }
+            }
         }
 
         private void AlbumViewer_Click_1(object sender, EventArgs e)
@@ -1257,11 +1264,6 @@ namespace HappyMaster_Dev.View
                 View.Infomation iv = new Infomation();
                 iv.ShowDialog();
             }
-        }
-
-        private void AlbumViewer_Paint_1(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnSetting_Click_1(object sender, EventArgs e)
