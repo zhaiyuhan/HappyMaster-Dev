@@ -209,7 +209,7 @@
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.skinLabel1.ForeColor = System.Drawing.Color.Gray;
-            this.skinLabel1.Location = new System.Drawing.Point(7, 199);
+            this.skinLabel1.Location = new System.Drawing.Point(11, 199);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(56, 17);
             this.skinLabel1.TabIndex = 15;
@@ -358,6 +358,7 @@
             this.PictureBox.Size = new System.Drawing.Size(100, 100);
             this.PictureBox.TabIndex = 11;
             this.PictureBox.TabStop = false;
+            this.PictureBox.Click += new System.EventHandler(this.PictureBox_Click_1);
             this.PictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox_Paint);
             this.PictureBox.MouseHover += new System.EventHandler(this.PictureBox_MouseHover);
             // 

@@ -10,6 +10,7 @@ using GdipEffect;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Shell;
 
 namespace HappyMaster_Dev.View
 {
@@ -212,6 +213,7 @@ namespace HappyMaster_Dev.View
             string strFilePath = _Filename;
             CopyFile.FileName=TextBoxTitle.Text+ Path.GetExtension(strFilePath);
         }
+        
         private void Infomation_Load(object sender, EventArgs e)
         {
             if (MainView.exfilename != string.Empty) 
@@ -289,20 +291,7 @@ namespace HappyMaster_Dev.View
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
-            if (PictureBox.BackgroundImage != null)
-            {
-                Bitmap outputImage = new Bitmap(PictureBox.BackgroundImage);
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Title = "获取专辑图片并保存为";
-                sfd.Filter = "JPG文件(*.jpg)|*.jpg";
-                sfd.FileName = TextBoxTitle.Text + "的专辑封面";
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    outputImage.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                }
-
-                
-            }
+            
         }
         protected void setToolTip()
         {
@@ -359,6 +348,22 @@ namespace HappyMaster_Dev.View
                     }
                 }
             }*/
+        }
+
+        private void PictureBox_Click_1(object sender, EventArgs e)
+        {
+            if (PictureBox.BackgroundImage != null)
+            {
+                Bitmap outputImage = new Bitmap(PictureBox.BackgroundImage);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "获取专辑图片并保存为";
+                sfd.Filter = "JPG文件(*.jpg)|*.jpg";
+                sfd.FileName = TextBoxTitle.Text + "的专辑封面";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    outputImage.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
         }
 
         private void btnCopyFile_Click(object sender, EventArgs e)

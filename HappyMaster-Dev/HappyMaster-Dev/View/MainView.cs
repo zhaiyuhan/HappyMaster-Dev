@@ -13,11 +13,13 @@ using GdipEffect;
 using System.Diagnostics;
 using HappyMaster_Dev.Core;
 using System.Linq;
+using System.Windows.Shell;
 
 namespace HappyMaster_Dev.View
 {
     public partial class MainView : DMSkin.Main
     {
+        public TaskbarItemInfo _Taskbar = new TaskbarItemInfo();
         public MainView()
         {
             InitializeComponent();
@@ -203,6 +205,7 @@ namespace HappyMaster_Dev.View
             MusicTitle.Text = "";
             ArtistName.Text = "";
             FreeMemory.Enabled = true;
+
         }
 
         private void MainView_Resize(object sender, EventArgs e)
@@ -456,38 +459,29 @@ namespace HappyMaster_Dev.View
             Bass.BASS_Stop();
             Bass.BASS_Free();
         }//
-        long length = 0; double totaltime; public static Image albumArt;
+        long length = 0; double totaltime;
+        public static Image albumArt;
+        #region HANDLE_TAG_INFO
         TAG_INFO tagInfo;
-        void outputtagInfoTitle(string title)
+        private string HandleTAG_INFO_Title(string title)
         {
-            if (title != string.Empty) 
-            {
-                MusicTitle.Text = title;
-                while(MusicTitle.Text=="")
-                {
-                    MusicTitle.Text = filename;
-                }
-            }
+            if (string.IsNullOrEmpty(title)) 
+                return filename;
             else
-            {
-                MusicTitle.Text = filename;
-            }
+                return title;
         }
-        void outputtagInfoArtist(string artsit)
+        private string HandleTAG_INFO_Artist(string artist,string album)
         {
-            if (tagInfo.artist != string.Empty && tagInfo.album != string.Empty)
-            {
-                ArtistName.Text = tagInfo.artist + " - " + tagInfo.album;
-            }
-            else if (tagInfo.artist != string.Empty && tagInfo.album == string.Empty)
-            {
-                ArtistName.Text = tagInfo.artist;
-            }
-            else if (tagInfo.artist == string.Empty && tagInfo.album != string.Empty)
-            {
-                ArtistName.Text = tagInfo.album;
-            }
+            if (string.IsNullOrEmpty(artist) == true && string.IsNullOrEmpty(album) == true)
+                return filename;
+            else if (string.IsNullOrEmpty(artist) == true && string.IsNullOrEmpty(album) == false)
+                return album;
+            else if (string.IsNullOrEmpty(artist) == false && string.IsNullOrEmpty(album) == true)
+                return artist;
+            else
+                return artist + "-" + album;
         }
+        #endregion
         //function restart Timer
         void cleanTimer()
         {
@@ -496,7 +490,7 @@ namespace HappyMaster_Dev.View
             labelTime.Text = "00:00";
             playControl.BackgroundImage = global::HappyMaster_Dev.Properties.Resources.PlayNormal;
         }
-        void outputInfomation()
+        public void outputInfomation()
         {
             if (stream != 0)
             {
@@ -504,9 +498,9 @@ namespace HappyMaster_Dev.View
                 MusicTitle.Text = "";
                 ArtistName.Text = "";
                 workImage = AlbumViewer.BackgroundImage;
+                tagInfo = new TAG_INFO(filename);
             }
-            tagInfo = new TAG_INFO(filename);
-            
+                        
             if (BassTags.BASS_TAG_GetFromFile(stream, tagInfo))
             {//get tag information                              
                 
@@ -515,22 +509,18 @@ namespace HappyMaster_Dev.View
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Transparent;
                 AnimatorforPanelSetting.Show(AlbumViewer);
                 AnimatorforPanelSetting.AnimationType = CCWin.SkinControl.AnimationType.Scale;
-                
-                AlbumViewer.BackgroundImage = albumArt;
-                string setTitle = tagInfo.title;
-                outputtagInfoTitle(setTitle);
-                outputtagInfoArtist(tagInfo.artist);
+
+               AlbumViewer.BackgroundImage = AlbumArt;
+                MusicTitle.Text = HandleTAG_INFO_Title(tagInfo.title);
+                ArtistName.Text = HandleTAG_INFO_Artist(tagInfo.artist, tagInfo.album);
                 InitUI();
             }
             else
             {
                 //if no artist information 
                 AlbumViewer.BackgroundImage = null;
-                //GetPicture();
-                //AlbumViewer.BackgroundImage = albumArt;
-                string setTitle = tagInfo.title;
-                outputtagInfoTitle(setTitle);
-                outputtagInfoArtist(tagInfo.artist);
+                MusicTitle.Text = HandleTAG_INFO_Title(tagInfo.title);
+                ArtistName.Text = HandleTAG_INFO_Artist(tagInfo.artist, tagInfo.album);
                 InitUI();
             }
             length = Bass.BASS_ChannelGetLength(stream); //get the stream length
@@ -593,6 +583,8 @@ namespace HappyMaster_Dev.View
             {
                 DrawSpectrum();
                 //Live Picture Panel
+                _Taskbar.ProgressState = TaskbarItemProgressState.Normal;
+                _Taskbar.ProgressValue = Pos.Value;
             }
             else if (Bass.BASS_ChannelIsActive(stream) == BASSActive.BASS_ACTIVE_STOPPED)
             {               
@@ -616,14 +608,6 @@ namespace HappyMaster_Dev.View
         private void Pos_Scroll(object sender, ScrollEventArgs e)
         {
             Position.Enabled = false;
-            //string thisTime = String.Empty;
-            //length = Bass.BASS_ChannelGetLength(stream);
-            //totaltime = Bass.BASS_ChannelBytes2Seconds(stream, length);
-            //long pos = Bass.BASS_ChannelGetPosition(stream);
-            //double elapsedtime = Bass.BASS_ChannelBytes2Seconds(stream, pos);//current time
-            //labelTime.Text = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            //thisTime = String.Format(Utils.FixTimespan(elapsedtime, "MMSS"));
-            //setToolTip(thisTime, Pos);        
         }
         //set volume
         public int volume = Bass.BASS_GetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM) / 100;
