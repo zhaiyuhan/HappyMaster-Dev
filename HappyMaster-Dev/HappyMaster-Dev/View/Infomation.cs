@@ -202,6 +202,9 @@ namespace HappyMaster_Dev.View
                 case BASSChannelType.BASS_CTYPE_STREAM_FLAC:
                     btnCopyFile.Text = "拷贝FLAC文件到";
                     break;
+                case BASSChannelType.BASS_CTYPE_STREAM_CD:
+                    btnCopyFile.Text = "拷贝CD文件到";
+                    break;
                 default:
                     btnCopyFile.Text = "拷贝未知格式文件到";
                     break;

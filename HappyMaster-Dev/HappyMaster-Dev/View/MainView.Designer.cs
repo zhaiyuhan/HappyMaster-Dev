@@ -939,6 +939,7 @@
             this.Click += new System.EventHandler(this.MainView_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainView_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainView_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainView_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainView_KeyUp);
             this.Resize += new System.EventHandler(this.MainView_Resize);
             this.panelSetting.ResumeLayout(false);

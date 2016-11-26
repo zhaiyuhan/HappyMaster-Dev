@@ -14,6 +14,8 @@ using System.Diagnostics;
 using HappyMaster_Dev.Core;
 using System.Linq;
 using System.Windows.Shell;
+using Un4seen.Bass.AddOn.Flac;
+using Un4seen.Bass.AddOn.Cd;
 
 namespace HappyMaster_Dev.View
 {
@@ -25,17 +27,15 @@ namespace HappyMaster_Dev.View
             InitializeComponent();
             
         }
+        #region CLEANMEMORY
         [DllImport("kernel32.dll", EntryPoint = "SetProcessWorkingSetSize")]
-        public static extern int SetProcessWorkingSetSize(
-        IntPtr hProcess,
-        int dwMinimumWorkingSetSize,
-        int dwMaximumWorkingSetSize
-        );
+        public static extern int SetProcessWorkingSetSize(IntPtr hProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
         public static void ClearMemory()
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            /*OSVersion ,later than Win32NT*/
             {
                 SetProcessWorkingSetSize(System.Diagnostics.Process.GetCurrentProcess().Handle, -1, -1);
             }
@@ -44,6 +44,7 @@ namespace HappyMaster_Dev.View
         {
            ClearMemory();
         }
+        #endregion
         #region GETPICTURE
         private byte[] GetBytes(byte[] bytes, int start, int end)
         {
@@ -174,23 +175,34 @@ namespace HappyMaster_Dev.View
         public string filename = String.Empty;//filename
         public int stream = 0;//stream
         //empyty;
+        public void LayoutView(bool isFirstView)
+        {
+            switch (isFirstView )
+            {
+                case true:
+                bottomPanel.Size = new Size(607, 67);//set fixed size
+                                                     /*Start layout*/
+                bottomPanel.Left = (this.ClientRectangle.Width - bottomPanel.Width) / 2; bottomPanel.BringToFront();
+                MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2;
+                ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;
+                AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
+                playControl.Left = (this.bottomPanel.Width - playControl.Width) / 2; playControl.BringToFront();
+                panelSetting.Location = new Point(bottomPanel.Location.X, bottomPanel.Location.Y - (panelSetting.Height + 10));
+                panelMore.Location = new Point(panelSetting.Location.X + panelSetting.Width + 5, panelSetting.Location.Y - 25); 
+                    /*End layout*/
+                    break;
+                default:
+                    break;
+            }
+        }
         public void InitUI()
         {
             /*the style since beta 4.0*/
-            bottomPanel.Size = new Size(607, 67);//set fixed size
-            bottomPanel.Left = (this.ClientRectangle.Width - bottomPanel.Width) / 2; bottomPanel.BringToFront();
-            MusicTitle.Left = (this.ClientRectangle.Width - MusicTitle.Width) / 2; 
-            ArtistName.Left = (this.ClientRectangle.Width - ArtistName.Width) / 2;            
-            AlbumViewer.Left = (this.ClientRectangle.Width - AlbumViewer.Width) / 2;
-            playControl.Left = (this.bottomPanel.Width - playControl.Width) / 2; playControl.BringToFront();
-            panelSetting.Location = new Point(bottomPanel.Location.X, bottomPanel.Location.Y - (panelSetting.Height + 10));
-            panelMore.Location = new Point(panelSetting.Location.X + panelSetting.Width + 5, panelSetting.Location.Y - 25);
+            LayoutView(true);
             //custom layout
             //except playControl is always on top,and all of them are always in the middle
-            btnLoadFile.TabStop = false;
-            Debug.WriteLine(playControl.Location);
+            
         }
-
         private void MainView_Load(object sender, EventArgs e)
         {
             InitUI();//Run...
@@ -383,11 +395,11 @@ namespace HappyMaster_Dev.View
             //stream = Bass.BASS_StreamCreateFile(filename, 0L, 0L, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
             //this method to create stream from file is wasted since beta 5.0, because of Buffer is better
 
-            FileStream fs = File.OpenRead(filename);
-            long length = fs.Length;
+            FileStream _FileStream = File.OpenRead(filename);
+            long length = _FileStream.Length;
             byte[] buffer = new byte[length];
-            fs.Read(buffer, 0, (int)length);
-            fs.Close();
+            _FileStream.Read(buffer, 0, (int)length);
+            _FileStream.Close();
             _hGCFile = GCHandle.Alloc(buffer, GCHandleType.Pinned);
             stream = Bass.BASS_StreamCreateFile(_hGCFile.AddrOfPinnedObject(), 0L, length, BASSFlag.BASS_SAMPLE_FLOAT | BASSFlag.BASS_STREAM_PRESCAN);
 
@@ -1006,6 +1018,10 @@ namespace HappyMaster_Dev.View
                 VolumeMaster.DM_Value += 10;
                 volume = (int)VolumeMaster.DM_Value;
                 Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
+            }else if (Keys.O == e.KeyCode && e.Modifiers == (Keys.Control | Keys.Shift))
+            {
+                LoadFile();
+                Debug.WriteLine("Down Control");
             }
         }
 
@@ -1348,6 +1364,13 @@ namespace HappyMaster_Dev.View
             volume = (int)VolumeMaster.DM_Value;
             Bass.BASS_SetConfig(BASSConfig.BASS_CONFIG_GVOL_STREAM, volume * 100);
         }
+
+        private void MainView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        
 
         private void btnGlassAblumView_Click(object sender, EventArgs e)
         {
